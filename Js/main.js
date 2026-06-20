@@ -12,10 +12,17 @@ async function datos_api(){
         
         console.log("********************");
         
-        preguntas.forEach((item, indice) => {
-            const preguntaLimpia = decodeURIComponent(item.question); 
-            console.log(`${indice + 1}. ${preguntaLimpia}`);
-        });
+        for (let i = 0; i < preguntas.length; i++) {
+            const preguntaIngles = decodeURIComponent(preguntas[i].question);
+
+            const urlTraductor = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(preguntaIngles)}&langpair=en|es`;
+            const resTraduccion = await fetch(urlTraductor);
+            const datosTraduccion = await resTraduccion.json();
+            
+            const preguntaEspanol = datosTraduccion.responseData.translatedText;
+
+            console.log(`${i + 1}. ${preguntaEspanol}`);
+}
 
 
 
@@ -29,17 +36,6 @@ datos_api();
 
 
 
-// for (let i = 0; i < preguntas.length; i++) {
-//             const preguntaIngles = decodeURIComponent(preguntas[i].question);
-
-//             const urlTraductor = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(preguntaIngles)}&langpair=en|es`;
-//             const resTraduccion = await fetch(urlTraductor);
-//             const datosTraduccion = await resTraduccion.json();
-            
-//             const preguntaEspanol = datosTraduccion.responseData.translatedText;
-
-//             console.log(`${i + 1}. ${preguntaEspanol}`);
-// }
 
 
 
