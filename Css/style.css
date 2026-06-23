@@ -1,3 +1,141 @@
-*{
-    margin: 0px 0px 0px 0px;
+
+body{
+    background-color: #F5F5F5;
 }
+.linea {
+    border: 1px solid red;
+}
+
+.barra-navegacion{
+    background-color: #ffffff;
+    font-size: 15px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    
+}
+.texto-color a{
+    color: rgb(0, 0, 0) !important;
+}
+
+
+.nav-underline .nav-link:hover {
+    --bs-nav-underline-border-color: #5A00C6 !important; 
+    color: #5A00C6 !important; 
+}
+
+/* Cambia el color de la línea en la pestaña que está activa (Active) */
+.nav-underline .nav-link.active {
+    --bs-nav-underline-border-color: #5A00C6 !important; 
+    color: #5A00C6 !important; 
+    
+}
+/* Reduce la separación entre el texto y la línea de nav-underline */
+.navbar-nav .nav-link {
+    padding-bottom: 2px !important; 
+}
+
+
+/*diseno de botones en el banner*/
+.seccion-absoluta{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 50px;
+
+    position: absolute;
+    top: 450px;     
+    left: 1080px;
+    
+}
+.btn1, .btn2 {
+    padding: 10px 22px; 
+    font-size: 15px;
+    font-weight: 600; 
+    border: none;
+    border-radius: 6px; 
+    width: 160px;
+}
+.btn1 {
+    background-color: #5A00C6; 
+    color: #ffffff;
+}
+.btn2 {
+    background-color: #06B6D4; 
+    color: #333;
+    border: 1px solid #06B6D4; 
+}
+.btn1, .btn2 {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn2:hover, .btn1:hover{
+    transform: translateY(-5px);
+    
+}
+
+/* aca termina */
+
+/* col-categoria */
+
+#seccion-categorias{
+    margin-top: 100px;
+    
+}
+.col-categorias{
+    background-color: white;
+    border-radius: 15px;
+}
+.seccion-icono{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    padding-top: 13px;
+    margin-top: 25px;
+}
+
+.categorias-descripcion p{
+    font-weight: bold;
+}
+.categorias-descripcion{
+    margin-top: 5px;
+}
+
+#icono1{
+    font-size: 35px;
+    color: #630ED4;
+    background-color: #EADDFF;
+}
+#icono2{
+    font-size: 35px;
+    color: #00687A;
+    background-color: #ACEDFF;
+}
+#icono3{
+    font-size: 35px;
+    color: #bb1066;
+    background-color: #FFDCC6;
+}
+#icono4{
+    font-size: 35px;
+    color: #89893a;
+    background-color: #ffffcd;
+}
+#icono5{
+    font-size: 35px;
+    color: #5dbc56;
+    background-color: #cbf8c8 ;
+}
+#icono6{
+    font-size: 35px;
+    color: #BA2C5C;
+    background-color: #FFDAD6;
+}
+
+#titulo-categorias h4{
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+
+
+
+
