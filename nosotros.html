@@ -16,6 +16,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
+        <div class="container-fluid barra-navegacion">
+        <a class="navbar-brand m-0" href="/index.html" style="z-index: 2;">
+            <img src="/Img/Logo Proyecto Quiz Interactivo.png" alt="Logo de QuizMind" class="logo-navbar">
+        </a>
+
+        <button style="background-color: white;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0"> 
+            <li class="nav-item texto-color">
+                <a class="nav-link mx-2" aria-current="page" href="/index.html">Inicio</a>
+            </li>
+            <li class="nav-item texto-color">
+                <a class="nav-link mx-2" href="/quiz.html">Quiz</a>
+            </li>
+            <li class="nav-item texto-color">
+                <a class="nav-link mx-2" href="/nosotros.html">Estadisticas</a>
+            </li>
+            <li class="nav-item texto-color">
+                <a class="nav-link mx-2 active" href="/nosotros.html">Nosotros</a>
+            </li>
+            </ul>
+            
+            <ul class="navbar-nav d-flex align-items-center" style="min-width: 300px; justify-content: flex-end;"> <!--pasar al css-->
+            <li class="nav-item texto-color">
+                <a class="nav-link link-opacity-50 link-opacity-100-hover" href="#" data-bs-toggle="modal" data-bs-target="#modalComentarios">
+                <i class="bi bi-person-fill fs-2 i-login"></i>
+                </a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <!--seccion tecnologias usadas-->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="tecnologias-title">Tecnologías usadas</h2>
+            </div>
+        </div>
+        <div class="row fila-tarjetas-tecnologia">
+            <div class="card tarjeta-tecnologias">
+                <img src="/Img/logo-html.png" class="card-img-top" alt="Logo HTML">
+                <div class="card-body body-tecnologias">
+                    <p class="card-text texto-tecnologias">HTML</p>
+                </div>
+            </div>
+            <div class="card tarjeta-tecnologias">
+                <img src="/Img/logo-bootstrap.png" class="card-img-top object-fit-cover" alt="Logo Bootstrap">
+                <div class="card-body body-tecnologias">
+                    <p class="card-text texto-tecnologias">Bootstrap</p>
+                </div>
+            </div>
+            <div class="card tarjeta-tecnologias">
+                <img src="/Img/logo-css.png" class="card-img-top object-fit-cover" alt="Logo CSS">
+                <div class="card-body body-tecnologias">
+                    <p class="card-text texto-tecnologias">CSS</p>
+                </div>
+            </div>
+            <div class="card tarjeta-tecnologias">
+                <img src="/Img/logo-js.png" class="card-img-top object-fit-cover" alt="Logo JS">
+                <div class="card-body body-tecnologias">
+                    <p class="card-text texto-tecnologias">Javascript</p>
+                </div>
+            </div>
+            <div class="card tarjeta-tecnologias">
+                <img src="/Img/logo-api-1.png" class="card-img-top img-tecnologias-apis" alt="Logo API principal">
+                <div class="card-body body-tecnologias">
+                    <p class="card-text texto-tecnologias" id="texto-api-1">Open Trivia Database</p>
+                </div>
+            </div>
+            <div class="card tarjeta-tecnologias">
+                <img src="/Img/logo-api-2.jpg" class="card-img-top img-tecnologias-apis" alt="Logo API secundaria">
+                <div class="card-body body-tecnologias">
+                    <p class="card-text texto-tecnologias" id="texto-api-2">Mymemory Translated</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--pie de pagina-->
+<footer class="container-fluid">
+    <div class="row">
+        <div class="col">
+        <img src="/Img/logo-proyecto-footer.png" alt="Logo" class="img-footer">
+        </div>
+        <div class="col">
+        <a href="#" class="links-footer">Privacidad</a>
+        </div>
+        <div class="col">
+        <a href="#" class="links-footer">Términos y Condiciones</a>
+        </div>
+        <div class="col rrss">
+        <h5 class="h5-footer">Redes Sociales</h5>
+        <p class="p-footer">Dylan Medina</p>
+        <a href="#"><img src="/Img/logo-ig-sin_fondo.png" class="img-rrss" id="ig1" alt="Instagram"></a>
+        <a href="#"><img src="/Img/logo-facebook-sin_fondo.png" class="img-rrss" alt="Facebook"></a>
+        </div>
+        <div class="col rrss">
+            <h5 class="h5-footer">Redes Sociales</h5>
+            <p class="p-footer">Martina Honores</p>
+            <a href="https://www.instagram.com/princess.darks"><img src="/Img/logo-ig-sin_fondo.png" class="img-rrss" id="ig2" alt="Instagram"></a>
+            <a href="https://web.facebook.com/profile.php?id=61559574287028"><img src="/Img/logo-facebook-sin_fondo.png" class="img-rrss" alt="Facebook"></a>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script src="/Js/main.js"></script>
 </body>
 </html>

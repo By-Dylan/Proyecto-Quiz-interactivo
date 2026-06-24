@@ -363,8 +363,47 @@ footer > *{
     background-color: #06B6D4;;
     color: #333;
 }
-
-
+/*diseño tecnologias utilizadas*/
+.tecnologias-title{
+    text-align: center;
+    margin: 2%;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    color:#7C3AED;
+}
+.fila-tarjeta-tecnologias > *{
+    align-items: center;
+    border: none;
+}
+.tarjeta-tecnologias{
+    width: 13rem;
+    background-color: #86edff;
+    margin: 5px;
+}
+.card-img-top{
+    background-color: #86edff;
+    margin-top: 10px;
+}
+.object-fit-cover{
+    height: 160px;
+}
+.body-tecnologias{
+    height: 10%;
+    margin-top: 60px;
+    border: none;
+}
+.img-tecnologias-apis{
+    margin-top: 40px;
+}
+.texto-tecnologias{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #A15100;
+}
+#texto-api-1{
+    margin-top: 15px;
+}
 
 
 
