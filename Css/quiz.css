@@ -1,0 +1,132 @@
+/*diseño del quiz*/
+.progress{
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-color:#06B6D4;
+    margin: 3% auto;
+}
+.progress-bar{
+    color: white;
+    background-color:#005a6a
+}
+.title-progress{
+    text-align: center;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.img-quiz{
+    width: 70%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    margin-left: 15%;
+    border: 3px solid #7C3AED;
+}
+.category-title{
+    margin-left: 9%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #A15100;
+}
+.question-title{
+    text-align: left;
+    margin-left: 9%;
+    margin-top: 2%;
+    color: #7C3AED;
+    font-size: 20px;
+    font-weight: bold;
+}
+.alternativa-a{
+    background-color: #06B6D4; 
+    color: #333;
+    border: 1px solid #06B6D4; 
+    margin-top: 3%;
+    margin-left: 27%;
+    width: 20%;
+    font-size: 18px;
+    padding: 10px 22px; 
+}
+.alternativa-a:hover{
+    background-color: #A15100;
+    color: white;
+}
+.alternativa-b{
+    background-color: #06B6D4; 
+    color: #333;
+    border: 1px solid #06B6D4; 
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 20%;
+    font-size: 18px;
+    padding: 10px 22px; 
+}
+.alternativa-b:hover{
+    background-color: #A15100;
+    color: white;
+}
+.alternativa-c{
+    background-color: #06B6D4; 
+    color: #333;
+    border: 1px solid #06B6D4; 
+    margin-top: 3%;
+    margin-left: 27%;
+    width: 20%;
+    font-size: 18px;
+    padding: 10px 22px; 
+
+}
+.alternativa-c:hover{
+    background-color: #A15100;
+    color: white;
+}
+.alternativa-d{
+    background-color: #06B6D4; 
+    color: #333;
+    border: 1px solid #06B6D4; 
+    margin-top: 3%;
+    margin-left: 5%;
+    width: 20%;
+    font-size: 18px;
+    padding: 10px 22px; 
+}
+.alternativa-d:hover{
+    background-color: #A15100;
+    color: white;
+}
+.saltar{
+    padding: 10px 22px; 
+    font-size: 14px;
+    font-weight: 600; 
+    border: none;
+    width: 160px;
+    margin-left: 485px;
+    margin-top: 3%;
+    background-color: #7C3AED;
+}
+.saltar:hover{
+    background-color: #06B6D4;;
+    color: #333;
+}
+.siguiente{
+    padding: 10px 22px; 
+    font-size: 14px;
+    font-weight: 600; 
+    border: none;
+    width: 160px;
+    margin-top: 3%;
+    background-color: #7C3AED; 
+}
+.siguiente:hover{
+    background-color: #06B6D4;;
+    color: #333;
+}
+
+
+
+
+
+
+
