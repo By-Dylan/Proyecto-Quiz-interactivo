@@ -126,7 +126,11 @@
 
 
 
+.ocultar_categorias_quiz{
+    display: none !important;
+}
 
-
-
+.seccion-categoria{
+    cursor: pointer;
+}
 
