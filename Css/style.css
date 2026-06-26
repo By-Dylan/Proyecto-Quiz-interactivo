@@ -38,6 +38,25 @@ body{   /*texto para ver si se subio*/
 .i-login{
     color:#7C3AED;
 }
+
+.ocultar-register{
+    display: none !important;
+}
+.icono-sesionCorrecta{
+    display: none !important;
+}
+.seccion-alerta{
+    position: fixed;
+    top: 20%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 5px;
+}
+
+.desactivador-de-alerta{
+    display: none !important;
+}
+
 /*img del banner*/
 .img-banner{
     width: 90%;
@@ -55,15 +74,7 @@ body{   /*texto para ver si se subio*/
     color:#A15100;
 }
 /*diseno de botones bajo el banner*/
-.seccion-absoluta{
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 50px;
-    position: absolute;
-    top: 580px;     
-    left: 580px;
-    
-}
+
 .btn1, .btn2 {
     padding: 10px 22px; 
     font-size: 14px;
@@ -75,10 +86,11 @@ body{   /*texto para ver si se subio*/
 .btn1 {
     background-color: #5A00C6; 
     color: #ffffff;
+    margin-right: 40px;
 }
 .btn2 {
     background-color: #06B6D4; 
-    color: #333;
+    color: #ffffff;
     border: 1px solid #06B6D4; 
 }
 .btn1, .btn2 {

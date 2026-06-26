@@ -26,8 +26,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
+        <div class="flex-lg-fill d-none d-lg-block"></div>
+
         <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0"> 
           <li class="nav-item texto-color">
             <a class="nav-link mx-2 active link-index" aria-current="page" href="/index.html">Inicio</a>
@@ -43,13 +45,20 @@
           </li>
         </ul>
         
-        <ul class="navbar-nav d-flex align-items-center" style="min-width: 300px; justify-content: flex-end;"> <!--pasar al css-->
+        <ul class="navbar-nav d-flex align-items-center justify-content-end flex-lg-fill" id="seccion-login"> 
           <li class="nav-item texto-color">
             <a class="nav-link link-opacity-50 link-opacity-100-hover" href="#" data-bs-toggle="modal" data-bs-target="#modalComentarios">
               <i class="bi bi-person-fill fs-2 i-login"></i>
             </a>
           </li>
         </ul>
+
+        <ul class="navbar-nav d-flex align-items-center justify-content-end flex-lg-fill icono-sesionCorrecta" id="icono-sesion-correcta"> 
+          <li class="nav-item texto-color">
+            <i class="bi bi-person-check-fill fs-2" style="color: #1fb7e9; padding-right: 15px;"></i>
+          </li>
+        </ul>
+
       </div>
     </div>
   </nav>
@@ -60,26 +69,26 @@
   <div class="modal fade" id="modalComentarios" tabindex="-1" aria-labelledby="modalComentariosLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content text-dark">
-        <form>
+        <form id="login">
           <div class="modal-header fondo-titulo">
-            <p class="fw-bold titulo-sesion mb-0" id="modalComentariosLabel">Iniciar Sesión</p>
+            <p class="fw-bold titulo-sesion mb-0" id="modalComentariosLabel">Registrate</p>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           
           <div class="modal-body">
             <label for="loginUser" class="form-label fw-bold">Usuario</label>
-            <input type="text" class="form-control form-control-sm mb-3" id="loginUser" placeholder="Nombre de usuario" required>
+            <input type="text" class="form-control form-control-sm mb-3" id="loginUser" placeholder="Nombre de usuario" name="nombre" required>
             
             <label for="loginEmail" class="form-label fw-bold">Correo electrónico</label>
-            <input type="email" class="form-control form-control-sm mb-3" id="loginEmail" placeholder="Correo existente" required>
+            <input type="email" class="form-control form-control-sm mb-3" id="loginEmail" placeholder="Correo existente" name="gmail" required>
             
             <label for="loginPassword" class="form-label fw-bold">Contraseña</label>
-            <input type="password" class="form-control form-control-sm mb-3" id="loginPassword" placeholder="Contraseña" required>
+            <input type="password" class="form-control form-control-sm mb-3" id="loginPassword" placeholder="Contraseña" name="contraseña" required>
           </div>
           
           <div class="modal-footer color-btn">
             <div class="d-grid gap-2 col-10 mx-auto">
-              <button type="submit" class="btn btn-danger btn-md">Enviar</button>
+              <button type="submit" class="btn btn-md" id="btn-enviar"  style="background-color: #7C3AED; color: white;">Enviar</button>
             </div>
           </div>
         </form>
@@ -89,19 +98,25 @@
   <!--banner principal-->
   <div class="container-fluid p-0 m-0 d-flex justify-content-center">
     <div class="row">
-      <div class="col">
+      <div class="col-12">
         <picture>
           <img src="/Img/Banner Proyecto Quiz Interactivo.png" class="img-fluid img-banner" alt="Banner de QuizMind">
         </picture>
         <p class="banner-description">"Bienvenido a QuizMind. Un espacio interactivo donde aprender es un juego. </br>Responde preguntas de múltiples categorías, 
         analiza tus estadísticas en tiempo real y expande tu cultura general un clic a la vez."</p>
       </div>
-    </div>
-    <div class="seccion-absoluta">
-      <button class="btn1">Quiz rapido</button>
-      <button class="btn2">¿Como funciona?</button> 
+      <div class="col-12 text-center">
+        <button class="btn1">Quiz rapido</button>
+        <button class="btn2" id="btn-comofunciona">¿Como funciona?</button> 
+      </div>
+
     </div>
   </div>
+  
+  <div class="seccion-alerta" id="alerta">
+    
+  </div>
+
 
 <!--seccion de categorias-->
 
