@@ -264,24 +264,27 @@ function mostrarPregunta(indice) {
         <h3 class="question-title">${dato.pregunta}</h3> 
     </div>
 
-    <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
+    <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
         <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[0]}</button>
         <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[1]}</button>
     </div>
-    <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
+    <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
         <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[2]}</button>
         <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[3]}</button>
     </div>
-    
+        <!--botones de saltar y siguiente-->
     <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-secondary saltar" onclick="pasarSiguientePregunta()">Saltar</button>
-        <button type="button" class="btn btn-success siguiente" onclick="pasarSiguientePregunta()">Siguiente</button>
+        <button type="button" class="btn btn-primary saltar" onclick="pasarSiguientePregunta()">Saltar</button>
+        <button type="button" class="btn btn-primary siguiente" onclick="pasarSiguientePregunta()">Siguiente</button>
     </div>
+    
     `;
 
     // Asignar eventos para verificar si la respuesta es correcta
     configurarBotonesOpcion(dato.respuesta_correcta);
 }
+
+
 
 // FUNCIÓN PARA AVANZAR
 function pasarSiguientePregunta() {
