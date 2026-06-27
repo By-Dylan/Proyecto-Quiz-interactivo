@@ -226,8 +226,3 @@ if(deportes){
         guardarCategoria("Deportes", 21)
     });
 }
-
-
-
-
-

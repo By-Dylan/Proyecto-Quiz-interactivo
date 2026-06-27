@@ -1,40 +1,44 @@
-const seccion_quiz= document.getElementById("seccion-quiz");
-
+const seccion_quiz= document.getElementById("seccion-quiz"); //IMPORTANTE: Localstorage se lleva y trae datos SIEMPRE como string
+if(!seccion_quiz){ //verificamos que exista el contenedor
+    return;
+}
+//1) Obtenemos el nombre e id de la categoria guardados en el localstorage en el main.js con el metodo getItem y el nombre de la variable que usamos en el otro script
+const cNombre = localStorage.getItem("categoriaNombre");
+const idAPI = localStorage.getItem("categoriaID");
+if(cNombre && idAPI){
+    console.log("Nombre e ID de la categoría obtenidos correctamente: " + cNombre + ", " + idAPI);
+} else{
+    console.log("No se lograron cargar los datos.");
+}
 seccion_quiz.addEventListener("click",()=>{
-    //aca de deberiamos borrar o oculat la seccion de eleccion de quiz(mate,historia,informatica)
+    //aca de deberiamos borrar o oculat la seccion de eleccion de quiz(mate,historia,informatica) --tendria que ir en el main.js
 
-    //casos de lo que seleccione el usuario
+    //casos de lo que seleccione el usuario: en vez de usar el nombre, usa el id, es mas seguro y facil de esa forma
     const area_seleccionada = ""; //string vacio: recibira el id de la categoria que seleccione el usuario
 
     switch (area_seleccionada) {
-    case "informatica":
-        const informatica = document.getElementById("cInformatica");
-        informatica.addEventListener("click", quiz_informatica());
-        console.log("Acceso al Quiz de Infomática.");
-
-
-
-        
+    case "18":
+        quiz_informatica(); //sera la funcion general para todas las categorias
         break;
-    case "ciencia":
+    case "17":
         console.log("Puedes editar contenido.");
         break;
-    case "peliculas":
+    case "11":
         console.log("Acceso total al sistema.");
         break;
-    case "geografia":
+    case "22":
         console.log("Acceso total al sistema.");
         break;
-    case "musica":
+    case "12":
         console.log("Acceso total al sistema.");
         break;
-    case "deporte":
+    case "21":
         console.log("Acceso total al sistema.");
         break;
 
 
     default:
-        console.log("Rol no reconocido.");
+        console.log("ID no reconocido.");
     }
 
 })
@@ -45,7 +49,7 @@ async function quiz_informatica(facil){
     //en el fech poner una variable de la api si es facil o hard.
 
     try {
-    //const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
+    const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
     if(!api_quiz.ok){
             throw new Error("Hubo un error en la peticion de la api");
     }
