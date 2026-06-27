@@ -131,6 +131,6 @@
 }
 
 .seccion-categoria{
-    cursor: pointer;
+    cursor: pointer; /*para cambiar el cursor del puntero a tipo link*/
 }
 
