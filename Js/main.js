@@ -180,7 +180,52 @@ quiz_informatica()
 
 
 // datos_api();
+//Logica: Redirrecionar al usuario al apretar cualquier categoria. 
+//1) Obtenemos cada categoria del index por su id
+const informatica = document.getElementById("cInformatica");
+const ciencias = document.getElementById("cCiencias");
+const peliculas = document.getElementById("cPeliculas");
+const geografia = document.getElementById("cGeografia");
+const musica = document.getElementById("cMusica");
+const deportes = document.getElementById("cDeportes");
 
+//2) Función guardar categorias: Utiliza localstorage con el metodo setItem para guardar cada categoria y pasarselas al quiz.html
+function guardarCategoria(cNombre, c_idAPI){
+    localStorage.setItem("categoriaNombre", cNombre);
+    localStorage.setItem("categoriaID", c_idAPI);
+    window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
+}
+//3) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
+if(informatica){
+    informatica.addEventListener("click", () => {
+        guardarCategoria("Informática", 18)
+    });
+}
+if(ciencias){
+    ciencias.addEventListener("click", () => {
+        guardarCategoria("Ciencias", 17)
+    });
+}
+if(peliculas){
+    peliculas.addEventListener("click", () => {
+        guardarCategoria("Películas", 11)
+    });
+}
+if(geografia){
+    geografia.addEventListener("click", () => {
+        guardarCategoria("Geografía", 22)
+    });
+}
+if(musica){
+    musica.addEventListener("click", () => {
+        guardarCategoria("Música", 12)
+    });
+}
+if(deportes){
+    deportes.addEventListener("click", () => {
+        guardarCategoria("Deportes", 21)
+    });
+}
 
 
 

@@ -4,13 +4,15 @@ seccion_quiz.addEventListener("click",()=>{
     //aca de deberiamos borrar o oculat la seccion de eleccion de quiz(mate,historia,informatica)
 
     //casos de lo que seleccione el usuario
-    const area_seleccionada = "matematica"; //ejemplo(matematica(deberia ir una variable))
+    const area_seleccionada = ""; //string vacio: recibira el id de la categoria que seleccione el usuario
 
     switch (area_seleccionada) {
     case "informatica":
-        console.log("entrada a test informatica");
+        const informatica = document.getElementById("cInformatica");
+        informatica.addEventListener("click", quiz_informatica());
+        console.log("Acceso al Quiz de Infomática.");
 
-        quiz_informatica();
+
 
         
         break;
@@ -43,7 +45,7 @@ async function quiz_informatica(facil){
     //en el fech poner una variable de la api si es facil o hard.
 
     try {
-    const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
+    //const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
     if(!api_quiz.ok){
             throw new Error("Hubo un error en la peticion de la api");
     }
@@ -153,7 +155,6 @@ async function quiz_informatica(facil){
 
 
 }
-
 
 
 
