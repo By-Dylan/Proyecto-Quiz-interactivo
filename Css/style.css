@@ -104,7 +104,46 @@ body{   /*texto para ver si se subio*/
 /* aca termina */
 
 /* col-categoria */
-
+/*diseño modal de quiz rapido */
+.titulo-modal-btn{
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    color: #630ED4;
+}
+.btn1-cerrar-modal{
+    color: #A15100;
+}
+.h3-modal-btn{
+    text-align: justify;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    color: #630ED4;
+}
+.p-modal-btn{
+    text-align: justify;
+    font-family: Montserrat, sans-serif;
+    color: #333;
+}
+.img1-modal{
+    width: 10%;
+    text-align: justify;
+    border: 3px solid #06B6D4;
+    margin-bottom: 10px;
+}
+.img2-modal{
+    width: 60%;
+    text-align: justify;
+    border: 3px solid #06B6D4;
+    margin-bottom: 10px;
+}
+.btn2-cerrar-modal{
+    padding: 10px 22px; 
+    font-size: 14px;
+    font-weight: 600; 
+    border-radius: 6px; 
+    background-color: #A15100;
+}
 #seccion-categorias{
     margin-top: 100px;
     

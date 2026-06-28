@@ -61,26 +61,29 @@ botonQuizRapido.addEventListener("click", () => {
             <div class="modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">¿Cómo jugar?</h5>
-                        <button type="button" class="btn-close" onclick="cerrarModal()" aria-label="Close"></button>
+                        <h2 class="modal-title titulo-modal-btn">¿Cómo jugar?</h5>
+                        <button type="button" class="btn-close btn1-cerrar-modal" onclick="cerrarModal()" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <h3>1º Crea tu cuenta</h3>
-                            <p>Dirígete a la esquina superior derecha de la pantalla y haz clic para registrarte. 
+                            <h3 class="h3-modal-btn">1º Crea tu cuenta</h3>
+                            <img src="/Img/ejemplologinmodal.png" alt = "Referencia a la creación de una cuenta" class="img1-modal">
+                            <p class="p-modal-btn">Dirígete a la esquina superior derecha de la pantalla y haz clic para registrarte. 
                             Solo necesitas ingresar un nombre de usuario, tu correo y una contraseña. ¡Así de fácil!</p>
                         </div>
                         <div class="row">
-                            <h3>2º Elige tu desafío</h3>
-                            <p>Explora las opciones y haz clic sobre la categoría que más te llame la atención para poner a prueba tus conocimientos.</p>
+                            <h3 class="h3-modal-btn">2º Elige tu desafío</h3>
+                            <img src="/Img/ejemplocategoriasmodal.png" alt = "Referencia a la elección de categoría" class="img2-modal">
+                            <p class="p-modal-btn">Explora las opciones y haz clic sobre la categoría que más te llame la atención para poner a prueba tus conocimientos.</p>
                         </div>
                         <div class="row">
-                            <h3>3º ¡A jugar!</h3>
-                            <p>Una vez elijas, te llevaremos automáticamente al módulo del quiz. Lee con atención y diviértete. ¡Mucho éxito!</p>
+                            <h3 class="h3-modal-btn">3º ¡A jugar!</h3> <!--añadir img cuando el modulo del quiz tenga css terminado-->
+                            <img src="/Img/ejemplologinmodal.png" alt = "Referencia a la creación de una cuenta" class="img1-modal">
+                            <p class="p-modal-btn">Una vez elijas, te llevaremos automáticamente al módulo del quiz. Lee con atención y diviértete. ¡Mucho éxito!</p>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+                        <button type="button" class="btn btn-secondary btn2-cerrar-modal" onclick="cerrarModal()">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -99,12 +102,12 @@ const peliculas = document.getElementById("cPeliculas");
 const geografia = document.getElementById("cGeografia");
 const musica = document.getElementById("cMusica");
 const deportes = document.getElementById("cDeportes");
-
+const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
 //2) Función guardar categorias: Utiliza localstorage con el metodo setItem para guardar cada categoria y pasarselas al quiz.html
 function guardarCategoria(cNombre, c_idAPI){
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
-    window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
+    window.location.href = "quiz.html";
 }
 //3) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
 if(informatica){
@@ -137,3 +140,16 @@ if(deportes){
         guardarCategoria("Deportes", 21)
     });
 }
+/*
+if(linkQuizDesdeIndex){
+    linkQuizDesdeIndex.addEventListener("click", (evento) => {
+        evento.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
+        const categoriaElegida = localStorage.getItem("categoriaID");
+        if(!categoriaElegida){
+            alert("Primero debes seleccionar una categoría.");
+        }
+        else{
+            window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
+        }
+    });
+} */
