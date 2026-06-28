@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   </head>
-  <body >
+<body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
     <div class="container-fluid barra-navegacion">
       <a class="navbar-brand m-0" href="/index.html" style="z-index: 2;">
@@ -106,10 +106,10 @@
         analiza tus estadísticas en tiempo real y expande tu cultura general un clic a la vez."</p>
       </div>
       <div class="col-12 text-center">
-        <button class="btn1">Quiz rapido</button>
+        <button class="btn1" id="botonQuizRapido">Quiz rapido</button>
         <button class="btn2" id="btn-comofunciona">¿Como funciona?</button> 
       </div>
-
+      <div id="contenedorModal"></div>
     </div>
   </div>
   
@@ -202,85 +202,83 @@
 
   <br><br><br><br><br>
 <!--seccion como funciona: 4 tarjetas-->
-<h1>¿Cómo funciona?</h1>
-<div class="container">
-  <div class="row">
-    <div class="col"> <!--tarjeta 1-->
-      <div class="card"> 
-        <div class="card-body">
-          <h5 class="card-title">Explicación</h5>
-          <h6 class="card-subtitle mb-2">¿Cómo empiezo a jugar?</h6>
-          <p class="card-text">Regístrate o inicia sesión en QuizMind desde el menú principal. 
-            Luego, explora las categorías, elige la que más te guste y presiona "Quiz" para empezar tu partida. ¡Mucho éxito!
-          </p>
+  <h1>¿Cómo funciona?</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col"> <!--tarjeta 1-->
+        <div class="card"> 
+          <div class="card-body">
+            <h5 class="card-title">Explicación</h5>
+            <h6 class="card-subtitle mb-2">¿Cómo empiezo a jugar?</h6>
+            <p class="card-text">Regístrate o inicia sesión en QuizMind desde el menú principal. 
+              Luego, explora las categorías, elige la que más te guste y presiona "Quiz" para empezar tu partida. ¡Mucho éxito!
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col"> <!--tarjeta 2-->
-      <div class="card"> 
-        <div class="card-body">
-          <h5 class="card-title">Conocimiento</h5>
-          <h6 class="card-subtitle mb-2">¡Expande tu cultura general!</h6>
-          <p class="card-text">Desafía tu mente y aprende datos fascinantes en áreas como ciencias de la computación, historia, cine, música y deportes. 
-            ¡Cada partida es una nueva lección!
-          </p>
+      <div class="col"> <!--tarjeta 2-->
+        <div class="card"> 
+          <div class="card-body">
+            <h5 class="card-title">Conocimiento</h5>
+            <h6 class="card-subtitle mb-2">¡Expande tu cultura general!</h6>
+            <p class="card-text">Desafía tu mente y aprende datos fascinantes en áreas como ciencias de la computación, historia, cine, música y deportes. 
+              ¡Cada partida es una nueva lección!
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col"> <!--tarjeta 3-->
-      <div class="card"> 
-        <div class="card-body">
-          <h5 class="card-title">Progreso</h5>
-          <h6 class="card-subtitle mb-2">¡Mide tu rendimiento!</h6>
-          <p class="card-text">Accede a tu panel de estadísticas personalizadas. Analiza tu porcentaje de aciertos, descubre cuál es tu área más fuerte 
-            y rompe tus propios récords de tiempo.
-          </p>
+      <div class="col"> <!--tarjeta 3-->
+        <div class="card"> 
+          <div class="card-body">
+            <h5 class="card-title">Progreso</h5>
+            <h6 class="card-subtitle mb-2">¡Mide tu rendimiento!</h6>
+            <p class="card-text">Accede a tu panel de estadísticas personalizadas. Analiza tu porcentaje de aciertos, descubre cuál es tu área más fuerte 
+              y rompe tus propios récords de tiempo.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col"> <!--tarjeta 4-->
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Retroalimentación</h5>
-          <h6 class="card-subtitle mb-2">Aprende de tus errores</h6>
-          <p class="card-text">¿Fallaste una pregunta difícil? ¡No hay problema! Revisa tu historial al finalizar y descubre la respuesta correcta con un 
-            solo clic para no volver a equivocarte.
-          </p>
+      <div class="col"> <!--tarjeta 4-->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Retroalimentación</h5>
+            <h6 class="card-subtitle mb-2">Aprende de tus errores</h6>
+            <p class="card-text">¿Fallaste una pregunta difícil? ¡No hay problema! Revisa tu historial al finalizar y descubre la respuesta correcta con un 
+              solo clic para no volver a equivocarte.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!--pie de pagina-->
-<footer class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <img src="/Img/logo-proyecto-footer.png" alt="Logo" class="img-footer">
-    </div>
-    <div class="col">
-      <a href="#" class="links-footer">Privacidad</a>
-    </div>
-    <div class="col">
-      <a href="#" class="links-footer">Términos y Condiciones</a>
-    </div>
-    <div class="col rrss">
-      <h5 class="h5-footer">Redes Sociales</h5>
-      <p class="p-footer">Dylan Medina</p>
-      <a href="#"><img src="/Img/logo-ig-sin_fondo.png" class="img-rrss" id="ig1" alt="Instagram"></a>
-      <a href="#"><img src="/Img/logo-facebook-sin_fondo.png" class="img-rrss" alt="Facebook"></a>
-    </div>
+  <!--pie de pagina-->
+  <footer class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <img src="/Img/logo-proyecto-footer.png" alt="Logo" class="img-footer">
+      </div>
+      <div class="col">
+        <a href="#" class="links-footer">Privacidad</a>
+      </div>
+      <div class="col">
+        <a href="#" class="links-footer">Términos y Condiciones</a>
+      </div>
       <div class="col rrss">
         <h5 class="h5-footer">Redes Sociales</h5>
-        <p class="p-footer">Martina Honores</p>
-        <a href="https://www.instagram.com/princess.darks"><img src="/Img/logo-ig-sin_fondo.png" class="img-rrss" id="ig2" alt="Instagram"></a>
-        <a href="https://web.facebook.com/profile.php?id=61559574287028"><img src="/Img/logo-facebook-sin_fondo.png" class="img-rrss" alt="Facebook"></a>
+        <p class="p-footer">Dylan Medina</p>
+        <a href="#"><img src="/Img/logo-ig-sin_fondo.png" class="img-rrss" id="ig1" alt="Instagram"></a>
+        <a href="#"><img src="/Img/logo-facebook-sin_fondo.png" class="img-rrss" alt="Facebook"></a>
       </div>
-  </div>
-</footer>
-
-
+        <div class="col rrss">
+          <h5 class="h5-footer">Redes Sociales</h5>
+          <p class="p-footer">Martina Honores</p>
+          <a href="https://www.instagram.com/princess.darks"><img src="/Img/logo-ig-sin_fondo.png" class="img-rrss" id="ig2" alt="Instagram"></a>
+          <a href="https://web.facebook.com/profile.php?id=61559574287028"><img src="/Img/logo-facebook-sin_fondo.png" class="img-rrss" alt="Facebook"></a>
+        </div>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
   <script src="/Js/main.js"></script>
-  </body>
+</body>
 </html>

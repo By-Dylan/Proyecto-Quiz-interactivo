@@ -1,4 +1,4 @@
-const persona = localStorage.getItem("usuario_registrado");
+/*const persona = localStorage.getItem("usuario_registrado");
 const seccion_bienvenido= document.getElementById("seccion-bienvenido");
 
 if(persona){
@@ -13,4 +13,4 @@ if(persona){
     `;
 
     console.log(usuario.nombre, usuario.gmail, usuario.contraseña);
-}
+}*/

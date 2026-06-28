@@ -52,134 +52,45 @@ function verificarUsuario(){
 }
 
 verificarUsuario();
-
-
-
-
-console.log("inicio");
-
-
-async function quiz_informatica(facil){
-
-    //llmada a la api y verificar que tipo se seleccion hizo el usurio (facil,medio, avanzado)
-    //en el fech poner una variable de la api si es facil o hard.
-
-    try {
-    const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
-    if(!api_quiz.ok){
-            throw new Error("Hubo un error en la peticion de la api");
-    }
-
-    const contenido_json = await api_quiz.json();
-    console.log("datos de la api: ", contenido_json);
-
-    const preguntas = contenido_json.results;
-    
-    console.log("********************");
-    console.log("Traduciendo el array de preguntas... Por favor espera.");
-
-    // Variable donde se guardará todo el array traducido
-    const preguntasTraducidas = [];
-
-    for (let i = 0; i < preguntas.length; i++) {
-
-        
-        // 1. Decodificar y traducir la PREGUNTA
-        const preguntaIngles = decodeURIComponent(preguntas[i].question);
-        const urlProg = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(preguntaIngles)}&langpair=en|es`;
-        const resPreg = await fetch(urlProg);
-        const datosPreg = await resPreg.json();
-        const preguntaEspanol = datosPreg.responseData.translatedText;
-
-
-        // 2. Decodificar y traducir la RESPUESTA CORRECTA
-        const correctaIngles = decodeURIComponent(preguntas[i].correct_answer);
-        const urlCorr = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(correctaIngles)}&langpair=en|es`;
-        const resCorr = await fetch(urlCorr);
-        const datosCorr = await resCorr.json();
-        const correctaEspanol = datosCorr.responseData.translatedText;
-
-        // 3. Decodificar y traducir las RESPUESTAS INCORRECTAS (es un array)
-        const incorrectasEspanol = [];
-        for (let j = 0; j < preguntas[i].incorrect_answers.length; j++) {
-            const incIngles = decodeURIComponent(preguntas[i].incorrect_answers[j]);
-            const urlInc = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(incIngles)}&langpair=en|es`;
-            const resInc = await fetch(urlInc);
-            const datosInc = await resInc.json();
-            incorrectasEspanol.push(datosInc.responseData.translatedText);
-        }
-
-        // 4. Guardar el objeto estructurado en nuestro nuevo array
-        preguntasTraducidas.push({
-            categoria: decodeURIComponent(preguntas[i].category),
-            tipo: decodeURIComponent(preguntas[i].type),
-            dificultad: decodeURIComponent(preguntas[i].difficulty),
-            pregunta: preguntaEspanol,
-            respuesta_correcta: correctaEspanol,
-            respuestas_incorrectas: incorrectasEspanol
-        });
-
-        console.log(`Progreso: ${i + 1}/10 traducidas.`);
-    }
-
-    // Aquí ya tienes todo guardado en la variable list para usar en tu app
-    console.log("********************");
-    console.log("¡Traducción completada con éxito!");
-    console.log("Variable 'preguntasTraducidas':", preguntasTraducidas);
-
-    
-    //preguntastraducidas contiene todo la array obtenida por la api open triva pero traducida
-
-    //foreach la mostrar el contenido del primer elemtro de la array y luego esperar una respuesta de los botones del quiz
-
-
-    } catch (e) {
-        console.log("Error en el proceso: ", e);
-    }
-
-
-
-
+//Lógica botón quiz rápido
+const botonQuizRapido = document.getElementById("botonQuizRapido");
+const contenedorModal = document.getElementById("contenedorModal");
+botonQuizRapido.addEventListener("click", () => {
+    contenedorModal.innerHTML = `
+        <div class="modal d-block" tabindex="-1">
+            <div class="modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">¿Cómo jugar?</h5>
+                        <button type="button" class="btn-close" onclick="cerrarModal()" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <h3>1º Crea tu cuenta</h3>
+                            <p>Dirígete a la esquina superior derecha de la pantalla y haz clic para registrarte. 
+                            Solo necesitas ingresar un nombre de usuario, tu correo y una contraseña. ¡Así de fácil!</p>
+                        </div>
+                        <div class="row">
+                            <h3>2º Elige tu desafío</h3>
+                            <p>Explora las opciones y haz clic sobre la categoría que más te llame la atención para poner a prueba tus conocimientos.</p>
+                        </div>
+                        <div class="row">
+                            <h3>3º ¡A jugar!</h3>
+                            <p>Una vez elijas, te llevaremos automáticamente al módulo del quiz. Lee con atención y diviértete. ¡Mucho éxito!</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+});
+//Función para cerrar el modal
+window.cerrarModal = () => {
+    contenedorModal.innerHTML = "";
 }
-
-quiz_informatica()
-
-
-
-
-
-// async function datos_api(){
-//     try{
-//         const datos=await fetch("https://opentdb.com/api.php?amount=10&category=12&difficulty=hard&encode=url3986");
-        
-
-//         const datos_json=await datos.json();
-//         console.log("datos de la api: ",datos_json);
-
-//         const preguntas= datos_json.results;
-        
-//         console.log("********************"); //quiero traducir todo el array (10)
-        
-//         for (let i = 0; i < preguntas.length; i++) {
-//             const preguntaIngles = decodeURIComponent(preguntas[i].question);
-
-//             const urlTraductor = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(preguntaIngles)}&langpair=en|es`;
-//             const resTraduccion = await fetch(urlTraductor);
-//             const datosTraduccion = await resTraduccion.json();
-            
-//             const preguntaEspanol = datosTraduccion.responseData.translatedText;
-
-//             console.log(`${i + 1}. ${preguntaEspanol}`);
-// }
-
-
-//     }catch(e){
-//         console.log(e);
-//     }
-// }
-
-
-// datos_api();
 //Logica: Redirrecionar al usuario al apretar cualquier categoria. 
 //1) Obtenemos cada categoria del index por su id
 const informatica = document.getElementById("cInformatica");
