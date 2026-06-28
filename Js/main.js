@@ -83,17 +83,13 @@ botonQuizRapido.addEventListener("click", () => {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn2-cerrar-modal" onclick="cerrarModal()">Cerrar</button>
+                        <button type="button" class="btn btn-secondary btn2-cerrar-modal" onclick="cerrarModal('contenedorModal')">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
     `;
 });
-//Función para cerrar el modal
-window.cerrarModal = () => {
-    contenedorModal.innerHTML = "";
-}
 //Logica: Redirrecionar al usuario al apretar cualquier categoria. 
 //1) Obtenemos cada categoria del index por su id
 const informatica = document.getElementById("cInformatica");
@@ -102,42 +98,119 @@ const peliculas = document.getElementById("cPeliculas");
 const geografia = document.getElementById("cGeografia");
 const musica = document.getElementById("cMusica");
 const deportes = document.getElementById("cDeportes");
-const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
+
 //2) Función guardar categorias: Utiliza localstorage con el metodo setItem para guardar cada categoria y pasarselas al quiz.html
 function guardarCategoria(cNombre, c_idAPI){
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
-    window.location.href = "quiz.html";
 }
-//3) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
+//Lógica: Selección y guardado del nivel de dificultad del quiz
+const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
+
+function seleccionnivelDeDificultad(){
+    nivelDeDificultad.innerHTML = `
+        <div class="modal d-block" tabindex="-1">
+            <div class="modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title titulo-modal-btn">Nivel de Dificultad</h5>
+                        <button type="button" class="btn-close btn1-cerrar-modal" onclick="cerrarModal('contenedorModalDificultad')" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col col-categorias justify-content-center">
+                                <a href="#" class="text-decoration-none text-reset" onclick = "guardarDificultad('easy')">
+                                    <div id="iconoFacil" class="mx-auto seccion-icono">
+                                        <i class="bi bi-battery icono-diseño"></i> 
+                                    </div>
+                                    <div class="dificultades">
+                                        <p>Fácil</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col col-categorias justify-content-center">
+                                <a href="#" class="text-decoration-none text-reset" onclick = "guardarDificultad('medium')">
+                                    <div id="iconoMedio" class="mx-auto seccion-icono">
+                                        <i class="bi bi-battery-half icono-diseño"></i> 
+                                    </div>
+                                    <div class="dificultades">
+                                        <p>Medio</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col col-categorias justify-content-center">
+                                <a href="#" class="text-decoration-none text-reset" onclick = "guardarDificultad('hard')">
+                                    <div id="iconoDificil" class="mx-auto seccion-icono">
+                                        <i class="bi bi-battery-full icono-diseño"></i>
+                                    </div>
+                                    <div class="dificultades">
+                                        <p>Difícil</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn2-cerrar-modal" onclick="cerrarModal('contenedorModalDificultad')">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+//Función para cerrar el modal
+function cerrarModal(idContenedor){
+    const contenedor = document.getElementById(idContenedor);
+    if(contenedor){
+        contenedor.innerHTML = "";
+    }
+};
+
+//Función para guardar en memoria la dificultad
+function guardarDificultad(dificultad){
+    if(dificultad === ""){
+        alert("Debes seleccionar un nivel de dificultad");
+        return;
+    }else{
+        localStorage.setItem("dificultadSeleccionada", dificultad);
+        window.location.href = "quiz.html";
+    }
+};
+//) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
 if(informatica){
     informatica.addEventListener("click", () => {
-        guardarCategoria("Informática", 18)
+        guardarCategoria("Informática", 18);
+        seleccionnivelDeDificultad();
     });
 }
 if(ciencias){
     ciencias.addEventListener("click", () => {
-        guardarCategoria("Ciencias", 17)
+        guardarCategoria("Ciencias", 17);
+        seleccionnivelDeDificultad();
     });
 }
 if(peliculas){
     peliculas.addEventListener("click", () => {
-        guardarCategoria("Películas", 11)
+        guardarCategoria("Películas", 11);
+        seleccionnivelDeDificultad();
     });
 }
 if(geografia){
     geografia.addEventListener("click", () => {
-        guardarCategoria("Geografía", 22)
+        guardarCategoria("Geografía", 22);
+        seleccionnivelDeDificultad();
     });
 }
 if(musica){
     musica.addEventListener("click", () => {
-        guardarCategoria("Música", 12)
+        guardarCategoria("Música", 12);
+        seleccionnivelDeDificultad();
     });
 }
 if(deportes){
     deportes.addEventListener("click", () => {
-        guardarCategoria("Deportes", 21)
+        guardarCategoria("Deportes", 21);
+        seleccionnivelDeDificultad();
     });
 }
 /*

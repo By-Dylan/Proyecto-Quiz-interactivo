@@ -11,6 +11,7 @@ if(cNombre && idAPI){
 } else{
     console.log("No se lograron cargar los datos.");
 }
+//Función: Seleccion nivel de dificultad
 //3) Función asincrónica a cargo de cargar las preguntas del quiz y generar la estructura html respectiva
 async function quiz_informatica(){
 
@@ -147,7 +148,7 @@ function configurarBotonesOpcion(respuestaCorrecta) {
             if (opcionSeleccionada === respuestaCorrecta) {
                 alert("Correcto");
             } else {
-                alert(`Incorrecto. La respuesta era: ${respuestaCorrecta}`);
+                alert(`Incorrecto`);
             }
             
             // Avanzar automáticamente tras responder
