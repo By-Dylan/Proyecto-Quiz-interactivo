@@ -57,36 +57,6 @@
   
   <!--secciones modal:  -->
 
-  <!--modal login: -->
-  <div class="modal fade" id="modalComentarios" tabindex="-1" aria-labelledby="modalComentariosLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content text-dark">
-        <form>
-          <div class="modal-header fondo-titulo">
-            <p class="fw-bold titulo-sesion mb-0" id="modalComentariosLabel">Registrate</p>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          
-          <div class="modal-body">
-            <label for="loginUser" class="form-label fw-bold">Usuario</label>
-            <input type="text" class="form-control form-control-sm mb-3" id="loginUser" placeholder="Nombre de usuario" required>
-            
-            <label for="loginEmail" class="form-label fw-bold">Correo electrónico</label>
-            <input type="email" class="form-control form-control-sm mb-3" id="loginEmail" placeholder="Correo existente" required>
-            
-            <label for="loginPassword" class="form-label fw-bold">Contraseña</label>
-            <input type="password" class="form-control form-control-sm mb-3" id="loginPassword" placeholder="Contraseña" required>
-          </div>
-          
-          <div class="modal-footer color-btn">
-            <div class="d-grid gap-2 col-10 mx-auto">
-              <button type="submit" class="btn btn-danger btn-md">Enviar</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!--modal btn menu hamburguesa-->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -95,8 +65,7 @@
 
   <!--seccion inicial sobre nuestro objetivo-->
   <div class="container-sm " id="seccion-mision">
-    <div class="row">
-
+    <div class="row" id="seccion-mision-resposividad">
       <div class="col ">
         <span class="badge text-bg-danger">NUESTRA MISION</span>
         <h1 class="text-start">haciendo que el aprendizaje sea divertido para todos.</h1>
@@ -109,7 +78,7 @@
       
       <div class="col ">
         <div >
-          <img src="/Img/banner mision.png"  alt="img" id="img-mision">
+          <img src="/Img/banner mision.png"  alt="img" id="img-mision" class="mx-auto d-block">
         </div>
       </div>
 
@@ -120,14 +89,14 @@
 
   <!--seccion de los valores en los que basamos para crear la plataforma-->
   <div class="container">
-    <h3 class="text-center fw-bold tecnologias-title" style="word-spacing: 0.3rem;">Basados En Estos Principio</h3>
+    <h3 class="text-center fw-bold tecnologias-title" style="word-spacing: 0.3rem;">Nos Basamos En Estos Principios</h3>
     <br>
 
-    <div class="row gap-3 justify-content-center">
-      <div class="col-3 bg-white border rounded-3 shadow-sm text-center">
+    <div class="row gap-3 justify-content-center" id="seccion-principios-responsividad">
+      <div class="col-12 col-lg-3 bg-white border rounded-3 shadow-sm text-center">
         <div class="d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 70px; height: 70px; background-color: #6366f1; border-radius: 50%;">
           <i class="bi bi-lightning-charge-fill text-white fs-3"></i>
-      </div>
+        </div>
         <h5>Innovacion</h5>
         
         <p style="text-align: justify; padding: 20px;">
@@ -135,7 +104,7 @@
         </p>
       </div>
 
-      <div class="col-3 bg-white border rounded-3 shadow-sm text-center">
+      <div class="col-12 col-lg-3 bg-white border rounded-3 shadow-sm text-center">
         <div class="d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 70px; height: 70px; background-color: #00885D; border-radius: 50%;">
           <i class="bi bi-people-fill text-white fs-3"></i>
         </div>
@@ -146,7 +115,7 @@
         </p>
       </div>
       
-      <div class="col-3 bg-white border rounded-3 shadow-sm text-center">
+      <div class="col-12 col-lg-3 bg-white border rounded-3 shadow-sm text-center">
         <div class="d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 70px; height: 70px; background-color: #DC2C4F; border-radius: 50%;">
           <i class="bi bi-mortarboard-fill text-white fs-3"></i>
         </div>
@@ -173,7 +142,7 @@
         </div>
         <div class="row fila-tarjetas-tecnologia">
             <div class="card tarjeta-tecnologias">
-                <img src="/Img/logo-html.png" class="card-img-top" alt="Logo HTML">
+                <img src="/Img/logo-html.png" class="card-img-top object-fit-cover" alt="Logo HTML">
                 <div class="card-body body-tecnologias">
                     <p class="card-text texto-tecnologias">HTML</p>
                 </div>
@@ -215,11 +184,12 @@
     <br><br><br><br>
 
     <!--referencia a la API-->
-    <div class="container">
-        <h3 class="referencia-apis-title">Referencia hacia las APIs Públicas</h3>
-        <div class="row">
-            <div class="col">
-                <p class="referencia-apis-text"><b>Nombre:</b> Open Trivia Database</p>
+    <div class="container" id="seccion-referencia-resposividad">
+        <h3 class="referencia-apis-title text-center">Referencia hacia las APIs Públicas</h3>
+        <br>
+        <div class="row" >
+            <div class="col-12 col-lg-6">
+                <p class="fw-bold fs-5" style="color: #DC2C4F;">Open Trivia Database</p>
                 <p class="referencia-apis-text"><b>Breve descripción:</b> Es una base de datos gratuita de preguntas de trivia. Actúa como el motor principal de QuizMind, encargándose
                     de generar aleatoriamente las preguntas, la respuesta correcta y las alternativas falsas para cada partida. 
                 </p>
@@ -229,14 +199,15 @@
                     Geografía, Música, Deportes, entre otras. 
                 </p>
             </div>
-            <div class="col">
+            <div class="col-12 col-lg-6">
                 <h5 class="json-title">Formato .json de la API</h5>
                 <img src="/Img/archivos-json-1.png" alt="Formato json API Principal" class="img-json">
             </div>
         </div>
+        <br><br>
         <div class="row">
-            <div class="col">
-                <p class="referencia-apis-text"><b>Nombre:</b> MyMemory Translated API</p>
+            <div class="col-12 col-lg-6">
+                <p class="fw-bold fs-5" style="color: #DC2C4F;">MyMemory Translated API</p>
                 <p class="referencia-apis-text"><b>Breve descripción:</b> Es un servicio de traducción colaborativo en tiempo real. En este poyecto se utiliza mediante el endpoint "/get"
                     para recibir las preguntas de la API principal y traducirlas automáticamente de inglés a español para la interfaz del usuario. 
                 </p>
@@ -244,7 +215,7 @@
                 <p class="referencia-apis-text"><b>Dificultad:</b> No aplica.</p>
                 <p class="referencia-apis-text"><b>Categorías:</b> No aplica.</p>
             </div>
-            <div class="col">
+            <div class="col-12 col-lg-6">
                 <h5 class="json-title">Formato .json de la API</h5>
                 <img src="/Img/archivos-json-1.png" alt="Formato json API Principal" class="img-json">
             </div>
@@ -262,7 +233,7 @@
       <div class="row gap-3 justify-content-center" >
         
         <div class="col-5 bg-white border rounded-3 shadow-sm">
-          <div class="row">
+          <div class="row seccion-equipo-resposividad">
             <div class="col-5 ps-0">
               <img src="/Img/martina.png" class="object-fit-fill border rounded" alt="img" style="width: 210px;">
             </div>
@@ -277,7 +248,7 @@
         </div>
 
         <div class="col-5 bg-white border rounded-3 shadow-sm">
-          <div class="row">
+          <div class="row seccion-equipo-resposividad">
             <div class="col-5 ps-0">
               <img src="/Img/dilan.png" class="object-fit-fill border rounded" alt="img" style="width: 200px; height: 174px;">
             </div>
@@ -292,6 +263,23 @@
         </div>
 
       </div>
+
+      <!--nuevo formato-->
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="/Img/dilan.png" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Dilan Medina</h5>
+              <p class="card-text">d</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 

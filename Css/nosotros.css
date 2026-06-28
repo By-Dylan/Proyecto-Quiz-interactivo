@@ -73,7 +73,6 @@
 .referencia-apis-title{
     margin-top: 5%;
     margin-bottom: 2%;
-    text-align: justify;
     color:#7C3AED;
     font-family: Inter, sans-serif;
     font-weight: bold;
@@ -93,4 +92,45 @@
     margin-top: 10px;
     margin-bottom: 10px;
     border: 4px solid #06B6D4;
+}
+
+
+
+@media (max-width: 576px){
+    #seccion-mision-resposividad{
+        display: grid;
+        grid-template-columns: 95%;
+        justify-content: center;
+    }
+    #seccion-mision-resposividad img{
+        margin-top: 30px;
+    }
+    
+    #seccion-principios-responsividad{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .fila-tarjetas-tecnologia{
+        justify-content: center;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 40% 40%;
+        gap: 15px;
+    }
+    #seccion-mision{
+        margin-top: 30px;
+    }
+    #seccion-referencia-resposividad{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    /* .seccion-equipo-resposividad{
+        display: grid;
+        grid-template-columns: 100%;
+        justify-content: center;
+    }
+    .seccion-equipo-resposividad h5{
+        
+    } */
 }
