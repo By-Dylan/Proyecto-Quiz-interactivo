@@ -93,7 +93,7 @@ botonQuizRapido.addEventListener("click", () => {
 //Logica: Redirrecionar al usuario al apretar cualquier categoria. 
 //1) Obtenemos cada categoria del index por su id
 const informatica = document.getElementById("cInformatica");
-const ciencias = document.getElementById("cCiencias");
+const ciencias = document.getElementById("cCiencia");
 const peliculas = document.getElementById("cPeliculas");
 const geografia = document.getElementById("cGeografia");
 const musica = document.getElementById("cMusica");
@@ -165,7 +165,7 @@ const cerrarModal = (idContenedor) => {
         contenedor.innerHTML = "";
     }
 };
-
+//Falta, cargar los datos de todas las categorias segun esta, avanzar segun boton sgt y no alert 
 //Función para guardar en memoria la dificultad
 const guardarDificultad = (dificultad) => {
     if(dificultad === ""){
@@ -213,15 +213,16 @@ if(deportes){
         seleccionnivelDeDificultad();
     });
 }
-//Lógica: Validar que el usuario no vaya al quiz sin antes haber seleccionado una categoria
+//Lógica: Validar que el usuario no vaya al quiz sin antes haber seleccionado una categoria TODAVIA NO FUNCIONA 
 const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
 //Función para evitar redirrecionamiento al quiz sin haber elegido una categoria
-const validarRedirrecion = (linkQuizDesdeIndex) => {
-    linkQuizDesdeIndex.addEventListener("click", (evento) => {
-        evento.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
+const validarRedirrecion = (linkQuiz) => {
+    linkQuiz.addEventListener("click", (linkQuiz) => {
+        linkQuiz.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
         const categoriaElegida = localStorage.getItem("categoriaID");
         if(!categoriaElegida){
             alert("Primero debes seleccionar una categoría.");
+            return;
         }
         else{
             window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria

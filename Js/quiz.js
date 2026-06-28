@@ -5,21 +5,18 @@ if(!seccion_quiz){ //verificamos que exista el contenedor
 //1) Obtenemos el nombre e id de la categoria guardados en el localstorage en el main.js con el metodo getItem y el nombre de la variable que usamos en el otro script
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
-const area_seleccionada = idAPI;
+const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
 if(cNombre && idAPI){
-    console.log("Nombre e ID de la categoría obtenidos correctamente: " + cNombre + ", " + idAPI);
+    console.log("Nombre e ID de la categoría y nivel de dificultad obtenidos correctamente: " + cNombre + ", " + idAPI + ", " + nivelDificultad);
 } else{
     console.log("No se lograron cargar los datos.");
 }
 //Función: Seleccion nivel de dificultad
 //3) Función asincrónica a cargo de cargar las preguntas del quiz y generar la estructura html respectiva
-async function quiz_informatica(){
-
-    //llmada a la api y verificar que tipo se seleccion hizo el usurio (facil,medio, avanzado)
-    //en el fech poner una variable de la api si es facil o hard.
-
+async function generarQuiz(idAPI, nivelDificultad){
+    //Le pasamos el nidel de dificultad a la API 
     try {
-    const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
+    const api_quiz = await fetch(`https://opentdb.com/api.php?amount=10&category=${idAPI}&difficulty=${nivelDificultad}&type=multiple&encode=url3986`);
     if(!api_quiz.ok){
         throw new Error("Hubo un error en la peticion de la api");
     }
@@ -114,12 +111,12 @@ function mostrarPregunta(indice) {
     </div>
 
     <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[0]}</button>
-        <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[1]}</button>
+        <button type="button" class="btn btn-primary alternativa-a">${todasLasRespuestas[0]}</button>
+        <button type="button" class="btn btn-primary alternativa-b">${todasLasRespuestas[1]}</button>
     </div>
     <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[2]}</button>
-        <button type="button" class="btn btn-primary btn-opcion">${todasLasRespuestas[3]}</button>
+        <button type="button" class="btn btn-primary alternativa-c">${todasLasRespuestas[2]}</button>
+        <button type="button" class="btn btn-primary alternativa-d">${todasLasRespuestas[3]}</button>
     </div>
         <!--botones de saltar y siguiente-->
     <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
@@ -156,28 +153,5 @@ function configurarBotonesOpcion(respuestaCorrecta) {
         });
     });
 }
-
-//2) Switch que, segun el id de la categoria, lleva a su respectiva fn. Seran 3 fns, para easy, medium y hard, con la misma estructura, solo cambia la url de la API
-//ocultar la seccion de categorias una vez que inicie el quiz, va en el main.js
-switch (area_seleccionada) {
-case "18":
-    quiz_informatica(); //sera la funcion general para todas las categorias
-    break;
-case "17":
-    console.log("Puedes editar contenido.");
-    break;
-case "11":
-    console.log("Acceso total al sistema.");
-    break;
-case "22":
-    console.log("Acceso total al sistema.");
-    break;
-case "12":
-    console.log("Acceso total al sistema.");
-    break;
-case "21":
-    console.log("Acceso total al sistema.");
-    break;
-default:
-    console.log("ID no reconocido.");
-}
+//Llamado a la fn
+generarQuiz(idAPI, nivelDificultad); //sera la funcion general para todas las categoria
