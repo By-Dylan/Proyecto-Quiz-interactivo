@@ -111,12 +111,12 @@ function mostrarPregunta(indice) {
     </div>
 
     <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary alternativa-a">${todasLasRespuestas[0]}</button>
-        <button type="button" class="btn btn-primary alternativa-b">${todasLasRespuestas[1]}</button>
+        <button type="button" class="btn btn-primary alternativa-a btn-opcion">${todasLasRespuestas[0]}</button>
+        <button type="button" class="btn btn-primary alternativa-b btn-opcion">${todasLasRespuestas[1]}</button>
     </div>
     <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary alternativa-c">${todasLasRespuestas[2]}</button>
-        <button type="button" class="btn btn-primary alternativa-d">${todasLasRespuestas[3]}</button>
+        <button type="button" class="btn btn-primary alternativa-c btn-opcion">${todasLasRespuestas[2]}</button>
+        <button type="button" class="btn btn-primary alternativa-d btn-opcion">${todasLasRespuestas[3]}</button>
     </div>
         <!--botones de saltar y siguiente-->
     <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
@@ -127,31 +127,50 @@ function mostrarPregunta(indice) {
     `;
 
     // Asignar eventos para verificar si la respuesta es correcta
-    configurarBotonesOpcion(dato.respuesta_correcta);
+    configurarBotonesOpcion();
+    const respuestaCorrecta = dato.respuesta_correcta;
+    return respuestaCorrecta;
 }
 // FUNCIÓN PARA AVANZAR
 function pasarSiguientePregunta() {
     indicePreguntaActual++;
     mostrarPregunta(indicePreguntaActual);
 }
-
 // FUNCIÓN PARA COMPROBAR LA RESPUESTA SELECCIONADA
-function configurarBotonesOpcion(respuestaCorrecta) {
+function configurarBotonesOpcion() {
     const botones = document.querySelectorAll('.btn-opcion');
     botones.forEach(boton => {
         boton.addEventListener('click', (e) => {
+            e.target.style.border = "3px solid black"; //le añade un borde negro a la opcion seleccionada
             const opcionSeleccionada = e.target.innerText;
-            
-            if (opcionSeleccionada === respuestaCorrecta) {
-                alert("Correcto");
-            } else {
-                alert(`Incorrecto`);
-            }
-            
-            // Avanzar automáticamente tras responder
-            pasarSiguientePregunta();
+            configurarBotonSiguiente();
+            configurarBotonSaltar();
+            return opcionSeleccionada;
         });
     });
 }
+//Función para boton siguiente
+function configurarBotonSiguiente(opcionSeleccionada, respuestaCorrecta){
+    if(opcionSeleccionada === ""){
+        alert("Debe escoger una alternativa. De lo contrario, presione Saltar."); //cambiar a un modal
+        return;
+    }
+    if(opcionSeleccionada === respuestaCorrecta) {
+        console.log("Correcto");
+    } else {
+        console.log(`Incorrecto`);
+    }
+    // Avanzar automáticamente tras responder
+    pasarSiguientePregunta();
+}
+//Función para botón saltar
+function configurarBotonSaltar(opcionSeleccionada){
+    if(opcionSeleccionada != ""){
+        alert("Ya marcaste una respuesta. Presione Siguiente."); //cambiar a un modal
+        return;
+    }else{
+        pasarSiguientePregunta();
+    }
+}
 //Llamado a la fn
-generarQuiz(idAPI, nivelDificultad); //sera la funcion general para todas las categoria
+generarQuiz(idAPI, nivelDificultad); //sera la funcion general para todas las categorias
