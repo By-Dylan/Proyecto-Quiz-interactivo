@@ -80,30 +80,25 @@
         </div>
     </div>
 
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <h5 style="margin-top: 40px;">Time: 00:00</h5>
-            </div>
-        </div>
-        
+
+
+    <!--circulo cargando, saldra cuando las preguntas esten traduciendose-->
+    <div class="text-center ocultar-circulo-cargando" id="seccion-cargando" style="margin-top: 150px;"> 
+        <div class="spinner-border " role="status" style="color: #7C3AED; width: 50px; height: 50px; font-size: 25px;">
+            <span class="visually-hidden">Loading...</span>
+        </div> 
+        <p class="fw-bold" style="font-size: 17px;">Traduciendo las preguntas... espere un momento</p>
     </div>
 
 
-
-    <!--barra de progreso-->
-    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar">10%</div> <!--eliminar % y configurar con css el tamaño-->
-    </div>
-    <h6 class="title-progress">Progreso</h6>
-
-
+    <!--seleccion de categorias-->
     <br><br>
     <div class="container " id="menu-seleccion">
         <div id="titulo-categorias">
             <h5 class="text-center" style="color: darkorchid;">Selecciona una categoria</h4><br>
         </div>
         <div class="row row-cols-7 gap-3 text-center ">
+
         <div class="col col-categorias justify-content-center seccion-categoria" onclick="quiz_informatica()">
 
             <div id="icono1" class="mx-auto seccion-icono">

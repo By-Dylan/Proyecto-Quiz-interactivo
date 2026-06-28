@@ -134,3 +134,24 @@
     cursor: pointer; /*para cambiar el cursor del puntero a tipo link*/
 }
 
+
+
+/*diseño para la parte de resumen de resultados del quiz*/
+.results {
+    text-align: center;
+}
+
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.ocultar-circulo-cargando{
+    display: none;
+}
