@@ -202,9 +202,32 @@ body{   /*texto para ver si se subio*/
     font-weight: bold;
     padding-bottom: 15px;
 }
-
-
-
+/*Diseño modal de dificultades*/
+.col-dificultad{
+    background-color: #EADDFF;
+    border: 3px solid #630ED4;
+    margin: 15px;
+}
+.p-dificultad{
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: #7C3AED;
+}
+.seccion-dificultad{
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    padding-top: 13px;
+    margin-top: 25px;
+}
+.iconos-dificultad{
+    font-size: 60px;
+    font-weight: bold;
+    color:#06B6D4;
+}
 /*Diseño seccion ¿como funciona?*/
 h1{
     text-align: center;

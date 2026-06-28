@@ -100,14 +100,14 @@ const musica = document.getElementById("cMusica");
 const deportes = document.getElementById("cDeportes");
 
 //2) Función guardar categorias: Utiliza localstorage con el metodo setItem para guardar cada categoria y pasarselas al quiz.html
-function guardarCategoria(cNombre, c_idAPI){
+const guardarCategoria = (cNombre, c_idAPI) => {
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
 }
 //Lógica: Selección y guardado del nivel de dificultad del quiz
 const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
 
-function seleccionnivelDeDificultad(){
+const seleccionnivelDeDificultad = () => {
     nivelDeDificultad.innerHTML = `
         <div class="modal d-block" tabindex="-1">
             <div class="modal-dialog-scrollable modal-dialog-centered">
@@ -118,33 +118,33 @@ function seleccionnivelDeDificultad(){
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col col-categorias justify-content-center">
+                            <div class="col col-dificultad justify-content-center">
                                 <a href="#" class="text-decoration-none text-reset" onclick = "guardarDificultad('easy')">
-                                    <div id="iconoFacil" class="mx-auto seccion-icono">
-                                        <i class="bi bi-battery icono-diseño"></i> 
+                                    <div id="iconoFacil" class="mx-auto seccion-dificultad">
+                                        <i class="bi bi-battery iconos-dificultad"></i> 
                                     </div>
                                     <div class="dificultades">
-                                        <p>Fácil</p>
+                                        <p class="p-dificultad">Fácil</p>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col col-categorias justify-content-center">
+                            <div class="col col-dificultad justify-content-center">
                                 <a href="#" class="text-decoration-none text-reset" onclick = "guardarDificultad('medium')">
-                                    <div id="iconoMedio" class="mx-auto seccion-icono">
-                                        <i class="bi bi-battery-half icono-diseño"></i> 
+                                    <div id="iconoMedio" class="mx-auto seccion-dificultad">
+                                        <i class="bi bi-battery-half iconos-dificultad"></i> 
                                     </div>
                                     <div class="dificultades">
-                                        <p>Medio</p>
+                                        <p class="p-dificultad">Medio</p>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col col-categorias justify-content-center">
+                            <div class="col col-dificultad justify-content-center">
                                 <a href="#" class="text-decoration-none text-reset" onclick = "guardarDificultad('hard')">
-                                    <div id="iconoDificil" class="mx-auto seccion-icono">
-                                        <i class="bi bi-battery-full icono-diseño"></i>
+                                    <div id="iconoDificil" class="mx-auto seccion-dificultad">
+                                        <i class="bi bi-battery-full iconos-dificultad"></i>
                                     </div>
                                     <div class="dificultades">
-                                        <p>Difícil</p>
+                                        <p class="p-dificultad">Difícil</p>
                                     </div>
                                 </a>
                             </div>
@@ -159,7 +159,7 @@ function seleccionnivelDeDificultad(){
     `;
 }
 //Función para cerrar el modal
-function cerrarModal(idContenedor){
+const cerrarModal = (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if(contenedor){
         contenedor.innerHTML = "";
@@ -167,7 +167,7 @@ function cerrarModal(idContenedor){
 };
 
 //Función para guardar en memoria la dificultad
-function guardarDificultad(dificultad){
+const guardarDificultad = (dificultad) => {
     if(dificultad === ""){
         alert("Debes seleccionar un nivel de dificultad");
         return;
@@ -213,8 +213,10 @@ if(deportes){
         seleccionnivelDeDificultad();
     });
 }
-/*
-if(linkQuizDesdeIndex){
+//Lógica: Validar que el usuario no vaya al quiz sin antes haber seleccionado una categoria
+const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
+//Función para evitar redirrecionamiento al quiz sin haber elegido una categoria
+const validarRedirrecion = (linkQuizDesdeIndex) => {
     linkQuizDesdeIndex.addEventListener("click", (evento) => {
         evento.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
         const categoriaElegida = localStorage.getItem("categoriaID");
@@ -225,4 +227,5 @@ if(linkQuizDesdeIndex){
             window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
         }
     });
-} */
+};
+validarRedirrecion(linkQuizDesdeIndex);
