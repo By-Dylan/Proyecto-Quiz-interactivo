@@ -8,7 +8,7 @@ const btn_enviar=document.getElementById("btn-enviar");
 //btn_enviar.setAttribute('data-bs-dismiss', 'modal') //en argumento va el el atributo y su valor
 
 btn_ComoFunciona.addEventListener("click", ()=>{
-    window.scrollTo({ top: 870, behavior:"smooth"}); 
+    window.scrollTo({ top: 1180, behavior:"smooth"}); //870
 })
 
 
@@ -59,7 +59,7 @@ verificarUsuario();
 console.log("inicio");
 
 
-async function quiz_informatica(facil){
+async function qquiz_informatica(facil){
 
     //llmada a la api y verificar que tipo se seleccion hizo el usurio (facil,medio, avanzado)
     //en el fech poner una variable de la api si es facil o hard.

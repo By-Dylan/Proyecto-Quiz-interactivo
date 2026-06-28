@@ -168,7 +168,7 @@ let indicePreguntaActual = 0; // Controla qué pregunta se está mostrando (empi
 
 async function quiz_informatica() {
     try {
-        const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple&encode=url3986");
+        const api_quiz = await fetch("https://opentdb.com/api.php?amount=10&category=19&difficulty=easy&type=multiple&encode=url3986");
         if (!api_quiz.ok) {
             throw new Error("Hubo un error en la petición de la API");
         }
@@ -181,18 +181,19 @@ async function quiz_informatica() {
         // ... [AQUÍ VA TODO TU BUCLE FOR ACTUAL QUE TRADUCE LAS PREGUNTAS] ...
         // (Mantenlo exactamente igual a como lo tenías)
         const preguntasTraducidas = [];
+        const correo = "medinadilan07@gmail.com";
 
             for (let i = 0; i < preguntas.length; i++) {
                 // 1. Decodificar y traducir la PREGUNTA
                 const preguntaIngles = decodeURIComponent(preguntas[i].question);
-                const urlProg = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(preguntaIngles)}&langpair=en|es`;
+                const urlProg = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(preguntaIngles)}&langpair=en|es&de=${correo}`;
                 const resPreg = await fetch(urlProg);
                 const datosPreg = await resPreg.json();
                 const preguntaEspanol = datosPreg.responseData.translatedText;
 
                 // 2. Decodificar y traducir la RESPUESTA CORRECTA
                 const correctaIngles = decodeURIComponent(preguntas[i].correct_answer);
-                const urlCorr = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(correctaIngles)}&langpair=en|es`;
+                const urlCorr = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(correctaIngles)}&langpair=en|es&de=${correo}`;
                 const resCorr = await fetch(urlCorr);
                 const datosCorr = await resCorr.json();
                 const correctaEspanol = datosCorr.responseData.translatedText;
@@ -201,7 +202,7 @@ async function quiz_informatica() {
                 const incorrectasEspanol = [];
                 for (let j = 0; j < preguntas[i].incorrect_answers.length; j++) {
                     const incIngles = decodeURIComponent(preguntas[i].incorrect_answers[j]);
-                    const urlInc = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(incIngles)}&langpair=en|es`;
+                    const urlInc = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(incIngles)}&langpair=en|es&de=${correo}`;
                     const resInc = await fetch(urlInc);
                     const datosInc = await resInc.json();
                     incorrectasEspanol.push(datosInc.responseData.translatedText);
@@ -248,7 +249,7 @@ function mostrarPregunta(indice) {
     const dato = preguntasDelQuiz[indice];
 
     // Juntar la respuesta correcta y las incorrectas en un solo array y mezclarlas
-    const todasLasRespuestas = [...dato.respuestas_incorrectas, dato.respuesta_correcta];
+    const todasLasRespuestas =[...dato.respuestas_incorrectas, dato.respuesta_correcta];
     todasLasRespuestas.sort(() => Math.random() - 0.5); // Truco rápido para mezclar el array
 
     // Insertar en el HTML usando "=" (reemplaza lo anterior, no lo acumula)
@@ -300,7 +301,7 @@ function configurarBotonesOpcion(respuestaCorrecta) {
             const opcionSeleccionada = e.target.innerText;
             
             if (opcionSeleccionada === respuestaCorrecta) {
-                alert("¡Correcto!");
+                alert("Correcto");
             } else {
                 alert(`Incorrecto. La respuesta era: ${respuestaCorrecta}`);
             }
@@ -310,6 +311,8 @@ function configurarBotonesOpcion(respuestaCorrecta) {
         });
     });
 }
+
+
 
 
 

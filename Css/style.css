@@ -258,3 +258,21 @@ footer > *{
     font-size: 18px;
 }
 
+@media (max-width: 576px){
+    .columnas-categorias{
+        display: grid;
+        grid-template-columns: 40% 40%;
+        justify-content: center;
+    }
+    #titulo-categorias{
+        text-align: center;
+    }
+    .contenido-tarjeta{
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+
