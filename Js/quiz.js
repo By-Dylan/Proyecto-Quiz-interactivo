@@ -194,27 +194,3 @@ function resultados_quiz() {
 
 //nueva funcionalidad posible reportar alguna pregunta con resultado incorrecto
 
-
-
-
-
-function mezclar_respuestas(array){     //funcion para mezclar => cambiar por el mezclador que ocupamos
-    let currentIndex = array.length;
-
-  // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-
-        // Pick a remaining element...
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-}
-
-// Used like so
-let arr = ["hola", "pe", "causa", "mi bombo"];
-mezclar_respuestas(arr);
-console.log(arr);
-
