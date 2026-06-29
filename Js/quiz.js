@@ -31,7 +31,7 @@ if(cNombre && idAPI){
 
 
 async function generarQuiz(idAPI, nivelDificultad){
-
+    
     //Le pasamos el nidel de dificultad a la API 
     seccion_cargando.classList.remove("ocultar-circulo-cargando");
 
@@ -104,8 +104,14 @@ async function generarQuiz(idAPI, nivelDificultad){
     }
 }
 
+let opcionSeleccionada = "";
+let respuestaCorrecta = "";
+
+
 // NUEVA FUNCIÓN: Se encarga de pintar una sola pregunta en pantalla
 function mostrarPregunta(indice) {
+    opcionSeleccionada ="";
+    respuestaCorrecta = "";
 
     seccion_cargando.classList.add("ocultar-circulo-cargando");
 
@@ -118,7 +124,7 @@ function mostrarPregunta(indice) {
 
     // Obtener los datos de la pregunta actual
     const dato = preguntasDelQuiz[indice];
-
+    
     // Juntar la respuesta correcta y las incorrectas en un solo array y mezclarlas
     const todasLasRespuestas =[...dato.respuestas_incorrectas, dato.respuesta_correcta];
     todasLasRespuestas.sort(() => Math.random() - 0.5); // Truco rápido para mezclar el array
@@ -146,17 +152,19 @@ function mostrarPregunta(indice) {
     </div>
         <!--botones de saltar y siguiente-->
     <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary saltar" onclick="pasarSiguientePregunta()">Saltar</button>
-        <button type="button" class="btn btn-primary siguiente" onclick="pasarSiguientePregunta()">Siguiente</button>
+        <button type="button" class="btn btn-primary saltar" onclick="configurarBotonSaltar()">Saltar</button>
+        <button type="button" class="btn btn-primary siguiente" onclick="configurarBotonSiguiente()">Siguiente</button>
     </div>
     
     `;
 
     // Asignar eventos para verificar si la respuesta es correcta
-    configurarBotonesOpcion(dato.respuesta_correcta);
-    const respuestaCorrecta = dato.respuesta_correcta;
+    configurarBotonesOpcion();
+    respuestaCorrecta = dato.respuesta_correcta;
     return respuestaCorrecta;
 }
+
+
 // FUNCIÓN PARA AVANZAR
 function pasarSiguientePregunta() {
     indicePreguntaActual++;
@@ -164,50 +172,109 @@ function pasarSiguientePregunta() {
 }
 
 // FUNCIÓN PARA COMPROBAR LA RESPUESTA SELECCIONADA
-function configurarBotonesOpcion(respuestaCorrecta) {
+function configurarBotonesOpcion() {
     const botones = document.querySelectorAll('.btn-opcion');
     botones.forEach(boton => {
         boton.addEventListener('click', (e) => {
-
             e.target.style.border = "3px solid black"; //le añade un borde negro a la opcion seleccionada
-            const opcionSeleccionada = e.target.innerText;
-
-            if (opcionSeleccionada === respuestaCorrecta) {
-                alert("correcto");
-                puntaje++;
-
-            } else {
-                alert(`Incorrecto. La respuesta era: ${respuestaCorrecta}`);
-            }
-            pasarSiguientePregunta();
+            opcionSeleccionada = e.target.innerText;
         });
     });
 }
 
+const seccionCorrectoIncorrectoError=document.getElementById("modalCorrectoIncorrectoError")
 
-//Función para boton siguiente
-function configurarBotonSiguiente(opcionSeleccionada, respuestaCorrecta){
+function configurarBotonSiguiente(){
     if(opcionSeleccionada === ""){
-        alert("Debe escoger una alternativa. De lo contrario, presione Saltar."); //cambiar a un modal
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Debe escoger una alternativa. De lo contrario, presione Saltar.</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
         return;
     }
     if(opcionSeleccionada === respuestaCorrecta) {
-        console.log("Correcto");
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Correcto!</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     } else {
-        console.log(`Incorrecto`);
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Incorrecto :(</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
     // Avanzar automáticamente tras responder
     pasarSiguientePregunta();
 }
-//Función para botón saltar
-function configurarBotonSaltar(opcionSeleccionada){
+
+function configurarBotonSaltar(){
     if(opcionSeleccionada != ""){
-        alert("Ya marcaste una respuesta. Presione Siguiente."); //cambiar a un modal
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ya marcaste una respuesta. Presione Siguiente.</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
         return;
     }else{
         pasarSiguientePregunta();
     }
 }
+
+//Función para cerrar los modales
+const cerrarModal = (idContenedor) => {
+    const contenedor = document.getElementById(idContenedor);
+    if(contenedor){
+        contenedor.innerHTML = "";
+    }
+};
+
 
 
 //Llamado a la fn
