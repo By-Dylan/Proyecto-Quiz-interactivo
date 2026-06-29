@@ -18,7 +18,7 @@ window.quiz_informatica = quiz_informatica;
 
 // VARIABLES GLOBALES DE ESTADO
 let preguntas_respuestas_quiz= []; // Aquí guardaremos el array completo ya traducido
-let indicePreguntaActual= 0; // Controla qué pregunta se está mostrando (empieza en 0)
+let pregunta_actual_indice= 0; // Controla qué pregunta se está mostrando (empieza en 0)
 let puntaje= 0;
 
 async function quiz_informatica() {
@@ -84,8 +84,8 @@ async function quiz_informatica() {
         preguntas_respuestas_quiz = preguntas_traducidas; //preguntas_respuestas_quiz, nuestra array global de preguntas y respuestas
         
         // Inicializamos el quiz mostrando la primera pregunta (índice 0)
-        indicePreguntaActual= 0;
-        mostrar_preguntas(indicePreguntaActual);
+        pregunta_actual_indice= 0;
+        mostrar_preguntas(pregunta_actual_indice);
 
     } catch (e) {
         console.log("Error en el proceso: ", e);
@@ -101,7 +101,7 @@ function mostrar_preguntas(indice) {
     }
 
     // Obtener los datos de la pregunta actual
-    const dato = preguntas_respuestas_quiz[indice];
+    const dato= preguntas_respuestas_quiz[indice]; //estuadiar las 3 lineas de abajo
     
 
     // Juntar la respuesta correcta y las incorrectas en un solo array y mezclarlas
@@ -151,8 +151,8 @@ function mostrar_preguntas(indice) {
 
 // FUNCIÓN PARA AVANZAR
 function pasarSiguientePregunta() {
-    indicePreguntaActual++;
-    mostrar_preguntas(indicePreguntaActual);
+    pregunta_actual_indice++;
+    mostrar_preguntas(pregunta_actual_indice);
 }
 
 // FUNCIÓN PARA COMPROBAR LA RESPUESTA SELECCIONADA
@@ -163,7 +163,7 @@ function configurarBotonesOpcion(respuestaCorrecta) {
             const opcionSeleccionada = e.target.innerText;
             
             if (opcionSeleccionada === respuestaCorrecta) {
-                alert("Correcto");
+                alert("correcto");
                 puntaje++;
 
             } else {
@@ -178,7 +178,6 @@ function configurarBotonesOpcion(respuestaCorrecta) {
 
 
 function resultados_quiz() {
-
     seccion_quiz.innerHTML = `
                 <div class="results">
                     <div class="result-icon">
@@ -196,4 +195,26 @@ function resultados_quiz() {
 //nueva funcionalidad posible reportar alguna pregunta con resultado incorrecto
 
 
+
+
+
+function mezclar_respuestas(array){     //funcion para mezclar => cambiar por el mezclador que ocupamos
+    let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+}
+
+// Used like so
+let arr = ["hola", "pe", "causa", "mi bombo"];
+mezclar_respuestas(arr);
+console.log(arr);
 
