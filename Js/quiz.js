@@ -6,14 +6,31 @@ if(!seccion_quiz){ //verificamos que exista el contenedor
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
+
 if(cNombre && idAPI){
     console.log("Nombre e ID de la categoría y nivel de dificultad obtenidos correctamente: " + cNombre + ", " + idAPI + ", " + nivelDificultad);
 } else{
     console.log("No se lograron cargar los datos.");
 }
-//Función: Seleccion nivel de dificultad
+//Variable para mensaje de cargando preguntas
+const seccion_cargando= document.getElementById("seccion-cargando");
+
+const mostrarAreaCargando = () => {
+    seccion_cargando.classList.add("mostrar-mensaje");
+    seccion_cargando.classList.remove("ocultar-circulo-cargando");
+};
+const ocultarAreaCargando = () => {
+    seccion_cargando.classList.remove("mostrar-mensaje");
+    seccion_cargando.classList.add("ocultar-circulo-cargando");
+};
+//Variables globales
+let preguntas_respuestas_quiz= []; // Aquí guardaremos el array completo ya traducido
+let pregunta_actual_indice= 0; // Controla qué pregunta se está mostrando (empieza en 0)
+let puntaje= 0;
+
 //3) Función asincrónica a cargo de cargar las preguntas del quiz y generar la estructura html respectiva
 async function generarQuiz(idAPI, nivelDificultad){
+    seccion_cargando.classList.remove("ocultar-circulo-cargando");
     //Le pasamos el nidel de dificultad a la API 
     try {
     const api_quiz = await fetch(`https://opentdb.com/api.php?amount=10&category=${idAPI}&difficulty=${nivelDificultad}&type=multiple&encode=url3986`);
@@ -28,6 +45,7 @@ async function generarQuiz(idAPI, nivelDificultad){
     
     console.log("********************");
     console.log("Traduciendo el array de preguntas... Por favor espera.");
+    mostrarAreaCargando();
 
     // Variable donde se guardará todo el array traducido
     const preguntasTraducidas = [];
@@ -74,6 +92,7 @@ async function generarQuiz(idAPI, nivelDificultad){
     console.log("********************");
     console.log("¡Traducción completada con éxito!");
     console.log("Variable 'preguntasTraducidas':", preguntasTraducidas);
+    ocultarAreaCargando();
     preguntasDelQuiz = preguntasTraducidas;
     // Inicializamos el quiz mostrando la primera pregunta (índice 0)
         indicePreguntaActual = 0;
@@ -82,11 +101,15 @@ async function generarQuiz(idAPI, nivelDificultad){
         console.log("Error en el proceso: ", e);
     }
 }
+let opcionSeleccionada = "";
+let respuestaCorrecta = "";
 // NUEVA FUNCIÓN: Se encarga de pintar una sola pregunta en pantalla
-function mostrarPregunta(indice) {
+function mostrarPregunta(indice, respuesta_correcta) {
+    opcionSeleccionada = "";
+    respuestaCorrecta = "";
     // Validar que no hayamos llegado al final de las 10 preguntas
     if (indice >= preguntasDelQuiz.length) {
-        seccion_quiz.innerHTML = "<h2>¡Felicidades! Has terminado el quiz.</h2>";
+        resultados_quiz();
         return;
     }
 
@@ -96,7 +119,7 @@ function mostrarPregunta(indice) {
     // Juntar la respuesta correcta y las incorrectas en un solo array y mezclarlas
     const todasLasRespuestas =[...dato.respuestas_incorrectas, dato.respuesta_correcta];
     todasLasRespuestas.sort(() => Math.random() - 0.5); // Truco rápido para mezclar el array
-
+    //aca se quita el circulo cargando
     // Insertar en el HTML usando "=" (reemplaza lo anterior, no lo acumula)
     seccion_quiz.innerHTML = `
     <picture>
@@ -120,15 +143,15 @@ function mostrarPregunta(indice) {
     </div>
         <!--botones de saltar y siguiente-->
     <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary saltar" onclick="pasarSiguientePregunta()">Saltar</button>
-        <button type="button" class="btn btn-primary siguiente" onclick="pasarSiguientePregunta()">Siguiente</button>
+        <button type="button" class="btn btn-primary saltar" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="configurarBotonSaltar()">Saltar</button>
+        <button type="button" class="btn btn-primary siguiente" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="configurarBotonSiguiente()">Siguiente</button>
     </div>
     
     `;
 
     // Asignar eventos para verificar si la respuesta es correcta
     configurarBotonesOpcion();
-    const respuestaCorrecta = dato.respuesta_correcta;
+    respuestaCorrecta = dato.respuesta_correcta;
     return respuestaCorrecta;
 }
 // FUNCIÓN PARA AVANZAR
@@ -142,35 +165,113 @@ function configurarBotonesOpcion() {
     botones.forEach(boton => {
         boton.addEventListener('click', (e) => {
             e.target.style.border = "3px solid black"; //le añade un borde negro a la opcion seleccionada
-            const opcionSeleccionada = e.target.innerText;
-            configurarBotonSiguiente();
-            configurarBotonSaltar();
-            return opcionSeleccionada;
+            opcionSeleccionada = e.target.innerText;
         });
     });
 }
 //Función para boton siguiente
-function configurarBotonSiguiente(opcionSeleccionada, respuestaCorrecta){
+const seccionCorrectoIncorrectoError = document.getElementById("modalCorrectoIncorrectoError");
+function configurarBotonSiguiente(){
     if(opcionSeleccionada === ""){
-        alert("Debe escoger una alternativa. De lo contrario, presione Saltar."); //cambiar a un modal
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Debe escoger una alternativa. De lo contrario, presione Saltar.</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
         return;
     }
     if(opcionSeleccionada === respuestaCorrecta) {
-        console.log("Correcto");
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Correcto!</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     } else {
-        console.log(`Incorrecto`);
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Incorrecto :(</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
     // Avanzar automáticamente tras responder
     pasarSiguientePregunta();
 }
 //Función para botón saltar
-function configurarBotonSaltar(opcionSeleccionada){
+function configurarBotonSaltar(){
     if(opcionSeleccionada != ""){
-        alert("Ya marcaste una respuesta. Presione Siguiente."); //cambiar a un modal
+        seccionCorrectoIncorrectoError.innerHTML = `
+            <div class="modal d-block" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="cerrarModal('modalCorrectoIncorrectoError')" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ya marcaste una respuesta. Presione Siguiente.</p>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
         return;
     }else{
         pasarSiguientePregunta();
     }
 }
+//Función para cerrar los modales
+const cerrarModal = (idContenedor) => {
+    const contenedor = document.getElementById(idContenedor);
+    if(contenedor){
+        contenedor.innerHTML = "";
+    }
+};
+function resultados_quiz() {
+    seccion_quiz.innerHTML = `
+                <div class="results">
+                    <div class="result-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <div class="score">Tu resultado es: ${puntaje}/${preguntas_respuestas_quiz.length}</div>
+                    
+                    <button class="btn btn-primary" onclick="generarQuiz()">Intentar otra vez</button>
+                    <button class="btn btn-primary"" onclick="location.reload()">Salir</button>
+                </div>
+            `;
+}
 //Llamado a la fn
-generarQuiz(idAPI, nivelDificultad); //sera la funcion general para todas las categorias
+generarQuiz(idAPI, nivelDificultad); 
