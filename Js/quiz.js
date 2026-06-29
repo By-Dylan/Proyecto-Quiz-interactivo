@@ -1,3 +1,18 @@
+const seccion_cargando= document.getElementById("seccion-cargando");
+
+
+let preguntas_respuestas_quiz= []; // Aquí guardaremos el array completo ya traducido
+let pregunta_actual_indice= 0; // Controla qué pregunta se está mostrando (empieza en 0)
+let puntaje= 0;
+
+
+let preguntasDelQuiz=[];
+
+window.realizar_nuevamente_quiz = generarQuiz;
+
+
+
+
 const seccion_quiz= document.getElementById("seccion-quiz"); //IMPORTANTE: Localstorage se lleva y trae datos SIEMPRE como string
 if(!seccion_quiz){ //verificamos que exista el contenedor
     console.log("No existe la sección para el quiz en el html.");
@@ -13,8 +28,14 @@ if(cNombre && idAPI){
 }
 //Función: Seleccion nivel de dificultad
 //3) Función asincrónica a cargo de cargar las preguntas del quiz y generar la estructura html respectiva
+
+
 async function generarQuiz(idAPI, nivelDificultad){
+
     //Le pasamos el nidel de dificultad a la API 
+    seccion_cargando.classList.remove("ocultar-circulo-cargando");
+
+
     try {
     const api_quiz = await fetch(`https://opentdb.com/api.php?amount=10&category=${idAPI}&difficulty=${nivelDificultad}&type=multiple&encode=url3986`);
     if(!api_quiz.ok){
@@ -82,11 +103,16 @@ async function generarQuiz(idAPI, nivelDificultad){
         console.log("Error en el proceso: ", e);
     }
 }
+
 // NUEVA FUNCIÓN: Se encarga de pintar una sola pregunta en pantalla
 function mostrarPregunta(indice) {
+
+    seccion_cargando.classList.add("ocultar-circulo-cargando");
+
     // Validar que no hayamos llegado al final de las 10 preguntas
     if (indice >= preguntasDelQuiz.length) {
-        seccion_quiz.innerHTML = "<h2>¡Felicidades! Has terminado el quiz.</h2>";
+        resultados_quiz();
+        
         return;
     }
 
@@ -127,7 +153,7 @@ function mostrarPregunta(indice) {
     `;
 
     // Asignar eventos para verificar si la respuesta es correcta
-    configurarBotonesOpcion();
+    configurarBotonesOpcion(dato.respuesta_correcta);
     const respuestaCorrecta = dato.respuesta_correcta;
     return respuestaCorrecta;
 }
@@ -136,19 +162,29 @@ function pasarSiguientePregunta() {
     indicePreguntaActual++;
     mostrarPregunta(indicePreguntaActual);
 }
+
 // FUNCIÓN PARA COMPROBAR LA RESPUESTA SELECCIONADA
-function configurarBotonesOpcion() {
+function configurarBotonesOpcion(respuestaCorrecta) {
     const botones = document.querySelectorAll('.btn-opcion');
     botones.forEach(boton => {
         boton.addEventListener('click', (e) => {
+
             e.target.style.border = "3px solid black"; //le añade un borde negro a la opcion seleccionada
             const opcionSeleccionada = e.target.innerText;
-            configurarBotonSiguiente();
-            configurarBotonSaltar();
-            return opcionSeleccionada;
+
+            if (opcionSeleccionada === respuestaCorrecta) {
+                alert("correcto");
+                puntaje++;
+
+            } else {
+                alert(`Incorrecto. La respuesta era: ${respuestaCorrecta}`);
+            }
+            pasarSiguientePregunta();
         });
     });
 }
+
+
 //Función para boton siguiente
 function configurarBotonSiguiente(opcionSeleccionada, respuestaCorrecta){
     if(opcionSeleccionada === ""){
@@ -172,5 +208,25 @@ function configurarBotonSaltar(opcionSeleccionada){
         pasarSiguientePregunta();
     }
 }
+
+
 //Llamado a la fn
 generarQuiz(idAPI, nivelDificultad); //sera la funcion general para todas las categorias
+
+
+function resultados_quiz() {
+    seccion_quiz.innerHTML = `
+                <div class="results">
+                    <div class="result-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <div class="score">Tu resultado es: ${puntaje}/${preguntasDelQuiz.length}</div>
+                    
+                    <button class="btn btn-primary" onclick="window.location.href = 'index.html';" >salir</button>
+                    <button class="btn btn-primary"" onclick="location.reload()">Intentar otra vez</button>
+                </div>
+            `;
+}
+
+
+//dsdsdsdsd

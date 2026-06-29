@@ -52,9 +52,11 @@ function verificarUsuario(){
 }
 
 verificarUsuario();
+
 //Lógica botón quiz rápido
 const botonQuizRapido = document.getElementById("botonQuizRapido");
 const contenedorModal = document.getElementById("contenedorModal");
+
 botonQuizRapido.addEventListener("click", () => {
     contenedorModal.innerHTML = `
         <div class="modal d-block" tabindex="-1">
@@ -62,7 +64,6 @@ botonQuizRapido.addEventListener("click", () => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title titulo-modal-btn">¿Cómo jugar?</h5>
-                        <button type="button" class="btn-close btn1-cerrar-modal" onclick="cerrarModal()" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -73,12 +74,109 @@ botonQuizRapido.addEventListener("click", () => {
                         </div>
                         <div class="row">
                             <h3 class="h3-modal-btn">2º Elige tu desafío</h3>
-                            <img src="/Img/ejemplocategoriasmodal.png" alt = "Referencia a la elección de categoría" class="img2-modal">
+                            <div class="container" id="seccion-categorias">
+                                <div class="row row-cols-7 gap-3 text-center ">
+                                    <div class="col col-categorias justify-content-center">
+                                        <a href="" class="text-decoration-none text-reset" id="cInformatica">
+                                        <div id="icono1" class="mx-auto seccion-icono">
+                                            <i class="bi bi-pc-display-horizontal icono-diseño"></i>
+                                        </div>
+                                        <div class="categorias-descripcion">
+                                            <p class="mb-0">Informatica</p> 
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-categorias justify-content-center">
+                                        <a href="" class="text-decoration-none text-reset" id="cCiencia">
+                                        <div id="icono2" class="mx-auto seccion-icono">
+                                            <i class="fa-solid fa-flask-vial icono-diseño"></i>
+                                        </div>
+
+                                        <div class="categorias-descripcion">
+                                            <p>Ciencia</p>
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-categorias justify-content-center">
+                                        <a href="" class="text-decoration-none text-reset "id="cPeliculas">
+                                        <div id="icono3" class="mx-auto seccion-icono">
+                                            <i class="bi bi-film icono-diseño"></i>
+                                        </div>
+
+                                        <div class="categorias-descripcion">
+                                            <p>Peliculas</p>
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-categorias justify-content-center">
+                                        <a href="" class="text-decoration-none text-reset "id="cGeografia">
+                                        <div id="icono4" class="mx-auto seccion-icono">
+                                            <i class="bi bi-globe-americas icono-diseño"></i>
+                                        </div>
+
+                                        <div class="categorias-descripcion">
+                                            <p>Geografia</p>
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-categorias justify-content-center">
+                                        <a href="" class="text-decoration-none text-reset "id="cMusica">
+                                        <div id="icono5" class="mx-auto seccion-icono">
+                                            <i class="bi bi-music-note-beamed icono-diseño"></i>
+                                        </div>
+
+                                        <div class="categorias-descripcion">
+                                            <p>Musica</p>
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-categorias justify-content-center">
+                                        <a href="" class="text-decoration-none text-reset "id="cDeportes">
+                                        <div id="icono6" class="mx-auto seccion-icono">
+                                            <i class="fa-regular fa-futbol icono-diseño"></i>
+                                        </div>
+
+                                        <div class="categorias-descripcion">
+                                            <p>Deporte</p>
+                                        </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
                             <p class="p-modal-btn">Explora las opciones y haz clic sobre la categoría que más te llame la atención para poner a prueba tus conocimientos.</p>
                         </div>
                         <div class="row">
                             <h3 class="h3-modal-btn">3º ¡A jugar!</h3> <!--añadir img cuando el modulo del quiz tenga css terminado-->
-                            <img src="/Img/ejemplologinmodal.png" alt = "Referencia a la creación de una cuenta" class="img1-modal">
+                            <picture>
+                                <img src="/Img/ciencias.jpg" class="img-fluid img-quiz" alt="Banner de QuizMind">
+                            </picture>
+
+                            <div class="row">
+                                <h4 class="category-title">Science</h4> 
+                            </div>
+                            <div class="row">
+                                <h3 class="question-title">¿Cuál es el planeta más grande del sistema solar?</h3> 
+                            </div>
+
+                            <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
+                                <button type="button" class="btn btn-primary alternativa-a btn-opcion">Júpiter</button>
+                                <button type="button" class="btn btn-primary alternativa-b btn-opcion">Marte</button>
+                            </div>
+                            <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
+                                <button type="button" class="btn btn-primary alternativa-c btn-opcion">Saturno</button>
+                                <button type="button" class="btn btn-primary alternativa-d btn-opcion">Venus</button>
+                            </div>
+                                <!--botones de saltar y siguiente-->
+                            <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
+                                <button type="button" class="btn btn-primary saltar" data-bs-toggle="modal" data-bs-target="#exampleModal">Saltar</button>
+                                <button type="button" class="btn btn-primary siguiente" data-bs-toggle="modal" data-bs-target="#exampleModal">Siguiente</button>
+                            </div>
                             <p class="p-modal-btn">Una vez elijas, te llevaremos automáticamente al módulo del quiz. Lee con atención y diviértete. ¡Mucho éxito!</p>
                         </div>
                     </div>
@@ -90,6 +188,8 @@ botonQuizRapido.addEventListener("click", () => {
         </div>
     `;
 });
+
+
 //Logica: Redirrecionar al usuario al apretar cualquier categoria. 
 //1) Obtenemos cada categoria del index por su id
 const informatica = document.getElementById("cInformatica");
@@ -104,6 +204,7 @@ const guardarCategoria = (cNombre, c_idAPI) => {
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
 }
+
 //Lógica: Selección y guardado del nivel de dificultad del quiz
 const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
 
@@ -165,6 +266,8 @@ const cerrarModal = (idContenedor) => {
         contenedor.innerHTML = "";
     }
 };
+
+
 //Falta, cargar los datos de todas las categorias segun esta, avanzar segun boton sgt y no alert 
 //Función para guardar en memoria la dificultad
 const guardarDificultad = (dificultad) => {
@@ -176,6 +279,8 @@ const guardarDificultad = (dificultad) => {
         window.location.href = "quiz.html";
     }
 };
+
+
 //) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
 if(informatica){
     informatica.addEventListener("click", () => {
@@ -213,20 +318,28 @@ if(deportes){
         seleccionnivelDeDificultad();
     });
 }
+
+
+
 //Lógica: Validar que el usuario no vaya al quiz sin antes haber seleccionado una categoria TODAVIA NO FUNCIONA 
 const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
 //Función para evitar redirrecionamiento al quiz sin haber elegido una categoria
-const validarRedirrecion = (linkQuiz) => {
-    linkQuiz.addEventListener("click", (linkQuiz) => {
-        linkQuiz.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
-        const categoriaElegida = localStorage.getItem("categoriaID");
-        if(!categoriaElegida){
-            alert("Primero debes seleccionar una categoría.");
-            return;
-        }
-        else{
-            window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
-        }
-    });
-};
-validarRedirrecion(linkQuizDesdeIndex);
+
+linkQuizDesdeIndex.addEventListener("click",(evento)=>{
+    evento.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
+    console.log("hola desde validar redireccion");
+    const categoriaElegida = localStorage.getItem("categoriaID");
+    if(!categoriaElegida){
+        alert("Primero debes seleccionar una categoría.");
+        return;
+            
+    }
+    else{
+        indow.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
+    }
+})
+
+localStorage.removeItem('categoriaID');
+
+
+
