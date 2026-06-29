@@ -14,6 +14,7 @@ btn_ComoFunciona.addEventListener("click", ()=>{
 
 login.addEventListener("submit",(evento)=>{
     evento.preventDefault()
+
     const{nombre,gmail,contraseña}=evento.target;
     console.log(nombre.value);
 
@@ -23,7 +24,7 @@ login.addEventListener("submit",(evento)=>{
         contraseña: contraseña.value
     };
 
-    localStorage.setItem('usuario_registrado', JSON.stringify(datos_usuario)); //se guardamos y se convierte el objeto a String Json
+    localStorage.setItem('usuario_registrado', JSON.stringify(datos_usuario)); 
 
     window.alertaTimeout = setTimeout(() =>{
         alerta.innerHTML +=`
@@ -50,10 +51,12 @@ function verificarUsuario(){
         icono_sesion_correcta.classList.remove("icono-sesionCorrecta");
     }
 }
-
 verificarUsuario();
 
-//Lógica botón quiz rápido
+
+
+
+//Logica botón quiz rápido
 const botonQuizRapido = document.getElementById("botonQuizRapido");
 const contenedorModal = document.getElementById("contenedorModal");
 
@@ -190,8 +193,10 @@ botonQuizRapido.addEventListener("click", () => {
 });
 
 
-//Logica: Redirrecionar al usuario al apretar cualquier categoria. 
-//1) Obtenemos cada categoria del index por su id
+
+
+//logica redirrecionar al usuario al apretar cualquier categoria
+
 const informatica = document.getElementById("cInformatica");
 const ciencias = document.getElementById("cCiencia");
 const peliculas = document.getElementById("cPeliculas");
