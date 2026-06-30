@@ -15,10 +15,6 @@ const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
 
 
-if (!seccion_quiz) { 
-    console.log("No existe la sección para el quiz en el html.");
-}
-
 if (cNombre && idAPI) {
     console.log("Nombre e ID de la categoría y nivel de dificultad obtenidos correctamente: " + cNombre + ", " + idAPI + ", " + nivelDificultad);
 } else {
@@ -28,7 +24,7 @@ if (cNombre && idAPI) {
 
 window.realizar_nuevamente_quiz = generarQuiz;
 
-
+generarQuiz(idAPI, nivelDificultad); 
 
 async function generarQuiz(idAPI, nivelDificultad) {
     seccion_cargando.classList.remove("ocultar-circulo-cargando");
@@ -86,8 +82,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
         }
 
         console.log("********************");
-        console.log("¡Traducción completada con éxito!");
-        console.log("Variable 'preguntasTraducidas':", preguntasTraducidas);
+        console.log("Variable preguntasTraducidas:", preguntasTraducidas);
         
         preguntasDelQuiz = preguntasTraducidas;
         
@@ -101,7 +96,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
 }
 
 
-
+//martina
 function mostrarPregunta(indice) {
     opcionSeleccionada = "";
     respuestaCorrecta = "";
@@ -115,7 +110,7 @@ function mostrarPregunta(indice) {
     }
 
     
-    const dato = preguntasDelQuiz[indice];
+    const dato= preguntasDelQuiz[indice];
     
     const todasLasRespuestas = [...dato.respuestas_incorrectas, dato.respuesta_correcta];
     todasLasRespuestas.sort(() => Math.random() - 0.5);
@@ -160,11 +155,6 @@ function configurarBotonesOpcion() {
             opcionSeleccionada = e.target.innerText;
         });
     });
-}
-
-function pasarSiguientePregunta() {
-    indicePreguntaActual++;
-    mostrarPregunta(indicePreguntaActual);
 }
 
 
@@ -225,6 +215,12 @@ function configurarBotonSiguiente() {
     pasarSiguientePregunta();
 }
 
+function pasarSiguientePregunta() {
+    indicePreguntaActual++;
+    mostrarPregunta(indicePreguntaActual);
+}
+
+
 function configurarBotonSaltar() {
     if (opcionSeleccionada != "") {
         seccionCorrectoIncorrectoError.innerHTML = `
@@ -271,6 +267,6 @@ function resultados_quiz() {
 
 
 
-generarQuiz(idAPI, nivelDificultad);
+
 
 

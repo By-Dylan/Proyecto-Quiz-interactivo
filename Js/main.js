@@ -195,8 +195,7 @@ botonQuizRapido.addEventListener("click", () => {
 
 
 
-//logica redirrecionar al usuario al apretar cualquier categoria
-
+//logica redirrecionar al usuario al apretar cualquier categoria        (dilan hasta el final)
 const informatica = document.getElementById("cInformatica");
 const ciencias = document.getElementById("cCiencia");
 const peliculas = document.getElementById("cPeliculas");
@@ -204,13 +203,13 @@ const geografia = document.getElementById("cGeografia");
 const musica = document.getElementById("cMusica");
 const deportes = document.getElementById("cDeportes");
 
-//2) Función guardar categorias: Utiliza localstorage con el metodo setItem para guardar cada categoria y pasarselas al quiz.html
-const guardarCategoria = (cNombre, c_idAPI) => {
+//función guardar categorias
+const guardarCategoria= (cNombre, c_idAPI) => {
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
 }
 
-//Lógica: Selección y guardado del nivel de dificultad del quiz
+//selección y guardado del nivel de dificultad del quiz
 const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
 
 const seleccionnivelDeDificultad = () => {
@@ -264,8 +263,9 @@ const seleccionnivelDeDificultad = () => {
         </div>
     `;
 }
-//Función para cerrar el modal
-const cerrarModal = (idContenedor) => {
+
+//funcion para cerrar el modal
+const cerrarModal= (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if(contenedor){
         contenedor.innerHTML = "";
@@ -273,8 +273,8 @@ const cerrarModal = (idContenedor) => {
 };
 
 
-//Falta, cargar los datos de todas las categorias segun esta, avanzar segun boton sgt y no alert 
-//Función para guardar en memoria la dificultad
+
+//funcion para guardar en memoria la dificultad
 const guardarDificultad = (dificultad) => {
     if(dificultad === ""){
         alert("Debes seleccionar un nivel de dificultad");
@@ -286,7 +286,7 @@ const guardarDificultad = (dificultad) => {
 };
 
 
-//) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
+//se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
 if(informatica){
     informatica.addEventListener("click", () => {
         guardarCategoria("Informática", 18);
@@ -326,22 +326,19 @@ if(deportes){
 
 
 
-//Lógica: Validar que el usuario no vaya al quiz sin antes haber seleccionado una categoria TODAVIA NO FUNCIONA 
 const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
-//Función para evitar redirrecionamiento al quiz sin haber elegido una categoria
 
 linkQuizDesdeIndex.addEventListener("click",(evento)=>{
-    evento.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
+    evento.preventDefault(); 
     console.log("hola desde validar redireccion");
+    
     const categoriaElegida = localStorage.getItem("categoriaID");
     if(!categoriaElegida){
-        alert("Primero debes seleccionar una categoría.");
+        alert("primero debes seleccionar una categoría.");
         return;
             
     }
-    else{
-        indow.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
-    }
+    
 })
 
 localStorage.removeItem('categoriaID');
