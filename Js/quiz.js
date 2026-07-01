@@ -92,9 +92,17 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Error en el proceso: ", e);
     }
 }
+//Lógica: Imagenes segun la categoria en las preguntas
+const imagenesCategorias = { //objeto que guarda las imagenes
+    "18": "/Img/ciencias-de-la-computacion.jpg",
+    "17": "/Img/ciencias.jpg",
+    "11": "Img/peliculas.avif",
+    "22": "/Img/geografia.jpg",
+    "12": "/Img/musica.avif",
+    "21": "/Img/deportes.jpg"
+}
 
 
-//martina
 function mostrarPregunta(indice) {
     configurarBarraProgreso(indice, preguntasDelQuiz); //
     opcionSeleccionada = "";
@@ -109,7 +117,7 @@ function mostrarPregunta(indice) {
         return;
     }
 
-    
+    const imagenCategoria = imagenesCategorias[idAPI];
     const dato= preguntasDelQuiz[indice];
     
     const todasLasRespuestas = [...dato.respuestas_incorrectas, dato.respuesta_correcta];
@@ -117,7 +125,7 @@ function mostrarPregunta(indice) {
 
     
     seccion_quiz.innerHTML = ` <picture>
-        <img src="/Img/Banner Proyecto Quiz Interactivo.png" class="img-fluid img-banner" alt="Banner de QuizMind">
+        <img src="${imagenCategoria}" class="img-quiz object-fit-cover" alt="Imágen referente a la categoría">
     </picture>
 
     <div class="row">
