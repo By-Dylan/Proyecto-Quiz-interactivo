@@ -1,14 +1,13 @@
 /*diseño del quiz*/
 .progress{
-    justify-content: center;
-    align-items: center;
     width: 40%;
-    background-color:#a4a4a4;
+    background-color:#06B6D4;
     margin: 3% auto;
 }
 .progress-bar{
     color: white;
     background-color:#A15100;
+    height: 100%;
 }
 .title-progress{
     text-align: center;

@@ -8,7 +8,7 @@ let pregunta_actual_indice = 0;
 let puntaje = 0;
 let opcionSeleccionada = "";
 let respuestaCorrecta = "";
-
+let indicePreguntaActual = 0;
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
@@ -96,7 +96,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
 
 //martina
 function mostrarPregunta(indice) {
-    configurarBarraProgreso(pregunta_actual_indice, preguntasDelQuiz);
+    configurarBarraProgreso(indice, preguntasDelQuiz);
     opcionSeleccionada = "";
     respuestaCorrecta = "";
 
@@ -249,11 +249,11 @@ const cerrarModal = (idContenedor) => {
     }
 };
 //Logica: Configuracion barra de progreso: TODAVIA NO FUNCIONA
-function configurarBarraProgreso(pregunta_actual_indice, preguntasDelQuiz){
+function configurarBarraProgreso(indice, preguntasDelQuiz){
     const barraProgreso = document.getElementById("barraProgreso");
-    let porcentaje = (pregunta_actual_indice + 1) / preguntasDelQuiz.length * 100;
+    let porcentaje = (indice + 1) / preguntasDelQuiz.length * 100;
     barraProgreso.style.width = `${porcentaje}%`;
-    barraProgreso.style.backgroundColor = "black";
+    barraProgreso.style.backgroundColor = "#A15100;";
 }
 //Logica: Configuracion del tiempo
 let totalSegundos = 0;
