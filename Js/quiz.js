@@ -9,6 +9,7 @@ let puntaje = 0;
 let opcionSeleccionada = "";
 let respuestaCorrecta = "";
 
+let preguntas_incorrectas=[]
 
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
@@ -25,7 +26,6 @@ if (cNombre && idAPI) {
 window.realizar_nuevamente_quiz = generarQuiz;
 
 generarQuiz(idAPI, nivelDificultad); 
-
 async function generarQuiz(idAPI, nivelDificultad) {
     seccion_cargando.classList.remove("ocultar-circulo-cargando");
 
@@ -96,7 +96,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
 }
 
 
-//martina
+
 function mostrarPregunta(indice) {
     opcionSeleccionada = "";
     respuestaCorrecta = "";
@@ -104,7 +104,9 @@ function mostrarPregunta(indice) {
     seccion_cargando.classList.add("ocultar-circulo-cargando");
 
     
-    if (indice >= preguntasDelQuiz.length) {
+    if (indice >= preguntasDelQuiz.length){
+
+        guardar_datos_localstorage()
         resultados_quiz();
         return;
     }
@@ -144,7 +146,7 @@ function mostrarPregunta(indice) {
 
     configurarBotonesOpcion();
     respuestaCorrecta = dato.respuesta_correcta;
-    return respuestaCorrecta;
+    // return respuestaCorrecta;
 }
 
 function configurarBotonesOpcion() {
@@ -158,7 +160,7 @@ function configurarBotonesOpcion() {
 }
 
 
-function configurarBotonSiguiente() {
+function configurarBotonSiguiente() {   ///de aca empezaria yo(dilan)
     if (opcionSeleccionada === "") {
         seccionCorrectoIncorrectoError.innerHTML = `
             <div class="modal d-block" tabindex="-1">
@@ -194,7 +196,9 @@ function configurarBotonSiguiente() {
                 </div>
             </div>
         `;
-    } else {
+        puntaje++;
+
+    }else{
         seccionCorrectoIncorrectoError.innerHTML = `
             <div class="modal d-block" tabindex="-1">
                 <div class="modal-dialog">
@@ -210,12 +214,15 @@ function configurarBotonSiguiente() {
                 </div>
             </div>
         `;
+        const contenido_pregunta=preguntasDelQuiz[indicePreguntaActual];
+        preguntas_incorrectas.push(contenido_pregunta)
     }
     
     pasarSiguientePregunta();
 }
 
 function pasarSiguientePregunta() {
+
     indicePreguntaActual++;
     mostrarPregunta(indicePreguntaActual);
 }
@@ -263,9 +270,23 @@ function resultados_quiz() {
             <button class="btn btn-primary" onclick="location.reload()">Intentar otra vez</button>
         </div>
     `;
+
 }
 
+function guardar_datos_localstorage(){
 
+    const preguntas_incorrectas_localstorage= localStorage.getItem("quiz_respondido_incorrectamente");
+    if(preguntas_incorrectas_localstorage){
+
+        const P_incorrectas_localstorage=JSON.parse(preguntas_incorrectas_localstorage);    //convierto de string a json
+        const union_preguntas_incorretas = [...P_incorrectas_localstorage, ...preguntas_incorrectas];
+        localStorage.setItem("quiz_respondido_incorrectamente", JSON.stringify(union_preguntas_incorretas));
+
+    }else{
+        localStorage.setItem("quiz_respondido_incorrectamente", JSON.stringify(preguntas_incorrectas));
+    }
+    
+}
 
 
 
