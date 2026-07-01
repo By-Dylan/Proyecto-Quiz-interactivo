@@ -22,6 +22,7 @@ let deportes=0;
 
 
 
+let indicePreguntaActual = 0; //
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
@@ -88,7 +89,6 @@ async function generarQuiz(idAPI, nivelDificultad) {
                 respuesta_correcta: correctaEspanol,
                 respuestas_incorrectas: incorrectasEspanol
             });
-
             console.log(`Progreso: ${i + 1}/10 traducidas.`);
         }
 
@@ -96,7 +96,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Variable preguntasTraducidas:", preguntasTraducidas);
         
         preguntasDelQuiz = preguntasTraducidas;
-        
+        iniciarTiempo(); //
         //inicializamos el quiz mostrando la primera pregunta
         indicePreguntaActual = 0;
         mostrarPregunta(indicePreguntaActual);
@@ -109,15 +109,16 @@ async function generarQuiz(idAPI, nivelDificultad) {
 
 
 function mostrarPregunta(indice) {
+    configurarBarraProgreso(indice, preguntasDelQuiz); //
     opcionSeleccionada = "";
     respuestaCorrecta = "";
 
     seccion_cargando.classList.add("ocultar-circulo-cargando");
 
     
-    if (indice >= preguntasDelQuiz.length){
-
-        guardar_datos_localstorage()
+    if (indice >= preguntasDelQuiz.length) {
+        detenerTiempo(); //
+        guardar_datos_localstorage();
         resultados_quiz();
         extrae_guarda_redimiento_localstorage();
         return;
@@ -237,7 +238,6 @@ function configurarBotonSiguiente() {   ///de aca empezaria yo(dilan)
         const contenido_pregunta=preguntasDelQuiz[indicePreguntaActual];
         preguntas_incorrectas.push(contenido_pregunta)
     }
-    
     pasarSiguientePregunta();
 }
 
@@ -270,15 +270,40 @@ function configurarBotonSaltar() {
         pasarSiguientePregunta();
     }
 }
-
 const cerrarModal = (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if (contenedor) {
         contenedor.innerHTML = "";
     }
 };
+//Logica: Configuracion barra de progreso: 
+function configurarBarraProgreso(indice, preguntasDelQuiz){
+    const barraProgreso = document.getElementById("barraProgreso");
+    let porcentaje = (indice + 1) / preguntasDelQuiz.length * 100;
+    barraProgreso.style.width = `${porcentaje}%`;
+    barraProgreso.style.backgroundColor = "#A15100;";
+}
+//Logica: Configuracion del tiempo
+let totalSegundos = 0;
+let tiempoQuiz;
+
+function iniciarTiempo(){
+    totalSegundos = 0;
+    const spanTiempo = document.getElementById("spanTiempo");
+    clearInterval(tiempoQuiz); //sirve para limpiar el tiempo si es que quedo guardado
+    tiempoQuiz = setInterval(() => {
+        totalSegundos++;
+        let minutos = Math.floor(totalSegundos / 60);
+        let segundos = totalSegundos % 60;
+        spanTiempo.innerHTML = `${minutos}:${segundos}`;
+    }, 1000)
+}
+function detenerTiempo(){
+    clearInterval(tiempoQuiz);
+    localStorage.setItem("tiempoQuiz", totalSegundos);
 
 
+} //
 function resultados_quiz() {
     seccion_quiz.innerHTML = `
         <div class="results">
@@ -379,6 +404,7 @@ function extrae_guarda_redimiento_localstorage() {
     
     console.log("Datos totales actualizados con estructura de objetos:", rendimiento);
 }
+
 
 
 

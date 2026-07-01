@@ -89,10 +89,16 @@
         </div>
         <br><br>
     </div>
-    <div class="container">
-        <h5>Puntos total Acumulado: </h5>
-    </div>
-
+    <div class="container"> <!---->
+        <div class="row">
+            <div class="col">
+                <h5>Puntos total Acumulado: </h5>
+            </div>
+            <div class="col container-grafica1">
+                <canvas id = "idEstadistica1"></canvas>
+            </div>
+        </div>
+    </div> <!---->
 
     <!--contenedor de barra de progesor y logros-->
     <div class="container seccion-logros">
@@ -204,8 +210,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--llamado a chartjs-->
     <script src="/Js/estadisticas.js"></script>
-    
     </body>
 </html>
