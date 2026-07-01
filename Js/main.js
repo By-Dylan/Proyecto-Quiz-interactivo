@@ -281,6 +281,10 @@ const guardarDificultad = (dificultad) => {
         return;
     }else{
         localStorage.setItem("dificultadSeleccionada", dificultad);
+        const historialDificultad = localStorage.getItem("listaDificultades") || "[]"; //verifica si hay algo guardado anteriormente o si es primera vez que guardara algo
+        const listaDificultadesArray = JSON.parse(historialDificultad); //pasa de string hacia array
+        listaDificultadesArray.push(dificultad); //añadimos la dificultad al array
+        localStorage.setItem("listaDificultades", JSON.stringify(listaDificultadesArray)); //lo pasamos a texto nuevamente
         window.location.href = "quiz.html";
     }
 };

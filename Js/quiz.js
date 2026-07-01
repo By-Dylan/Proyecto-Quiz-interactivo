@@ -77,7 +77,6 @@ async function generarQuiz(idAPI, nivelDificultad) {
                 respuesta_correcta: correctaEspanol,
                 respuestas_incorrectas: incorrectasEspanol
             });
-
             console.log(`Progreso: ${i + 1}/10 traducidas.`);
         }
 
