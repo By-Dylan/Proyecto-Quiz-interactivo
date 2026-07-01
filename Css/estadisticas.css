@@ -1,3 +1,12 @@
 .seccion-logros{
     margin-top: 100px;
 }
+
+.pregunta_ocultada{
+    display: none !important;
+}
+
+.btn_mostrar_respuesta{
+    background-color: #7C3AED !important;
+    color: white !important;
+}

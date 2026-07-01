@@ -32,43 +32,59 @@ function mostrar_respuestas_incorrectas(){
         console.log("hola desde mostrar repsuestas incorrectas retroalimentacion")
         return;
     }
-    console.log("el usuario si tiene pregutnas de retroalimentacion.")
 
     
     const preguntas_incorrectas = JSON.parse(preguntas_incorrectas_localstorage);
 
     seccion_retroalimentacion.innerHTML = "";
-    preguntas_incorrectas.forEach((dato,index) => {
+    preguntas_incorrectas.forEach(dato =>{
         
         seccion_retroalimentacion.innerHTML+=`
             <div class="row mb-3">
                 <div class="col p-3 bg-white border rounded-3 shadow-sm" style="max-width: 1200px;">
                     <p><span class="fw-bold">Pregunta:</span> ${dato.pregunta}</p>
-                    <p class="m-0"><span class="fw-bold">Respuesta Correcta:</span>  ${dato.respuesta_correcta}</p>
+
+                    <p class="m-0 ">
+                    <span class="fw-bold">Respuesta Correcta:</span> <span class="respuesta pregunta_ocultada"> ${dato.respuesta_correcta}</span>
+                    </p>
+
                     <div class="d-flex justify-content-end ">
-                        <button type="button" class="btn btn-danger btn-sm mostrar-respuesta" style="width: 170px; height: 35px;" data-id="${index}">mostrar respuesta</button>
+                        <button type="button" class="btn btn_mostrar_respuesta btn-sm mostrar-respuesta" style="width: 170px; height: 35px;">mostrar respuesta</button>
                     </div>
                 </div>
             </div>
             `;        
     });
 
-    
 }
 
 mostrar_respuestas_incorrectas();
-const id = boton.dataset.id;
+
 
 const boton_mostrar_respuesta=document.querySelectorAll(".mostrar-respuesta");
+
 boton_mostrar_respuesta.forEach(boton => {
     boton.addEventListener("click", () => {
+        const contenedor= boton.closest(".col");
+        console.log(contenedor)
+        const respuesta= contenedor.querySelector(".respuesta");
 
-        const id = boton.dataset.id;
-        const respuesta = document.getElementById(`respuesta-${id}`);
+        respuesta.classList.toggle("pregunta_ocultada");
 
-        respuesta.style.display = "block";
+        if(respuesta.classList.contains("pregunta_ocultada")) {
+            boton.textContent="mostrar respuesta";
+        }else{
+            boton.textContent="ocultar respuesta";
+        }
 
     });
-
 });
+
+
+
+
+
+
+
+
 
