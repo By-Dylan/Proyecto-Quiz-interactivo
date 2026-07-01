@@ -14,7 +14,7 @@ if(persona){
 
     console.log(usuario.nombre, usuario.gmail, usuario.contraseña);
 }
-//Lógica: Gráfico de estadísticas 1
+//Lógica: Gráfico de estadísticas 1 
 const datosEstadistica1 = localStorage.getItem("listaDificultades") || "[]";
 const datosEstadistica1Array = JSON.parse(datosEstadistica1); //pasa de string hacia array
 let cFacil = 0;
@@ -46,6 +46,6 @@ let chart1 = new Chart(canvas1, {
             }
         ]
     }
-});
+}); //
 
 

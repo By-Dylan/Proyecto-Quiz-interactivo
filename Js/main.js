@@ -274,7 +274,7 @@ const cerrarModal= (idContenedor) => {
 
 
 
-//funcion para guardar en memoria la dificultad
+//Logica: Funcion para guardar en memoria la dificultad
 const guardarDificultad = (dificultad) => {
     if(dificultad === ""){
         alert("Debes seleccionar un nivel de dificultad");
@@ -287,7 +287,7 @@ const guardarDificultad = (dificultad) => {
         localStorage.setItem("listaDificultades", JSON.stringify(listaDificultadesArray)); //lo pasamos a texto nuevamente
         window.location.href = "quiz.html";
     }
-};
+}; //
 
 
 //se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API

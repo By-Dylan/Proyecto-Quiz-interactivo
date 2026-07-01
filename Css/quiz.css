@@ -1,10 +1,10 @@
 /*diseño del quiz*/
-.progress{
+.progress{ /* */
     width: 40%;
     background-color:#06B6D4;
     margin: 3% auto;
 }
-.progress-bar{
+.progress-bar{ /* */
     color: white;
     background-color:#A15100;
     height: 100%;

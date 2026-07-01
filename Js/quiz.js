@@ -8,7 +8,7 @@ let pregunta_actual_indice = 0;
 let puntaje = 0;
 let opcionSeleccionada = "";
 let respuestaCorrecta = "";
-let indicePreguntaActual = 0;
+let indicePreguntaActual = 0; //
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
@@ -83,7 +83,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Variable preguntasTraducidas:", preguntasTraducidas);
         
         preguntasDelQuiz = preguntasTraducidas;
-        iniciarTiempo();
+        iniciarTiempo(); //
         //inicializamos el quiz mostrando la primera pregunta
         indicePreguntaActual = 0;
         mostrarPregunta(indicePreguntaActual);
@@ -96,7 +96,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
 
 //martina
 function mostrarPregunta(indice) {
-    configurarBarraProgreso(indice, preguntasDelQuiz);
+    configurarBarraProgreso(indice, preguntasDelQuiz); //
     opcionSeleccionada = "";
     respuestaCorrecta = "";
 
@@ -104,7 +104,7 @@ function mostrarPregunta(indice) {
 
     
     if (indice >= preguntasDelQuiz.length) {
-        detenerTiempo();
+        detenerTiempo(); //
         resultados_quiz();
         return;
     }
@@ -248,7 +248,7 @@ const cerrarModal = (idContenedor) => {
         contenedor.innerHTML = "";
     }
 };
-//Logica: Configuracion barra de progreso: TODAVIA NO FUNCIONA
+//Logica: Configuracion barra de progreso: 
 function configurarBarraProgreso(indice, preguntasDelQuiz){
     const barraProgreso = document.getElementById("barraProgreso");
     let porcentaje = (indice + 1) / preguntasDelQuiz.length * 100;
@@ -273,7 +273,7 @@ function detenerTiempo(){
     clearInterval(tiempoQuiz);
     localStorage.setItem("tiempoQuiz", totalSegundos);
 
-}
+} //
 function resultados_quiz() {
     seccion_quiz.innerHTML = `
         <div class="results">
