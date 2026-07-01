@@ -282,8 +282,8 @@ function resultados_quiz() {
             </div>
             <div class="score">Tu resultado es: ${puntaje}/${preguntasDelQuiz.length}</div>
             
-            <button class="btn btn-primary" onclick="window.location.href = 'index.html';">salir</button>
-            <button class="btn btn-primary" onclick="location.reload()">Intentar otra vez</button>
+            <button class="btn btn-primary salir" onclick="window.location.href = 'index.html';">Salir</button>
+            <button class="btn btn-primary intentarOtraVez" onclick="location.reload()">Intentar otra vez</button>
         </div>
     `;
 }

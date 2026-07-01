@@ -145,3 +145,21 @@
     font-weight: bold;
     margin-bottom: 20px;
 }
+.salir{
+    padding: 10px 22px; 
+    font-size: 14px;
+    font-weight: 600; 
+    border: none;
+    width: 160px;
+    margin-top: 3%;
+    background-color: #7C3AED;
+}
+.intentarOtraVez{
+    padding: 10px 22px; 
+    font-size: 14px;
+    font-weight: 600; 
+    border: none;
+    width: 160px;
+    margin-top: 3%;
+    background-color: #7C3AED;
+}
