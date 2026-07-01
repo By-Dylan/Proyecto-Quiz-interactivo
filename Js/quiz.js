@@ -9,7 +9,19 @@ let puntaje = 0;
 let opcionSeleccionada = "";
 let respuestaCorrecta = "";
 
-let preguntas_incorrectas=[]
+let preguntas_incorrectas=[];
+
+let rendimiento=[];
+
+let informatica=0;
+let ciencias=0;
+let pelicula=0;
+let geografia=0;
+let musica=0;
+let deportes=0;
+
+
+
 
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
@@ -44,7 +56,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Traduciendo el array de preguntas... Por favor espera.");
 
         const preguntasTraducidas = [];
-        const correo = "martyhonores2405@gmail.com";
+        const correo = "martyhonores4564562405@gmail.com";
         
         for (let i = 0; i < preguntas.length; i++) {
 
@@ -108,6 +120,7 @@ function mostrarPregunta(indice) {
 
         guardar_datos_localstorage()
         resultados_quiz();
+        extrae_guarda_redimiento_localstorage();
         return;
     }
 
@@ -198,6 +211,10 @@ function configurarBotonSiguiente() {   ///de aca empezaria yo(dilan)
         `;
         puntaje++;
 
+        guardar_rediemiento(cNombre);
+
+
+
     }else{
         seccionCorrectoIncorrectoError.innerHTML = `
             <div class="modal d-block" tabindex="-1">
@@ -258,6 +275,7 @@ const cerrarModal = (idContenedor) => {
     }
 };
 
+
 function resultados_quiz() {
     seccion_quiz.innerHTML = `
         <div class="results">
@@ -273,13 +291,14 @@ function resultados_quiz() {
 
 }
 
-function guardar_datos_localstorage(){
+function guardar_datos_localstorage(){  //guardo las preguntas donde se responda incorrectamente
 
     const preguntas_incorrectas_localstorage= localStorage.getItem("quiz_respondido_incorrectamente");
     if(preguntas_incorrectas_localstorage){
 
         const P_incorrectas_localstorage=JSON.parse(preguntas_incorrectas_localstorage);    //convierto de string a json
         const union_preguntas_incorretas = [...P_incorrectas_localstorage, ...preguntas_incorrectas];
+        
         localStorage.setItem("quiz_respondido_incorrectamente", JSON.stringify(union_preguntas_incorretas));
 
     }else{
@@ -287,6 +306,78 @@ function guardar_datos_localstorage(){
     }
     
 }
+
+
+
+function guardar_rediemiento(nombre_categoria){
+    console.log("hola desde guardar rendimiento:", nombre_categoria);
+    if(nombre_categoria==="Informática"){
+        informatica++;
+        console.log("contador informatica:", informatica);
+    }
+    if(nombre_categoria==="Ciencias"){
+        ciencias++;
+    }
+    if(nombre_categoria==="Película"){
+        pelicula++;
+    }
+    if(nombre_categoria==="geografía"){
+        geografia++;
+    }
+    if(nombre_categoria==="Música"){
+        musica++;
+    }
+    if(nombre_categoria==="Deportes"){
+        deportes++;
+    }
+    
+
+}
+
+
+function extrae_guarda_redimiento_localstorage() {
+    const rendimiento_localstorage = localStorage.getItem("dato_rendimiento");
+
+    if (!rendimiento_localstorage) {
+        rendimiento = [
+            { categoria: "informatica", puntaje: informatica },
+            { categoria: "ciencias", puntaje: ciencias },
+            { categoria: "pelicula", puntaje: pelicula },
+            { categoria: "geografia", puntaje: geografia },
+            { categoria: "musica", puntaje: musica },
+            { categoria: "deportes", puntaje: deportes }
+        ];
+        
+        localStorage.setItem('dato_rendimiento', JSON.stringify(rendimiento)); 
+        console.log("Se guardaron los primeros datos como [{}, {}] en local...");
+        return;
+    }
+
+    const rendimiento_localstorage_json = JSON.parse(rendimiento_localstorage);
+
+    let suma_informatica = rendimiento_localstorage_json[0].puntaje + informatica;
+    let suma_ciencias    = rendimiento_localstorage_json[1].puntaje + ciencias;
+    let suma_pelicula    = rendimiento_localstorage_json[2].puntaje + pelicula;
+    let suma_geografia   = rendimiento_localstorage_json[3].puntaje + geografia;
+    let suma_musica      = rendimiento_localstorage_json[4].puntaje + musica;
+    let suma_deportes    = rendimiento_localstorage_json[5].puntaje + deportes;
+
+    //se sobre escribe con las sumas nuevas totales
+    rendimiento = [
+        { categoria: "informatica", puntaje: suma_informatica },
+        { categoria: "ciencias", puntaje: suma_ciencias },
+        { categoria: "pelicula", puntaje: suma_pelicula },
+        { categoria: "geografia", puntaje: suma_geografia },
+        { categoria: "musica", puntaje: suma_musica },
+        { categoria: "deportes", puntaje: suma_deportes }
+    ];
+
+    localStorage.setItem('dato_rendimiento', JSON.stringify(rendimiento)); 
+    
+    console.log("Datos totales actualizados con estructura de objetos:", rendimiento);
+}
+
+
 
 
 
