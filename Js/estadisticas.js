@@ -47,5 +47,29 @@ let chart1 = new Chart(canvas1, {
         ]
     }
 }); //
+//Lógica: Tiempo mas rapido al realizar un quiz
+const historialQuizTexto = localStorage.getItem("datosQuizes");
+if(historialQuizTexto){
+    const historialQuizTransformado = JSON.parse(historialQuizTexto);
+    historialQuizTransformado.sort((t1, t2) => t1.tiempo - t2.tiempo); //va restando los tiempos que hay en los objetos, dejan los menores adelante y los mayores atras
+    let obtenerMejorTiempo = historialQuizTransformado[0]; //pq ya estan ordenados de menoir a mayor entonces el primero es el menor tiempo
+    let minutosMejorTiempo = Math.floor(obtenerMejorTiempo.tiempo / 60);
+    let segundosMejorTiempo = obtenerMejorTiempo.tiempo % 60;
 
+    let obtenerCategoriaMejorTiempo = obtenerMejorTiempo.categoria;
+
+    const mostrarMejorTiempo = () => {
+        const pTiempo = document.getElementById("mejorTiempo");
+        pTiempo.innerHTML = `
+            <p>${minutosMejorTiempo}:${segundosMejorTiempo}</p>
+        `;
+        const pCategoriaMejorTiempo = document.getElementById("categoriaMejorTiempo");
+        pCategoriaMejorTiempo.innerHTML = `
+            <p>${obtenerCategoriaMejorTiempo}</p>
+        `;
+    };
+    mostrarMejorTiempo();
+} else{
+    console.log("No hay ningún quiz registrado.");
+}
 

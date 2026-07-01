@@ -112,8 +112,8 @@ function mostrarPregunta(indice) {
 
     
     if (indice >= preguntasDelQuiz.length) {
-        detenerTiempo(); //
         resultados_quiz();
+        detenerTiempo(); //
         return;
     }
 
@@ -261,7 +261,7 @@ function configurarBarraProgreso(indice, preguntasDelQuiz){
     const barraProgreso = document.getElementById("barraProgreso");
     let porcentaje = (indice + 1) / preguntasDelQuiz.length * 100;
     barraProgreso.style.width = `${porcentaje}%`;
-    barraProgreso.style.backgroundColor = "#A15100;";
+    barraProgreso.style.backgroundColor = "#A15100";
 }
 //Logica: Configuracion del tiempo
 let totalSegundos = 0;
@@ -279,7 +279,14 @@ function iniciarTiempo(){
 }
 function detenerTiempo(){
     clearInterval(tiempoQuiz);
-    localStorage.setItem("tiempoQuiz", totalSegundos);
+    let datosQuiz = localStorage.getItem("datosQuizes") || "[]"; //lista para añadir los datos
+    let historialQuiz = JSON.parse(datosQuiz);
+    let historialQuizActual = { //ver si es necesario añadir el puntaje, objeto con los datos
+        "categoria": cNombre,
+        "tiempo": totalSegundos,
+    };
+    historialQuiz.push(historialQuizActual); //añadimos el objeto a la lista
+    localStorage.setItem("datosQuizes", JSON.stringify(historialQuiz)); //lo transformamos a texto para darselo al localstorage
 
 } //
 function resultados_quiz() {
