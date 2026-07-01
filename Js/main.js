@@ -14,6 +14,7 @@ btn_ComoFunciona.addEventListener("click", ()=>{
 
 login.addEventListener("submit",(evento)=>{
     evento.preventDefault()
+
     const{nombre,gmail,contraseña}=evento.target;
     console.log(nombre.value);
 
@@ -23,7 +24,7 @@ login.addEventListener("submit",(evento)=>{
         contraseña: contraseña.value
     };
 
-    localStorage.setItem('usuario_registrado', JSON.stringify(datos_usuario)); //se guardamos y se convierte el objeto a String Json
+    localStorage.setItem('usuario_registrado', JSON.stringify(datos_usuario)); 
 
     window.alertaTimeout = setTimeout(() =>{
         alerta.innerHTML +=`
@@ -50,11 +51,15 @@ function verificarUsuario(){
         icono_sesion_correcta.classList.remove("icono-sesionCorrecta");
     }
 }
-
 verificarUsuario();
-//Lógica botón quiz rápido
+
+
+
+
+//Logica botón quiz rápido
 const botonQuizRapido = document.getElementById("botonQuizRapido");
 const contenedorModal = document.getElementById("contenedorModal");
+
 botonQuizRapido.addEventListener("click", () => {
     contenedorModal.innerHTML = `
         <div class="modal d-block" tabindex="-1">
@@ -186,8 +191,11 @@ botonQuizRapido.addEventListener("click", () => {
         </div>
     `;
 });
-//Logica: Redirrecionar al usuario al apretar cualquier categoria. 
-//1) Obtenemos cada categoria del index por su id
+
+
+
+
+//logica redirrecionar al usuario al apretar cualquier categoria        (dilan hasta el final)
 const informatica = document.getElementById("cInformatica");
 const ciencias = document.getElementById("cCiencia");
 const peliculas = document.getElementById("cPeliculas");
@@ -195,12 +203,13 @@ const geografia = document.getElementById("cGeografia");
 const musica = document.getElementById("cMusica");
 const deportes = document.getElementById("cDeportes");
 
-//2) Función guardar categorias: Utiliza localstorage con el metodo setItem para guardar cada categoria y pasarselas al quiz.html
-const guardarCategoria = (cNombre, c_idAPI) => {
+//función guardar categorias
+const guardarCategoria= (cNombre, c_idAPI) => {
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
 }
-//Lógica: Selección y guardado del nivel de dificultad del quiz
+
+//selección y guardado del nivel de dificultad del quiz
 const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
 
 const seleccionnivelDeDificultad = () => {
@@ -254,25 +263,34 @@ const seleccionnivelDeDificultad = () => {
         </div>
     `;
 }
-//Función para cerrar el modal
-const cerrarModal = (idContenedor) => {
+
+//funcion para cerrar el modal
+const cerrarModal= (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if(contenedor){
         contenedor.innerHTML = "";
     }
 };
-//Falta, cargar los datos de todas las categorias segun esta, avanzar segun boton sgt y no alert 
-//Función para guardar en memoria la dificultad
+
+
+
+//funcion para guardar en memoria la dificultad
 const guardarDificultad = (dificultad) => {
     if(dificultad === ""){
         alert("Debes seleccionar un nivel de dificultad");
         return;
     }else{
         localStorage.setItem("dificultadSeleccionada", dificultad);
+        const historialDificultad = localStorage.getItem("listaDificultades") || "[]"; //verifica si hay algo guardado anteriormente o si es primera vez que guardara algo
+        const listaDificultadesArray = JSON.parse(historialDificultad); //pasa de string hacia array
+        listaDificultadesArray.push(dificultad); //añadimos la dificultad al array
+        localStorage.setItem("listaDificultades", JSON.stringify(listaDificultadesArray)); //lo pasamos a texto nuevamente
         window.location.href = "quiz.html";
     }
 };
-//) Se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
+
+
+//se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
 if(informatica){
     informatica.addEventListener("click", () => {
         guardarCategoria("Informática", 18);
@@ -309,20 +327,25 @@ if(deportes){
         seleccionnivelDeDificultad();
     });
 }
-//Lógica: Validar que el usuario no vaya al quiz sin antes haber seleccionado una categoria TODAVIA NO FUNCIONA 
+
+
+
 const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
-//Función para evitar redirrecionamiento al quiz sin haber elegido una categoria
-const validarRedirrecion = (linkQuiz) => {
-    linkQuiz.addEventListener("click", (linkQuiz) => {
-        linkQuiz.preventDefault(); //elimina el redirrecionamiento automatico, permitiendo que entre al if
-        const categoriaElegida = localStorage.getItem("categoriaID");
-        if(!categoriaElegida){
-            alert("Primero debes seleccionar una categoría.");
-            return;
-        }
-        else{
-            window.location.href = "quiz.html"; //Evento que redirreciona de la pagina index, a quiz, al momento de hacer click en cualquier categoria
-        }
-    });
-};
-validarRedirrecion(linkQuizDesdeIndex);
+
+linkQuizDesdeIndex.addEventListener("click",(evento)=>{
+    evento.preventDefault(); 
+    console.log("hola desde validar redireccion");
+    
+    const categoriaElegida = localStorage.getItem("categoriaID");
+    if(!categoriaElegida){
+        alert("primero debes seleccionar una categoría.");
+        return;
+            
+    }
+    
+})
+
+localStorage.removeItem('categoriaID');
+
+
+

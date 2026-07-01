@@ -1,3 +1,10 @@
 .seccion-logros{
     margin-top: 100px;
 }
+.container-grafica1{
+    width: 50%;
+    margin-left: auto;
+    margin-right: 5%;
+    padding: 10px;
+    border: 3px solid #7C3AED;
+}
