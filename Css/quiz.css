@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     width: 40%;
-    background-color:#06B6D4;
+    background-color:#a4a4a4;
     margin: 3% auto;
 }
 .progress-bar{
     color: white;
-    background-color:#005a6a
+    background-color:#A15100;
 }
 .title-progress{
     text-align: center;

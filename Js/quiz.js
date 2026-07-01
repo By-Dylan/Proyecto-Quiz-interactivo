@@ -9,7 +9,6 @@ let puntaje = 0;
 let opcionSeleccionada = "";
 let respuestaCorrecta = "";
 
-
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
@@ -84,7 +83,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Variable preguntasTraducidas:", preguntasTraducidas);
         
         preguntasDelQuiz = preguntasTraducidas;
-        
+        iniciarTiempo();
         //inicializamos el quiz mostrando la primera pregunta
         indicePreguntaActual = 0;
         mostrarPregunta(indicePreguntaActual);
@@ -97,6 +96,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
 
 //martina
 function mostrarPregunta(indice) {
+    configurarBarraProgreso(pregunta_actual_indice, preguntasDelQuiz);
     opcionSeleccionada = "";
     respuestaCorrecta = "";
 
@@ -104,6 +104,7 @@ function mostrarPregunta(indice) {
 
     
     if (indice >= preguntasDelQuiz.length) {
+        detenerTiempo();
         resultados_quiz();
         return;
     }
@@ -210,7 +211,6 @@ function configurarBotonSiguiente() {
             </div>
         `;
     }
-    
     pasarSiguientePregunta();
 }
 
@@ -242,14 +242,38 @@ function configurarBotonSaltar() {
         pasarSiguientePregunta();
     }
 }
-
 const cerrarModal = (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if (contenedor) {
         contenedor.innerHTML = "";
     }
 };
+//Logica: Configuracion barra de progreso: TODAVIA NO FUNCIONA
+function configurarBarraProgreso(pregunta_actual_indice, preguntasDelQuiz){
+    const barraProgreso = document.getElementById("barraProgreso");
+    let porcentaje = (pregunta_actual_indice + 1) / preguntasDelQuiz.length * 100;
+    barraProgreso.style.width = `${porcentaje}%`;
+    barraProgreso.style.backgroundColor = "black";
+}
+//Logica: Configuracion del tiempo
+let totalSegundos = 0;
+let tiempoQuiz;
+function iniciarTiempo(){
+    totalSegundos = 0;
+    const spanTiempo = document.getElementById("spanTiempo");
+    clearInterval(tiempoQuiz); //sirve para limpiar el tiempo si es que quedo guardado
+    tiempoQuiz = setInterval(() => {
+        totalSegundos++;
+        let minutos = Math.floor(totalSegundos / 60);
+        let segundos = totalSegundos % 60;
+        spanTiempo.innerHTML = `${minutos}:${segundos}`;
+    }, 1000)
+}
+function detenerTiempo(){
+    clearInterval(tiempoQuiz);
+    localStorage.setItem("tiempoQuiz", totalSegundos);
 
+}
 function resultados_quiz() {
     seccion_quiz.innerHTML = `
         <div class="results">
@@ -263,9 +287,3 @@ function resultados_quiz() {
         </div>
     `;
 }
-
-
-
-
-
-
