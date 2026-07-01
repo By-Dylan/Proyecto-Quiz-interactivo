@@ -22,7 +22,6 @@ let deportes=0;
 
 
 
-
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
@@ -126,13 +125,15 @@ function mostrarPregunta(indice) {
 
     
     const dato= preguntasDelQuiz[indice];
-    
     const todasLasRespuestas = [...dato.respuestas_incorrectas, dato.respuesta_correcta];
     todasLasRespuestas.sort(() => Math.random() - 0.5);
 
+
+    const categoria=localStorage.getItem("categoriaNombre"); //tipo de categoria para el banner
+    console.log("cat:", categoria)
     
     seccion_quiz.innerHTML = ` <picture>
-        <img src="/Img/Banner Proyecto Quiz Interactivo.png" class="img-fluid img-banner" alt="Banner de QuizMind">
+        <img src="/Img/banner_${categoria}.jpg" class="img-fluid img-banner" alt="Banner de QuizMind">
     </picture>
 
     <div class="row">
@@ -161,6 +162,8 @@ function mostrarPregunta(indice) {
     respuestaCorrecta = dato.respuesta_correcta;
     // return respuestaCorrecta;
 }
+
+
 
 function configurarBotonesOpcion() {
     const botones = document.querySelectorAll('.btn-opcion');
