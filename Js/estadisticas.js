@@ -120,10 +120,9 @@ boton_mostrar_respuesta.forEach(boton => {
 function mostrar_rendimieto_usuario() { 
     const datos_rendimiento = localStorage.getItem("dato_rendimiento");
 
-    if (datos_rendimiento) {
+    if (datos_rendimiento){
         const dato_rendimiento_json = JSON.parse(datos_rendimiento);
 
-        // Comparamos el objeto "actual" con el "maximo" acumulado      //esto full IA tengo que realizarlo con mi logica
         const objeto_mayor = dato_rendimiento_json.reduce((maximo, actual) => {
             return (actual.puntaje > maximo.puntaje) ? actual : maximo;
         });
@@ -151,6 +150,7 @@ mostrar_rendimieto_usuario()
 const seccion_nivel=document.getElementById("seccion-nivel");
 
 let rango=["Novato","principiante", "avanzado"];    // rango de avance: 0-10, 11-30, 31-infinito. (puntaje correcto)
+
 function revision_rango(){
     const rendimiento_localstorage = localStorage.getItem("dato_rendimiento");
     const rendimiento_localstorage_json = JSON.parse(rendimiento_localstorage);

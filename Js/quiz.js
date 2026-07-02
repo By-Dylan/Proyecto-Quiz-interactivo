@@ -276,6 +276,7 @@ const cerrarModal = (idContenedor) => {
         contenedor.innerHTML = "";
     }
 };
+
 //Logica: Configuracion barra de progreso: 
 function configurarBarraProgreso(indice, preguntasDelQuiz){
     const barraProgreso = document.getElementById("barraProgreso");
@@ -384,7 +385,7 @@ function extrae_guarda_redimiento_localstorage() {
     const rendimiento_localstorage_json = JSON.parse(rendimiento_localstorage);
 
     let suma_informatica = rendimiento_localstorage_json[0].puntaje + informatica;
-    let suma_ciencias    = rendimiento_localstorage_json[1].puntaje + ciencias;
+    let suma_ciencias = rendimiento_localstorage_json[1].puntaje + ciencias;
     let suma_pelicula    = rendimiento_localstorage_json[2].puntaje + pelicula;
     let suma_geografia   = rendimiento_localstorage_json[3].puntaje + geografia;
     let suma_musica      = rendimiento_localstorage_json[4].puntaje + musica;
