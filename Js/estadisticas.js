@@ -147,7 +147,7 @@ function mostrar_rendimieto_usuario() {
     if (datos_rendimiento) {
         const dato_rendimiento_json = JSON.parse(datos_rendimiento);
 
-        // Comparamos el objeto "actual" con el "maximo" acumulado      //esto full IA tengo que realizarlo con mi logica
+        //comparamos el objeto actual con el maximo acumulado 
         const objeto_mayor = dato_rendimiento_json.reduce((maximo, actual) => {
             return (actual.puntaje > maximo.puntaje) ? actual : maximo;
         });

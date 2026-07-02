@@ -338,7 +338,7 @@ function guardar_datos_localstorage(){  //guardo las preguntas donde se responda
     const preguntas_incorrectas_localstorage= localStorage.getItem("quiz_respondido_incorrectamente");
     if(preguntas_incorrectas_localstorage){
 
-        const P_incorrectas_localstorage=JSON.parse(preguntas_incorrectas_localstorage);    //convierto de string a json
+        const P_incorrectas_localstorage=JSON.parse(preguntas_incorrectas_localstorage);   
         const union_preguntas_incorretas = [...P_incorrectas_localstorage, ...preguntas_incorrectas];
         
         localStorage.setItem("quiz_respondido_incorrectamente", JSON.stringify(union_preguntas_incorretas));
