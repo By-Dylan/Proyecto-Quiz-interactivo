@@ -203,13 +203,13 @@ const geografia = document.getElementById("cGeografia");
 const musica = document.getElementById("cMusica");
 const deportes = document.getElementById("cDeportes");
 
-//función guardar categorias
+//funcion guardar categorias
 const guardarCategoria= (cNombre, c_idAPI) => {
     localStorage.setItem("categoriaNombre", cNombre);
     localStorage.setItem("categoriaID", c_idAPI);
 }
 
-//selección y guardado del nivel de dificultad del quiz
+//seleccionn y guardado del nivel de dificultad del quiz
 const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
 
 const seleccionnivelDeDificultad = () => {

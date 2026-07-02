@@ -8,6 +8,20 @@ let pregunta_actual_indice = 0;
 let puntaje = 0;
 let opcionSeleccionada = "";
 let respuestaCorrecta = "";
+
+let preguntas_incorrectas=[];
+
+let rendimiento=[];
+
+let informatica=0;
+let ciencias=0;
+let pelicula=0;
+let geografia=0;
+let musica=0;
+let deportes=0;
+
+
+
 let indicePreguntaActual = 0; //
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
@@ -24,7 +38,6 @@ if (cNombre && idAPI) {
 window.realizar_nuevamente_quiz = generarQuiz;
 
 generarQuiz(idAPI, nivelDificultad); 
-
 async function generarQuiz(idAPI, nivelDificultad) {
     seccion_cargando.classList.remove("ocultar-circulo-cargando");
 
@@ -43,7 +56,7 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Traduciendo el array de preguntas... Por favor espera.");
 
         const preguntasTraducidas = [];
-        const correo = "martyhonores2405@gmail.com";
+        const correo = "martyhonores4564562405@gmail.com";
         
         for (let i = 0; i < preguntas.length; i++) {
 
@@ -94,14 +107,13 @@ async function generarQuiz(idAPI, nivelDificultad) {
 }
 //Lógica: Imagenes segun la categoria en las preguntas
 const imagenesCategorias = { //objeto que guarda las imagenes
-    "18": "/Img/ciencias-de-la-computacion.jpg",
-    "17": "/Img/ciencias.jpg",
-    "11": "Img/peliculas.avif",
-    "22": "/Img/geografia.jpg",
-    "12": "/Img/musica.avif",
-    "21": "/Img/deportes.jpg"
+    "18": "/Img/banner_Informática.jpg",
+    "17": "/Img/banner_Ciencias.jpg",
+    "11": "Img/banner_Películas.jpg",
+    "22": "/Img/banner_Geografía.jpg",
+    "12": "/Img/banner_Música.jpg",
+    "21": "/Img/banner_Deportes.jpg"
 }
-
 
 function mostrarPregunta(indice) {
     configurarBarraProgreso(indice, preguntasDelQuiz); //
@@ -112,17 +124,21 @@ function mostrarPregunta(indice) {
 
     
     if (indice >= preguntasDelQuiz.length) {
-        resultados_quiz();
         detenerTiempo(); //
+        guardar_datos_localstorage();
+        resultados_quiz();
+        extrae_guarda_redimiento_localstorage();
         return;
     }
 
     const imagenCategoria = imagenesCategorias[idAPI];
     const dato= preguntasDelQuiz[indice];
-    
     const todasLasRespuestas = [...dato.respuestas_incorrectas, dato.respuesta_correcta];
     todasLasRespuestas.sort(() => Math.random() - 0.5);
 
+
+    const categoria=localStorage.getItem("categoriaNombre"); //tipo de categoria para el banner
+    console.log("cat:", categoria)
     
     seccion_quiz.innerHTML = ` <picture>
         <img src="${imagenCategoria}" class="img-quiz object-fit-cover" alt="Imágen referente a la categoría">
@@ -152,8 +168,10 @@ function mostrarPregunta(indice) {
 
     configurarBotonesOpcion();
     respuestaCorrecta = dato.respuesta_correcta;
-    return respuestaCorrecta;
+    // return respuestaCorrecta;
 }
+
+
 
 function configurarBotonesOpcion() {
     const botones = document.querySelectorAll('.btn-opcion');
@@ -166,7 +184,7 @@ function configurarBotonesOpcion() {
 }
 
 
-function configurarBotonSiguiente() {
+function configurarBotonSiguiente() {   ///de aca empezaria yo(dilan)
     if (opcionSeleccionada === "") {
         seccionCorrectoIncorrectoError.innerHTML = `
             <div class="modal d-block" tabindex="-1">
@@ -202,7 +220,13 @@ function configurarBotonSiguiente() {
                 </div>
             </div>
         `;
-    } else {
+        puntaje++;
+
+        guardar_rediemiento(cNombre);
+
+
+
+    }else{
         seccionCorrectoIncorrectoError.innerHTML = `
             <div class="modal d-block" tabindex="-1">
                 <div class="modal-dialog">
@@ -218,11 +242,14 @@ function configurarBotonSiguiente() {
                 </div>
             </div>
         `;
+        const contenido_pregunta=preguntasDelQuiz[indicePreguntaActual];
+        preguntas_incorrectas.push(contenido_pregunta)
     }
     pasarSiguientePregunta();
 }
 
 function pasarSiguientePregunta() {
+
     indicePreguntaActual++;
     mostrarPregunta(indicePreguntaActual);
 }
@@ -266,6 +293,7 @@ function configurarBarraProgreso(indice, preguntasDelQuiz){
 //Logica: Configuracion del tiempo
 let totalSegundos = 0;
 let tiempoQuiz;
+
 function iniciarTiempo(){
     totalSegundos = 0;
     const spanTiempo = document.getElementById("spanTiempo");
@@ -288,6 +316,7 @@ function detenerTiempo(){
     historialQuiz.push(historialQuizActual); //añadimos el objeto a la lista
     localStorage.setItem("datosQuizes", JSON.stringify(historialQuiz)); //lo transformamos a texto para darselo al localstorage
 
+
 } //
 function resultados_quiz() {
     seccion_quiz.innerHTML = `
@@ -301,4 +330,98 @@ function resultados_quiz() {
             <button class="btn btn-primary intentarOtraVez" onclick="location.reload()">Intentar otra vez</button>
         </div>
     `;
+
 }
+
+function guardar_datos_localstorage(){  //guardo las preguntas donde se responda incorrectamente
+
+    const preguntas_incorrectas_localstorage= localStorage.getItem("quiz_respondido_incorrectamente");
+    if(preguntas_incorrectas_localstorage){
+
+        const P_incorrectas_localstorage=JSON.parse(preguntas_incorrectas_localstorage);    //convierto de string a json
+        const union_preguntas_incorretas = [...P_incorrectas_localstorage, ...preguntas_incorrectas];
+        
+        localStorage.setItem("quiz_respondido_incorrectamente", JSON.stringify(union_preguntas_incorretas));
+
+    }else{
+        localStorage.setItem("quiz_respondido_incorrectamente", JSON.stringify(preguntas_incorrectas));
+    }
+    
+}
+
+
+
+function guardar_rediemiento(nombre_categoria){
+    console.log("hola desde guardar rendimiento:", nombre_categoria);
+    if(nombre_categoria==="Informática"){
+        informatica++;
+        console.log("contador informatica:", informatica);
+    }
+    if(nombre_categoria==="Ciencias"){
+        ciencias++;
+    }
+    if(nombre_categoria==="Película"){
+        pelicula++;
+    }
+    if(nombre_categoria==="geografía"){
+        geografia++;
+    }
+    if(nombre_categoria==="Música"){
+        musica++;
+    }
+    if(nombre_categoria==="Deportes"){
+        deportes++;
+    }
+    
+
+}
+
+
+function extrae_guarda_redimiento_localstorage() {
+    const rendimiento_localstorage = localStorage.getItem("dato_rendimiento");
+
+    if (!rendimiento_localstorage) {
+        rendimiento = [
+            { categoria: "informatica", puntaje: informatica },
+            { categoria: "ciencias", puntaje: ciencias },
+            { categoria: "pelicula", puntaje: pelicula },
+            { categoria: "geografia", puntaje: geografia },
+            { categoria: "musica", puntaje: musica },
+            { categoria: "deportes", puntaje: deportes }
+        ];
+        
+        localStorage.setItem('dato_rendimiento', JSON.stringify(rendimiento)); 
+        console.log("Se guardaron los primeros datos como [{}, {}] en local...");
+        return;
+    }
+
+    const rendimiento_localstorage_json = JSON.parse(rendimiento_localstorage);
+
+    let suma_informatica = rendimiento_localstorage_json[0].puntaje + informatica;
+    let suma_ciencias    = rendimiento_localstorage_json[1].puntaje + ciencias;
+    let suma_pelicula    = rendimiento_localstorage_json[2].puntaje + pelicula;
+    let suma_geografia   = rendimiento_localstorage_json[3].puntaje + geografia;
+    let suma_musica      = rendimiento_localstorage_json[4].puntaje + musica;
+    let suma_deportes    = rendimiento_localstorage_json[5].puntaje + deportes;
+
+    //se sobre escribe con las sumas nuevas totales
+    rendimiento = [
+        { categoria: "informatica", puntaje: suma_informatica },
+        { categoria: "ciencias", puntaje: suma_ciencias },
+        { categoria: "pelicula", puntaje: suma_pelicula },
+        { categoria: "geografia", puntaje: suma_geografia },
+        { categoria: "musica", puntaje: suma_musica },
+        { categoria: "deportes", puntaje: suma_deportes }
+    ];
+
+    localStorage.setItem('dato_rendimiento', JSON.stringify(rendimiento)); 
+    
+    console.log("Datos totales actualizados con estructura de objetos:", rendimiento);
+}
+
+
+
+
+
+
+

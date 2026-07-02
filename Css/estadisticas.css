@@ -1,6 +1,20 @@
 .seccion-logros{
     margin-top: 100px;
 }
+
+.pregunta_ocultada{
+    display: none !important;
+}
+
+.btn_mostrar_respuesta{
+    background-color: #7C3AED !important;
+    color: white !important;
+}
+
+.color_morado_redimiento{
+    color: #6033ad !important;
+}
+
 .container-grafica1{ /* */
     width: 60%;
     margin-left: auto;
