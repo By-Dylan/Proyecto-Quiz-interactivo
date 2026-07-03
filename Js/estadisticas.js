@@ -75,6 +75,10 @@ if(historialQuizTexto){
     console.log("No hay ningún quiz registrado.");
 }
 
+
+
+
+
 const seccion_retroalimentacion=document.getElementById("seccion-retroalimentacion");
 
 function mostrar_respuestas_incorrectas(){

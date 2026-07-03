@@ -283,6 +283,8 @@ const cerrarModal = (idContenedor) => {
         contenedor.innerHTML = "";
     }
 };
+
+
 //Logica: Configuracion barra de progreso: 
 function configurarBarraProgreso(indice, preguntasDelQuiz){
     const barraProgreso = document.getElementById("barraProgreso");
