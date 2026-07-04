@@ -104,7 +104,7 @@ function mostrar_respuestas_incorrectas(){
         
         seccion_retroalimentacion.innerHTML+=`
             <div class="row mb-3">
-                <div class="col p-3 bg-white border rounded-3 shadow-sm" style="max-width: 1200px;">
+                <div class="col p-3 bg-white border rounded-3 shadow-sm seccion-retroalimentacionn" style="max-width: 1200px;">
                     <p><span class="fw-bold">Pregunta:</span> ${dato.pregunta}</p>
 
                     <p class="m-0 ">

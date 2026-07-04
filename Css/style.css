@@ -5,11 +5,19 @@ body{   /*texto para ver si se subio*/
 .linea div{
     border: 1px solid red;
 }
+.titulo-principal {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900;
+    color: #6A1B9A; /* Reemplaza esto con el código HEX exacto de ese morado si lo necesitas */
+    font-size: 33px;
+    margin-top: 10px;
+}
 .barra-navegacion{
     background-color: #ffffff;
     font-size: 15px;
     font-family: Inter, sans-serif;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 .texto-color a{
     color: rgb(0, 0, 0) !important;
@@ -615,6 +623,9 @@ footer > *{
     .texto-final{
         text-align: start;
     }
+    /* .img-banner {
+        height: 400px;
+    } */
 }
 
 
