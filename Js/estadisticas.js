@@ -75,6 +75,10 @@ if(historialQuizTexto){
     console.log("No hay ningún quiz registrado.");
 }
 
+
+
+
+
 const seccion_retroalimentacion=document.getElementById("seccion-retroalimentacion");
 
 function mostrar_respuestas_incorrectas(){
@@ -170,7 +174,7 @@ function mostrar_rendimieto_usuario() {
 mostrar_rendimieto_usuario()
 
 
-
+const seccion_pts_total=document.getElementById("seccion_puntos_total");
 //hacer el progreso
 const seccion_nivel=document.getElementById("seccion-nivel");
 
@@ -220,10 +224,21 @@ function revision_rango(){
         <p class="m-0 ">Llegaste al nivel mas alto </p>
         `;
     }
-    return;
+    
 
+    seccion_pts_total.innerHTML+=`
+    <h5>Puntos total Acumulado: ${respuestas_total}</h5>
+    `;
+
+    return;
 }
 
 
 
 revision_rango();
+
+
+
+// function mostrar_puntos_totales(){
+//     const pts_
+// }

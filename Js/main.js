@@ -4,6 +4,7 @@ const login= document.querySelector("#login");
 const alerta= document.querySelector("#alerta");
 const icono_sesion_correcta=document.getElementById("icono-sesion-correcta")
 
+
 const btn_enviar=document.getElementById("btn-enviar");
 //btn_enviar.setAttribute('data-bs-dismiss', 'modal') //en argumento va el el atributo y su valor
 
@@ -33,12 +34,16 @@ login.addEventListener("submit",(evento)=>{
             </div>
         `;
         verificarUsuario();
-    },3000);    
+    },1500);    
     
     window.alertaTimeout = setTimeout(() => {          
             alerta.classList.add("desactivador-de-alerta");
-        }, 6000);
+        }, 4000);
     login.reset()  
+
+    const miModalHTML = document.getElementById('modalComentarios');
+    const instanciaModal = bootstrap.Modal.getOrCreateInstance(miModalHTML);
+    instanciaModal.hide();
     
 })
 
