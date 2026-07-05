@@ -1,7 +1,19 @@
 .seccion-logros{
     margin-top: 100px;
 }
-
+.titulo-estadistica{
+    color: #7C3AED;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+.title-tarjetas{
+    font-family: Inter, sans-serif;
+}
+.text-tarjetas{
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+}
 .pregunta_ocultada{
     display: none !important;
 }
@@ -23,8 +35,10 @@
     padding: 10px;
     border: 3px solid #7C3AED;
 }
-
-
+/*Diseño barras de progreso categorias */
+.title-categorias{
+    font-family: Inter, sans-serif;
+}
 @media (max-width: 576px){
     #seccion-estadisticas{
         justify-content: center ;

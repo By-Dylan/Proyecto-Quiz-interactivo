@@ -278,42 +278,42 @@ const configurarBarrasProgresoCategorias = (cInformatica, cCiencias, cPeliculas,
     if(cInformatica){
         console.log(`Informatica: ${cInformatica}`);
         barraInformatica.style.width = `${cInformatica}%`;
-        barraInformatica.style.backgroundColor = "#06B6D4";
-        textoInformatica.innerHTML = `<p>${cInformatica}%</p>`;
+        barraInformatica.style.backgroundColor = "#047ac8";
+        textoInformatica.innerHTML = `<p style= "font-family: Montserrat, sans-serif; font-weight: bold;">${cInformatica}%</p>`;
     }
 
     if(cCiencias){ 
         console.log(`Ciencias: ${cCiencias}`);
         barraCiencias.style.width = `${cCiencias}%`;
         barraCiencias.style.backgroundColor = "#06B6D4";
-        textoCiencias.innerHTML = `<p>${cCiencias}%</p>`;
+        textoCiencias.innerHTML = `<p style= "font-family: Montserrat, sans-serif; font-weight: bold;">${cCiencias}%</p>`;
     }
 
     if(cPeliculas){
         console.log(`Peliculas: ${cPeliculas}`);
         barraPeliculas.style.width = `${cPeliculas}%`;
-        barraPeliculas.style.backgroundColor = "#06B6D4";
-        textoPeliculas.innerHTML = `<p>${cPeliculas}%</p>`;
+        barraPeliculas.style.backgroundColor = "#cf2525";
+        textoPeliculas.innerHTML = `<p style= "font-family: Montserrat, sans-serif; font-weight: bold;">${cPeliculas}%</p>`;
     }
 
     if(cGeografia){
         console.log(`Geografia: ${cGeografia}`);
         barraGeografia.style.width = `${cGeografia}%`;
-        barraGeografia.style.backgroundColor = "#06B6D4";
-        textoGeografia.innerHTML = `<p>${cGeografia}%</p>`;
+        barraGeografia.style.backgroundColor = "#A15100";
+        textoGeografia.innerHTML = `<p style= "font-family: Montserrat, sans-serif; font-weight: bold;">${cGeografia}%</p>`;
     }
 
     if(cMusica){
         console.log(`Musica: ${cMusica}`);
         barraMusica.style.width = `${cMusica}%`;
-        barraMusica.style.backgroundColor = "#06B6D4";
-        textoMusica.innerHTML = `<p>${cMusica}%</p>`;
+        barraMusica.style.backgroundColor = "#7C3AED";
+        textoMusica.innerHTML = `<p style= "font-family: Montserrat, sans-serif; font-weight: bold;">${cMusica}%</p>`;
     }
     if(cDeportes){
         console.log(`Deportes: ${cDeportes}`);
         barraDeportes.style.width = `${cDeportes}%`;
-        barraDeportes.style.backgroundColor = "#06B6D4";
-        textoDeportes.innerHTML = `<p>${cDeportes}%</p>`;
+        barraDeportes.style.backgroundColor = "#63d406";
+        textoDeportes.innerHTML = `<p style= "font-family: Montserrat, sans-serif; font-weight: bold;">${cDeportes}%</p>`;
     } 
 }
 configurarBarrasProgresoCategorias(cInformatica, cCiencias, cPeliculas, cGeografia, cMusica, cDeportes);
