@@ -35,6 +35,46 @@
     padding: 10px;
     border: 3px solid #7C3AED;
 }
+/*Diseño footer*/
+.title-1{
+    text-align: left;
+    font-family: Inter, sans-serif;
+}
+.text-1{
+    text-align: left;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.title-2{
+    text-align: center;
+    font-family: Inter, sans-serif;
+}
+.links-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.links-footer > *{
+    padding: 15px;
+}
+.title-3{
+    text-align: right;
+    font-family: Inter, sans-serif;
+}
+.title-mision-vision{
+    text-align: right;
+    font-family: Montserrat, sans-serif;
+}
+.text-mision-vision{
+    text-align: right;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.mensaje-final-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 /*Diseño barras de progreso categorias */
 .title-categorias{
     font-family: Inter, sans-serif;

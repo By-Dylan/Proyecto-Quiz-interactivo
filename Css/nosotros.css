@@ -53,11 +53,11 @@
 }
 .tarjeta-tecnologias{
     width: 13rem;
-    background-color: #86edff;
+    background-color: #cdf7ff;
     margin: 5px;
 }
 .card-img-top{
-    background-color: #86edff;
+    background-color: #cdf7ff;
     margin-top: 10px;
 }
 .object-fit-cover{
@@ -67,35 +67,45 @@
     height: 10%;
     margin-top: 60px;
     border: none;
+    background-color: #cdf7ff;
 }
 .img-tecnologias-apis{
     margin-top: 40px;
 }
 .texto-tecnologias{
     text-align: center;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600;
     color: #A15100;
+    font-family: Montserrat, sans-serif;
+    background-color: #cdf7ff;
 }
 #texto-api-1{
-    margin-top: 15px;
+    margin-top: 26px;
 }
 /*diseño referencia a las apis publicas*/
 .referencia-apis-title{
     margin-top: 5%;
     margin-bottom: 2%;
-    text-align: justify;
+    text-align: center;
     color:#7C3AED;
     font-family: Inter, sans-serif;
     font-weight: bold;
 }
 .referencia-apis-text{
     color:#3d1f00;
+    font-family: Montserrat, sans-serif;
+}
+.api-title{
+    margin-bottom: 20px;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    color: #A15100;
 }
 .json-title{
     text-align: center;
     margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Inter, sans-serif;
     font-weight: bold;
     color: #A15100;
 }
@@ -106,10 +116,46 @@
     margin-bottom: 10px;
     border: 2px solid #06B6D4;
 }
-
-
-
-
+/*Diseño footer*/
+.title-1{
+    text-align: left;
+    font-family: Inter, sans-serif;
+}
+.text-1{
+    text-align: left;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.title-2{
+    text-align: center;
+    font-family: Inter, sans-serif;
+}
+.links-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.links-footer > *{
+    padding: 15px;
+}
+.title-3{
+    text-align: right;
+    font-family: Inter, sans-serif;
+}
+.title-mision-vision{
+    text-align: right;
+    font-family: Montserrat, sans-serif;
+}
+.text-mision-vision{
+    text-align: right;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.mensaje-final-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 @media (max-width: 576px){
     #seccion-mision-resposividad{
         display: grid;

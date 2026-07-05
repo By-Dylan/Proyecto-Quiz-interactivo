@@ -162,7 +162,7 @@ botonQuizRapido.addEventListener("click", () => {
                         <div class="row">
                             <h3 class="h3-modal-btn">3º ¡A jugar!</h3> <!--añadir img cuando el modulo del quiz tenga css terminado-->
                             <picture>
-                                <img src="/Img/ciencias.jpg" class="img-fluid img-quiz" alt="Banner de QuizMind">
+                                <img src="/Img/banner_Ciencias.jpg" class="img-fluid img-quiz" alt="Banner de QuizMind">
                             </picture>
 
                             <div class="row">

@@ -183,6 +183,9 @@
     background-color: #cdf7ff;
     /*background-color: #d3c2ef;*/
 }
-footer{
-    background-color: #e2d4fb;
+.mensaje-final-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
 }

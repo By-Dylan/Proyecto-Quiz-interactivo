@@ -85,11 +85,12 @@ body{   /*texto para ver si se subio*/
 
 .btn1, .btn2 {
     padding: 10px 22px; 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600; 
     border: none;
     border-radius: 6px; 
-    width: 160px;
+    width: 170px;
+    font-family: Montserrat, sans-serif;
 }
 .btn1 {
     background-color: #5A00C6; 
@@ -360,18 +361,14 @@ h1{
     color: #004956;
 }
 .card-subtitle{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Inter, sans-serif;
     text-align: center;
     color: #005a6a;
     font-size: 18px;
 }
 .card-text{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Montserrat, sans-serif;
 }
-
-
-
-
 /*diseño footer*/
 footer{
     margin-top: 7%;
@@ -428,12 +425,6 @@ footer > *{
     font-size: 18px;
 }
 
-
-
-
-
-
-
 .ocultar_categorias_quiz{
     display: none !important;
 }
@@ -441,8 +432,6 @@ footer > *{
 .seccion-categoria{
     cursor: pointer; /*para cambiar el cursor del puntero a tipo link*/
 }
-
-
 
 /*diseño para la parte de resumen de resultados del quiz*/
 .results {
@@ -463,114 +452,6 @@ footer > *{
 .ocultar-circulo-cargando{
     display: none;
 }
-
-
-.img-quiz{
-    width: 70%;
-    margin-top: 2%;
-    margin-bottom: 3%;
-    margin-left: 15%;
-    border: 3px solid #7C3AED;
-}
-.category-title{
-    margin-left: 9%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    color: #A15100;
-}
-.question-title{
-    text-align: left;
-    margin-left: 9%;
-    margin-top: 2%;
-    color: #7C3AED;
-    font-size: 20px;
-    font-weight: bold;
-}
-.alternativa-a{
-    background-color: #06B6D4; 
-    color: #333;
-    border: 1px solid #06B6D4; 
-    margin-top: 3%;
-    width: 20%;
-    font-size: 18px;
-    padding: 10px 22px; 
-}
-.alternativa-a:hover{
-    background-color: #A15100;
-    color: white;
-}
-.alternativa-b{
-    background-color: #06B6D4; 
-    color: #333;
-    border: 1px solid #06B6D4; 
-    margin-top: 3%;
-    margin-left: 5%;
-    width: 20%;
-    font-size: 18px;
-    padding: 10px 22px; 
-}
-.alternativa-b:hover{
-    background-color: #A15100;
-    color: white;
-}
-.alternativa-c{
-    background-color: #06B6D4; 
-    color: #333;
-    border: 1px solid #06B6D4; 
-    margin-top: 3%;
-    width: 20%;
-    font-size: 18px;
-    padding: 10px 22px; 
-
-}
-.alternativa-c:hover{
-    background-color: #A15100;
-    color: white;
-}
-.alternativa-d{
-    background-color: #06B6D4; 
-    color: #333;
-    border: 1px solid #06B6D4; 
-    margin-top: 3%;
-    margin-left: 5%;
-    width: 20%;
-    font-size: 18px;
-    padding: 10px 22px; 
-}
-.alternativa-d:hover{
-    background-color: #A15100;
-    color: white;
-}
-.saltar{
-    padding: 10px 22px; 
-    font-size: 14px;
-    font-weight: 600; 
-    border: none;
-    width: 160px;
-    margin-left: 485px;
-    margin-top: 3%;
-    background-color: #7C3AED;
-    margin-left: 39%;
-}
-.saltar:hover{
-    background-color: #06B6D4;;
-    color: #333;
-}
-.siguiente{
-    padding: 10px 22px; 
-    font-size: 14px;
-    font-weight: 600; 
-    border: none;
-    width: 160px;
-    margin-top: 3%;
-    background-color: #7C3AED; 
-}
-.siguiente:hover{
-    background-color: #06B6D4;;
-    color: #333;
-}
-
 
 .gradient-footer {
     background-color: #be98ff;
@@ -600,7 +481,46 @@ footer > *{
 .texto-centreado{
     text-align: center;
 }
-
+/*Diseño footer*/
+.title-1{
+    text-align: left;
+    font-family: Inter, sans-serif;
+}
+.text-1{
+    text-align: left;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.title-2{
+    text-align: center;
+    font-family: Inter, sans-serif;
+}
+.links-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.links-footer > *{
+    padding: 15px;
+}
+.title-3{
+    text-align: right;
+    font-family: Inter, sans-serif;
+}
+.title-mision-vision{
+    text-align: right;
+    font-family: Montserrat, sans-serif;
+}
+.text-mision-vision{
+    text-align: right;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+.mensaje-final-footer{
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 @media (max-width: 576px){
     .columnas-categorias{
         display: grid;
