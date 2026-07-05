@@ -141,29 +141,32 @@ function mostrarPregunta(indice) {
     const categoria=localStorage.getItem("categoriaNombre"); //tipo de categoria para el banner
     console.log("cat:", categoria)
     
-    seccion_quiz.innerHTML = ` <picture>
-        <img src="${imagenCategoria}" class="img-quiz object-fit-cover" alt="Imágen referente a la categoría">
-    </picture>
+    seccion_quiz.innerHTML = ` 
+    <div class="card p-4 rounded-4 tarjeta-quiz">
+        <picture>
+            <img src="${imagenCategoria}" class="img-quiz object-fit-cover rounded-4" alt="Imágen referente a la categoría">
+        </picture>
 
-    <div class="row">
-        <h4 class="category-title">${dato.categoria}</h4> 
-    </div>
-    <div class="row">
-        <h3 class="question-title">${dato.pregunta}</h3> 
-    </div>
+        <div class="row">
+            <h4 class="category-title">${dato.categoria}</h4> 
+        </div>
+        <div class="row">
+            <h3 class="question-title">${dato.pregunta}</h3> 
+        </div>
 
-    <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary alternativa-a btn-opcion">${todasLasRespuestas[0]}</button>
-        <button type="button" class="btn btn-primary alternativa-b btn-opcion">${todasLasRespuestas[1]}</button>
-    </div>
-    <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary alternativa-c btn-opcion">${todasLasRespuestas[2]}</button>
-        <button type="button" class="btn btn-primary alternativa-d btn-opcion">${todasLasRespuestas[3]}</button>
-    </div>
-    
-    <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
-        <button type="button" class="btn btn-primary saltar" onclick="configurarBotonSaltar()">Saltar</button>
-        <button type="button" class="btn btn-primary siguiente" onclick="configurarBotonSiguiente()">Siguiente</button>
+        <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
+            <button type="button" class="btn btn-primary alternativa-a btn-opcion">${todasLasRespuestas[0]}</button>
+            <button type="button" class="btn btn-primary alternativa-b btn-opcion">${todasLasRespuestas[1]}</button>
+        </div>
+        <div class="btn-group-horizontal  text-center" role="group" aria-label="Horizontal button group">
+            <button type="button" class="btn btn-primary alternativa-c btn-opcion">${todasLasRespuestas[2]}</button>
+            <button type="button" class="btn btn-primary alternativa-d btn-opcion">${todasLasRespuestas[3]}</button>
+        </div>
+        
+        <div class="btn-group-horizontal" role="group" aria-label="Horizontal button group">
+            <button type="button" class="btn btn-primary saltar" onclick="configurarBotonSaltar()">Saltar</button>
+            <button type="button" class="btn btn-primary siguiente" onclick="configurarBotonSiguiente()">Siguiente</button>
+        </div>
     </div>
     `;
 
