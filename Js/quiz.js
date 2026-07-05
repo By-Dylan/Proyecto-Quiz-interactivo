@@ -126,6 +126,7 @@ function mostrarPregunta(indice) {
     if (indice >= preguntasDelQuiz.length) {
         detenerTiempo(); //
         guardar_datos_localstorage();
+        acumularCategorias();
         resultados_quiz();
         extrae_guarda_redimiento_localstorage();
         return;
@@ -420,10 +421,63 @@ function extrae_guarda_redimiento_localstorage() {
     
     console.log("Datos totales actualizados con estructura de objetos:", rendimiento);
 }
+//Lógica: Acumular contadores de cada categoria para las barras de progreso de estadisticas
+function acumularCategorias(){
+     //Segun el ID de la categoria, incrementamos su contador y lo guardamos en localstorage
+    if(!idAPI){
+        console.log("No se ha encontrado una categoria con ese ID.");
+    }
+    if(idAPI === "18"){
+        let catInformaticaAcumulado = localStorage.getItem("contadorInformatica") || "0"; //revisa si ya hay categorias anteriores guardadas
+        let catInformatica = JSON.parse(catInformaticaAcumulado); //lo devuelve al formato de numero
+        catInformatica ++; // se acumula la categoria del quiz actual con las anteriores
+        console.log(`Se ha añadido 1 categoría de informática: ${catInformatica}`);
+        let catInformaticaTexto = JSON.stringify(catInformatica); //se tranforman a texto
+        localStorage.setItem("contadorInformatica", catInformaticaTexto); //se guardan en localstorage
+    }
 
+    if(idAPI === "17"){
+        let catCienciasAcumulado = localStorage.getItem("contadorCiencias") || "0";
+        let catCiencias = JSON.parse(catCienciasAcumulado);
+        catCiencias ++; 
+        console.log(`Se ha añadido 1 categoría de ciencias: ${catCiencias}`);
+        let catCienciasTexto = JSON.stringify(catCiencias);
+        localStorage.setItem("contadorCiencias", catCienciasTexto);
+    }
 
+    if(idAPI === "11"){
+        let catPeliculasAcumulado = localStorage.getItem("contadorPeliculas") || "0";
+        let catPeliculas = JSON.parse(catPeliculasAcumulado);
+        catPeliculas ++; 
+        console.log(`Se ha añadido 1 categoría de peliculas: ${catPeliculas}`);
+        let catPeliculasTexto = JSON.stringify(catPeliculas);
+        localStorage.setItem("contadorPeliculas", catPeliculasTexto);
+    }
 
+    if(idAPI === "22"){
+        let catGeografiaAcumulado = localStorage.getItem("contadorGeografia") || "0";
+        let catGeografia = JSON.parse(catGeografiaAcumulado);
+        catGeografia ++; 
+        console.log(`Se ha añadido 1 categoría de geografia: ${catGeografia}`);
+        let catGeografiaTexto = JSON.stringify(catGeografia);
+        localStorage.setItem("contadorGeografia", catGeografiaTexto);
+    }
 
+    if(idAPI === "12"){
+        let catMusicaAcumulado = localStorage.getItem("contadorMusica") || "0";
+        let catMusica = JSON.parse(catMusicaAcumulado);
+        catMusica ++; 
+        console.log(`Se ha añadido 1 categoría de musica ${catMusica}`);
+        let catMusicaTexto = JSON.stringify(catMusica);
+        localStorage.setItem("contadorMusica", catMusicaTexto);
+    }
 
-
-
+    if(idAPI === "21"){
+        let catDeportesAcumulado = localStorage.getItem("contadorDeportes") || "0";
+        let catDeportes = JSON.parse(catDeportesAcumulado);
+        catDeportes ++; 
+        console.log(`Se ha añadido 1 categoría de deportes: ${catDeportes}`);
+        let catDeportesTexto = JSON.stringify(catDeportes);
+        localStorage.setItem("contadorDeportes", catDeportesTexto);
+    } 
+}

@@ -236,9 +236,87 @@ function revision_rango(){
 
 
 revision_rango();
+//Lógica: Configuración Barras de progreso de categorias
+//Obtenemos los Contadores ya incrementados para cada categoria
+let cInformaticaTexto = localStorage.getItem("contadorInformatica") || "0";
+console.log(`${cInformaticaTexto}`);
+let cInformatica = JSON.parse(cInformaticaTexto);
 
+let cCienciasTexto = localStorage.getItem("contadorCiencias") || "0";
+let cCiencias = JSON.parse(cCienciasTexto);
 
+let cPeliculasTexto = localStorage.getItem("contadorPeliculas") || "0";
+let cPeliculas = JSON.parse(cPeliculasTexto);
 
+let cGeografiaTexto = localStorage.getItem("contadorGeografia") || "0";
+let cGeografia = JSON.parse(cGeografiaTexto);
+
+let cMusicaTexto= localStorage.getItem("contadorMusica") || "0";
+let cMusica = JSON.parse(cMusicaTexto);
+
+let cDeportesTexto = localStorage.getItem("contadorDeportes") || "0";
+let cDeportes = JSON.parse(cDeportesTexto);
+
+const configurarBarrasProgresoCategorias = (cInformatica, cCiencias, cPeliculas, cGeografia, cMusica, cDeportes) => {
+    //Obtenemos cada barra de progreso por su id
+    const barraInformatica = document.getElementById("progresoInformatica");
+    const barraCiencias = document.getElementById("progresoCiencias");
+    const barraPeliculas = document.getElementById("progresoPeliculas");
+    const barraGeografia = document.getElementById("progresoGeografia");
+    const barraMusica = document.getElementById("progresoMusica");
+    const barraDeportes = document.getElementById("progresoDeportes");
+    
+    //Obtenemos los contenedores para el texto debajo de cada barra 
+    const textoInformatica = document.getElementById("contenedorTextoBarraInformatica");
+    const textoCiencias = document.getElementById("contenedorTextoBarraCiencias");
+    const textoPeliculas = document.getElementById("contenedorTextoBarraPeliculas");
+    const textoGeografia = document.getElementById("contenedorTextoBarraGeografia");
+    const textoMusica = document.getElementById("contenedorTextoBarraMusica");
+    const textoDeportes = document.getElementById("contenedorTextoBarraDeportes");
+
+    //Segun el ID de la categoria, incrementamos su contador
+    if(cInformatica){
+        console.log(`Informatica: ${cInformatica}`);
+        barraInformatica.style.width = `${cInformatica}%`;
+        barraInformatica.style.backgroundColor = "#06B6D4";
+        textoInformatica.innerHTML = `<p>${cInformatica}%</p>`;
+    }
+
+    if(cCiencias){ 
+        console.log(`Ciencias: ${cCiencias}`);
+        barraCiencias.style.width = `${cCiencias}%`;
+        barraCiencias.style.backgroundColor = "#06B6D4";
+        textoCiencias.innerHTML = `<p>${cCiencias}%</p>`;
+    }
+
+    if(cPeliculas){
+        console.log(`Peliculas: ${cPeliculas}`);
+        barraPeliculas.style.width = `${cPeliculas}%`;
+        barraPeliculas.style.backgroundColor = "#06B6D4";
+        textoPeliculas.innerHTML = `<p>${cPeliculas}%</p>`;
+    }
+
+    if(cGeografia){
+        console.log(`Geografia: ${cGeografia}`);
+        barraGeografia.style.width = `${cGeografia}%`;
+        barraGeografia.style.backgroundColor = "#06B6D4";
+        textoGeografia.innerHTML = `<p>${cGeografia}%</p>`;
+    }
+
+    if(cMusica){
+        console.log(`Musica: ${cMusica}`);
+        barraMusica.style.width = `${cMusica}%`;
+        barraMusica.style.backgroundColor = "#06B6D4";
+        textoMusica.innerHTML = `<p>${cMusica}%</p>`;
+    }
+    if(cDeportes){
+        console.log(`Deportes: ${cDeportes}`);
+        barraDeportes.style.width = `${cDeportes}%`;
+        barraDeportes.style.backgroundColor = "#06B6D4";
+        textoDeportes.innerHTML = `<p>${cDeportes}%</p>`;
+    } 
+}
+configurarBarrasProgresoCategorias(cInformatica, cCiencias, cPeliculas, cGeografia, cMusica, cDeportes);
 // function mostrar_puntos_totales(){
 //     const pts_
 // }
