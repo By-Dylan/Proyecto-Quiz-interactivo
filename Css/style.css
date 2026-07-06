@@ -64,7 +64,26 @@ body{   /*texto para ver si se subio*/
 .desactivador-de-alerta{
     display: none !important;
 }
-
+/*Diseño boton eliminar usuario */
+.btn-eliminar-usuario{
+    padding: 10px 22px; 
+    font-size: 14px;
+    font-weight: 600; 
+    border: none;
+    width: 160px;
+    margin-top: 3%;
+    background-color: #A15100; 
+}
+.title-eliminar-usuario{
+    font-size: 20px;
+    font-weight: 600; 
+    font-family: Inter, sans-serif;
+}
+.subtitle-eliminar-usuario{
+    font-size: 18px;
+    font-weight: 600; 
+    font-family: Montserrat, sans-serif;
+}
 /*img del banner*/
 .img-banner{
     width: 90%;

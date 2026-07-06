@@ -3,7 +3,7 @@ const seccion_login=document.getElementById("seccion-login");
 const login= document.querySelector("#login");
 const alerta= document.querySelector("#alerta");
 const icono_sesion_correcta=document.getElementById("icono-sesion-correcta")
-
+const contenedorModalEliminar = document.getElementById("contenedorModalEliminar");
 
 const btn_enviar=document.getElementById("btn-enviar");
 //btn_enviar.setAttribute('data-bs-dismiss', 'modal') //en argumento va el el atributo y su valor
@@ -30,7 +30,7 @@ login.addEventListener("submit",(evento)=>{
     window.alertaTimeout = setTimeout(() =>{
         alerta.innerHTML +=`
             <div class="alert alert-success" role="alert">
-                Felicidades Iniciaste Sesion Correctamente!!!
+                ¡Felicidades! Iniciaste sesión correctamente
             </div>
         `;
         verificarUsuario();
@@ -47,19 +47,51 @@ login.addEventListener("submit",(evento)=>{
     
 })
 
-function verificarUsuario(){
+function verificarUsuario(instanciaModal){
     const usuarioDeAlmacen=localStorage.getItem('usuario_registrado');
     
-    if(usuarioDeAlmacen){
+    if(usuarioDeAlmacen && seccion_login && icono_sesion_correcta){
         seccion_login.classList.add("ocultar-register");
-
         icono_sesion_correcta.classList.remove("icono-sesionCorrecta");
+
+    } else if(seccion_login && icono_sesion_correcta){
+        seccion_login.classList.remove("ocultar-register"); //si el usuario no existe, volvemos a mostrar registrar y ocultamos la segunda imagen (sesion iniciada)
+        icono_sesion_correcta.classList.add("icono-sesionCorrecta");
     }
 }
+//Lógica: Modal con boton para borrar la cuenta
+if(icono_sesion_correcta){
+    icono_sesion_correcta.addEventListener("click", (evento) => {
+        evento.preventDefault(); //para evitar que se envie el formulario
+    })
+    icono_sesion_correcta.addEventListener("click", () => {
+        contenedorModalEliminar.innerHTML = `
+        <div class="modal d-block">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title title-eliminar-usuario">Eliminar cuenta</h5> 
+                        <button type="button" class="btn-close btn1-cerrar-modal" onclick="cerrarModal('contenedorModalEliminar')" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <h6 class="mt-3 mb-3 subtitle-eliminar-usuario">¿Desea eliminar su cuenta?</h6>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-danger btn-eliminar-usuario" onclick="eliminarUsuario()">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    })
+}
 verificarUsuario();
-
-
-
+//Lógica: Función para eliminar usuario
+function eliminarUsuario(){
+    let usuarioEliminado = localStorage.removeItem("usuario_registrado");
+    verificarUsuario();
+    cerrarModal("contenedorModalEliminar");
+}
 
 //Logica botón quiz rápido
 const botonQuizRapido = document.getElementById("botonQuizRapido");
