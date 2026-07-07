@@ -42,7 +42,7 @@
 /*diseño tecnologias utilizadas*/
 .tecnologias-title{
     text-align: center;
-    margin: 2%;
+    margin: 2%; /*CAMBIAR MARGIN*/
     font-family: Inter, sans-serif;
     font-weight: bold;
     color:#7C3AED;
@@ -51,7 +51,7 @@
     align-items: center;
     border: none;
 }
-.tarjeta-tecnologias{
+.tarjeta-tecnologias{ /*CAMBIAR COLOR DE LAS TARJETAS*/
     width: 13rem;
     background-color: #cdf7ff;
     margin: 5px;
@@ -81,7 +81,7 @@
     background-color: #cdf7ff;
 }
 #texto-api-1{
-    margin-top: 26px;
+    margin-top: 26px; /*CAMBIAR MARGIN*/
 }
 /*diseño referencia a las apis publicas*/
 .referencia-apis-title{
@@ -93,7 +93,7 @@
     font-weight: bold;
 }
 .referencia-apis-text{
-    color:#3d1f00;
+    color:#3d1f00; /*NUEVO COLOR PARA LAS LETRAS */
     font-family: Montserrat, sans-serif;
 }
 .api-title{
@@ -116,7 +116,7 @@
     margin-bottom: 10px;
     border: 2px solid #06B6D4;
 }
-/*Diseño footer*/
+/*Diseño footer AÑADIR DE AQUI PARA ABAJO ANTES DE @MEDIA*/
 .title-1{
     text-align: left;
     font-family: Inter, sans-serif;

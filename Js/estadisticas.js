@@ -3,6 +3,7 @@ const seccion_bienvenido= document.getElementById("seccion-bienvenido");
 
 const seccion_rendimiento= document.getElementById("seccion_rendimiento");
 
+//Mensaje de bienvenida al usuario
 if(persona){
     const usuario= JSON.parse(persona);
     
@@ -16,9 +17,9 @@ if(persona){
 
     console.log(usuario.nombre, usuario.gmail, usuario.contraseña);
 }
-//Lógica: Gráfico de estadísticas 1 
+//Gráfico de estadísticas 
 const datosEstadistica1 = localStorage.getItem("listaDificultades") || "[]";
-const datosEstadistica1Array = JSON.parse(datosEstadistica1); //pasa de string hacia array
+const datosEstadistica1Array = JSON.parse(datosEstadistica1); 
 let cFacil = 0;
 let cMedio = 0;
 let cDificil = 0;
@@ -32,6 +33,7 @@ datosEstadistica1Array.forEach((dificultad) => {
     }
 });
 console.log(`Facil: ${cFacil}, Media: ${cMedio}, Dificil: ${cDificil}`);
+
 //Diseño de la grafica
 const canvas1 = document.getElementById("idEstadistica1").getContext("2d");
 let chart1 = new Chart(canvas1, {
@@ -49,12 +51,12 @@ let chart1 = new Chart(canvas1, {
         ]
     }
 }); //
-//Lógica: Tiempo mas rapido al realizar un quiz
+//Tiempo mas rapido al realizar un quiz
 const historialQuizTexto = localStorage.getItem("datosQuizes");
 if(historialQuizTexto){
     const historialQuizTransformado = JSON.parse(historialQuizTexto);
-    historialQuizTransformado.sort((t1, t2) => t1.tiempo - t2.tiempo); //va restando los tiempos que hay en los objetos, dejan los menores adelante y los mayores atras
-    let obtenerMejorTiempo = historialQuizTransformado[0]; //pq ya estan ordenados de menoir a mayor entonces el primero es el menor tiempo
+    historialQuizTransformado.sort((t1, t2) => t1.tiempo - t2.tiempo);
+    let obtenerMejorTiempo = historialQuizTransformado[0]; 
     let minutosMejorTiempo = Math.floor(obtenerMejorTiempo.tiempo / 60);
     let segundosMejorTiempo = obtenerMejorTiempo.tiempo % 60;
 
@@ -75,12 +77,8 @@ if(historialQuizTexto){
     console.log("No hay ningún quiz registrado.");
 }
 
-
-
-
-
 const seccion_retroalimentacion=document.getElementById("seccion-retroalimentacion");
-
+//Funcion para mostrar las preguntas incorrectas de los quizes realizados
 function mostrar_respuestas_incorrectas(){
     const preguntas_incorrectas_localstorage= localStorage.getItem("quiz_respondido_incorrectamente");
     
@@ -88,7 +86,7 @@ function mostrar_respuestas_incorrectas(){
         seccion_retroalimentacion.innerHTML= `
             <div class="row ">
                 <div class="col p-3 bg-white border rounded-3 shadow-sm" style="max-width: 1000px;">
-                    <p class="fw-bold">Aun no realizanste Quiz...</p>
+                    <p class="fw-bold">Aún no realizado un quiz...</p>
                 </div>
             </div>
         `;
@@ -112,7 +110,7 @@ function mostrar_respuestas_incorrectas(){
                     </p>
 
                     <div class="d-flex justify-content-end ">
-                        <button type="button" class="btn btn_mostrar_respuesta btn-sm mostrar-respuesta" style="width: 170px; height: 35px;">mostrar respuesta</button>
+                        <button type="button" class="btn btn_mostrar_respuesta btn-sm mostrar-respuesta" style="width: 170px; height: 35px;">Mostrar respuesta</button>
                     </div>
                 </div>
             </div>
@@ -123,7 +121,7 @@ function mostrar_respuestas_incorrectas(){
 
 mostrar_respuestas_incorrectas();
 
-
+//Funcion para mostrar/ocultar la respuesta correcta al presionar el boton
 const boton_mostrar_respuesta=document.querySelectorAll(".mostrar-respuesta");
 boton_mostrar_respuesta.forEach(boton => {
     boton.addEventListener("click", () => {
@@ -134,17 +132,14 @@ boton_mostrar_respuesta.forEach(boton => {
         respuesta.classList.toggle("pregunta_ocultada");
 
         if(respuesta.classList.contains("pregunta_ocultada")) {
-            boton.textContent="mostrar respuesta";
+            boton.textContent="Mostrar respuesta";
         }else{
-            boton.textContent="ocultar respuesta";
+            boton.textContent="Ocultar respuesta";
         }
-
     });
 });
 
-
-
-
+//Funcion para mostrar las areas: Destacada y Débil
 function mostrar_rendimieto_usuario() { 
     const datos_rendimiento = localStorage.getItem("dato_rendimiento");
 
@@ -175,10 +170,10 @@ mostrar_rendimieto_usuario()
 
 
 const seccion_pts_total=document.getElementById("seccion_puntos_total");
-//hacer el progreso
 const seccion_nivel=document.getElementById("seccion-nivel");
+let rango=["Novato","principiante", "avanzado"]; 
 
-let rango=["Novato","principiante", "avanzado"];    // rango de avance: 0-10, 11-30, 31-infinito. (puntaje correcto)
+//Funcion para mostrar el nivel del usuario
 function revision_rango(){
     const rendimiento_localstorage = localStorage.getItem("dato_rendimiento");
     const rendimiento_localstorage_json = JSON.parse(rendimiento_localstorage);
@@ -236,7 +231,7 @@ function revision_rango(){
 
 
 revision_rango();
-//Lógica: Configuración Barras de progreso de categorias
+
 //Obtenemos los Contadores ya incrementados para cada categoria
 let cInformaticaTexto = localStorage.getItem("contadorInformatica") || "0";
 console.log(`${cInformaticaTexto}`);
@@ -257,6 +252,7 @@ let cMusica = JSON.parse(cMusicaTexto);
 let cDeportesTexto = localStorage.getItem("contadorDeportes") || "0";
 let cDeportes = JSON.parse(cDeportesTexto);
 
+//Configuración Barras de progreso de categorias 
 const configurarBarrasProgresoCategorias = (cInformatica, cCiencias, cPeliculas, cGeografia, cMusica, cDeportes) => {
     //Obtenemos cada barra de progreso por su id
     const barraInformatica = document.getElementById("progresoInformatica");
@@ -317,6 +313,3 @@ const configurarBarrasProgresoCategorias = (cInformatica, cCiencias, cPeliculas,
     } 
 }
 configurarBarrasProgresoCategorias(cInformatica, cCiencias, cPeliculas, cGeografia, cMusica, cDeportes);
-// function mostrar_puntos_totales(){
-//     const pts_
-// }

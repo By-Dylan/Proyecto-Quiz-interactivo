@@ -1,14 +1,14 @@
-
-body{   /*texto para ver si se subio*/
+body{ 
     background-color: #F5F5F5;
 }
+/*Diseño barra de navegación*/
 .linea div{
     border: 1px solid red;
 }
 .titulo-principal {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 900;
-    color: #6A1B9A; /* Reemplaza esto con el código HEX exacto de ese morado si lo necesitas */
+    color: #6A1B9A; 
     font-size: 33px;
     margin-top: 10px;
 }
@@ -26,15 +26,14 @@ body{   /*texto para ver si se subio*/
     --bs-nav-underline-border-color: #5A00C6 !important; 
     color: #5A00C6 !important; 
 }
-/* Cambia el color de la línea en la pestaña que está activa (Active) */
 .nav-underline .nav-link.active {
     --bs-nav-underline-border-color: #5A00C6 !important; 
     color: #5A00C6 !important; 
 }
-/* Reduce la separación entre el texto y la línea de nav-underline */
 .navbar-nav .nav-link {
     padding-bottom: 2px; 
 }
+/*Diseño Login*/
 .logo-navbar{
     width: 100px; 
     height: 55px; 
@@ -42,7 +41,6 @@ body{   /*texto para ver si se subio*/
     border: 3px solid #7C3AED;
     margin-bottom: 1px;
 }
-/*icono login*/
 .i-login{
     color:#7C3AED;
 }
@@ -64,7 +62,7 @@ body{   /*texto para ver si se subio*/
 .desactivador-de-alerta{
     display: none !important;
 }
-/*Diseño boton eliminar usuario */
+/*Diseño boton eliminar usuario*/
 .btn-eliminar-usuario{
     padding: 10px 22px; 
     font-size: 14px;
@@ -84,14 +82,13 @@ body{   /*texto para ver si se subio*/
     font-weight: 600; 
     font-family: Montserrat, sans-serif;
 }
-/*img del banner*/
+/*Diseño de banner*/
 .img-banner{
     width: 90%;
     margin-top: 30px;
     margin-left: 80px;
     border: 4px solid #06B6D4;
 }
-/*breve descripcion bajo el banner*/
 .banner-description{
     text-align: center;
     margin-top: 3%;
@@ -100,8 +97,6 @@ body{   /*texto para ver si se subio*/
     font-weight: bold;
     color:#A15100;
 }
-/*diseno de botones bajo el banner*/
-
 .btn1, .btn2 {
     padding: 10px 22px; 
     font-size: 13px;
@@ -129,10 +124,7 @@ body{   /*texto para ver si se subio*/
     transform: translateY(-5px);
 }
 
-/* aca termina */
-
-/* col-categoria */
-/*diseño modal de quiz rapido */
+/*Diseño modal de quiz rapido*/
 .titulo-modal-btn{
     text-align: center;
     font-family: Inter, sans-serif;
@@ -388,7 +380,7 @@ h1{
 .card-text{
     font-family: Montserrat, sans-serif;
 }
-/*diseño footer*/
+/*Diseño footer AÑADIR*/
 footer{
     margin-top: 7%;
     background-color: #be98ff;
@@ -413,7 +405,7 @@ footer > *{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: bold;
-}
+} /*HASTA AQUI*/
 .rrss{
     justify-content: center;
     align-items: center;
@@ -449,10 +441,9 @@ footer > *{
 }
 
 .seccion-categoria{
-    cursor: pointer; /*para cambiar el cursor del puntero a tipo link*/
+    cursor: pointer; 
 }
-
-/*diseño para la parte de resumen de resultados del quiz*/
+/*Diseño para la parte de resumen de resultados del quiz*/
 .results {
     text-align: center;
 }
@@ -471,7 +462,7 @@ footer > *{
 .ocultar-circulo-cargando{
     display: none;
 }
-
+/* Diseño footer */
 .gradient-footer {
     background-color: #be98ff;
     color: #3d1e72 !important;
@@ -500,7 +491,6 @@ footer > *{
 .texto-centreado{
     text-align: center;
 }
-/*Diseño footer*/
 .title-1{
     text-align: left;
     font-family: Inter, sans-serif;
@@ -539,7 +529,8 @@ footer > *{
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
-}
+} 
+/* Responsividad */
 @media (max-width: 576px){
     .columnas-categorias{
         display: grid;
@@ -562,9 +553,6 @@ footer > *{
     .texto-final{
         text-align: start;
     }
-    /* .img-banner {
-        height: 400px;
-    } */
 }
 
 

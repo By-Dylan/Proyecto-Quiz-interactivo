@@ -1,4 +1,5 @@
-.seccion-logros{
+/*Diseño tarjetas de logros*/
+.seccion-logros{ 
     margin-top: 100px;
 }
 .titulo-estadistica{
@@ -14,20 +15,8 @@
     font-family: Montserrat, sans-serif;
     font-weight: 600;
 }
-.pregunta_ocultada{
-    display: none !important;
-}
-
-.btn_mostrar_respuesta{
-    background-color: #7C3AED !important;
-    color: white !important;
-}
-
-.color_morado_redimiento{
-    color: #6033ad !important;
-}
-
-.container-grafica1{ /* */
+/*Diseño Gráfico con chart.js*/
+.container-grafica1{
     width: 60%;
     margin-left: auto;
     margin-right: 5%;
@@ -79,6 +68,20 @@
 .title-categorias{
     font-family: Inter, sans-serif;
 }
+/*Diseño seccion de retroalimentacion*/
+.pregunta_ocultada{
+    display: none !important;
+}
+
+.btn_mostrar_respuesta{
+    background-color: #7C3AED !important;
+    color: white !important;
+}
+
+.color_morado_redimiento{
+    color: #6033ad !important;
+}
+/*Responsividad*/
 @media (max-width: 576px){
     #seccion-estadisticas{
         justify-content: center ;
@@ -95,6 +98,4 @@
     .titulo-retroalimentacion{
         text-align: center;
     }
-
-
 }

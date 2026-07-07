@@ -1,4 +1,3 @@
-
 const seccion_cargando = document.getElementById("seccion-cargando");
 const seccion_quiz = document.getElementById("seccion-quiz"); 
 const seccionCorrectoIncorrectoError = document.getElementById("modalCorrectoIncorrectoError");
@@ -20,23 +19,22 @@ let geografia=0;
 let musica=0;
 let deportes=0;
 
-
-
+//Obtenemos los datos desde el main.js
 let indicePreguntaActual = 0; //
 const cNombre = localStorage.getItem("categoriaNombre");
 const idAPI = localStorage.getItem("categoriaID");
 const nivelDificultad = localStorage.getItem("dificultadSeleccionada");
 
 
-if (cNombre && idAPI) {
+if (cNombre && idAPI && nivelDificultad) {
     console.log("Nombre e ID de la categoría y nivel de dificultad obtenidos correctamente: " + cNombre + ", " + idAPI + ", " + nivelDificultad);
 } else {
     console.log("No se lograron cargar los datos.");
 }
 
-
 window.realizar_nuevamente_quiz = generarQuiz;
 
+//Función asíncrona que realiza la petición a la API principal y traduce las preguntas
 generarQuiz(idAPI, nivelDificultad); 
 async function generarQuiz(idAPI, nivelDificultad) {
     seccion_cargando.classList.remove("ocultar-circulo-cargando");
@@ -96,8 +94,8 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Variable preguntasTraducidas:", preguntasTraducidas);
         
         preguntasDelQuiz = preguntasTraducidas;
-        iniciarTiempo(); //
-        //inicializamos el quiz mostrando la primera pregunta
+        iniciarTiempo(); 
+        //Inicializamos el quiz mostrando la primera pregunta
         indicePreguntaActual = 0;
         mostrarPregunta(indicePreguntaActual);
         
@@ -105,8 +103,8 @@ async function generarQuiz(idAPI, nivelDificultad) {
         console.log("Error en el proceso: ", e);
     }
 }
-//Lógica: Imagenes segun la categoria en las preguntas
-const imagenesCategorias = { //objeto que guarda las imagenes
+//Imagenes segun la categoria en las preguntas
+const imagenesCategorias = { 
     "18": "/Img/banner_Informática.jpg",
     "17": "/Img/banner_Ciencias.jpg",
     "11": "Img/banner_Películas.jpg",
@@ -115,6 +113,7 @@ const imagenesCategorias = { //objeto que guarda las imagenes
     "21": "/Img/banner_Deportes.jpg"
 }
 
+//Funcion que muestra la pregunta a medida que el usuario va avanzando
 function mostrarPregunta(indice) {
     configurarBarraProgreso(indice, preguntasDelQuiz); //
     opcionSeleccionada = "";
@@ -126,7 +125,7 @@ function mostrarPregunta(indice) {
     if (indice >= preguntasDelQuiz.length) {
         detenerTiempo(); //
         guardar_datos_localstorage();
-        acumularCategorias();
+        acumularCategorias(); //
         resultados_quiz();
         extrae_guarda_redimiento_localstorage();
         return;
@@ -172,11 +171,9 @@ function mostrarPregunta(indice) {
 
     configurarBotonesOpcion();
     respuestaCorrecta = dato.respuesta_correcta;
-    // return respuestaCorrecta;
 }
 
-
-
+//Funcion que configura las alternativas
 function configurarBotonesOpcion() {
     const botones = document.querySelectorAll('.btn-opcion');
     botones.forEach(boton => {
@@ -187,8 +184,8 @@ function configurarBotonesOpcion() {
     });
 }
 
-
-function configurarBotonSiguiente() {   ///de aca empezaria yo(dilan)
+//Funcion que configura el boton de siguiente
+function configurarBotonSiguiente() {  
     if (opcionSeleccionada === "") {
         seccionCorrectoIncorrectoError.innerHTML = `
             <div class="modal d-block" tabindex="-1">
@@ -252,13 +249,14 @@ function configurarBotonSiguiente() {   ///de aca empezaria yo(dilan)
     pasarSiguientePregunta();
 }
 
+//Funcion que incrementa el indice
 function pasarSiguientePregunta() {
 
     indicePreguntaActual++;
     mostrarPregunta(indicePreguntaActual);
 }
 
-
+//Funcion que configura el boton de saltar
 function configurarBotonSaltar() {
     if (opcionSeleccionada != "") {
         seccionCorrectoIncorrectoError.innerHTML = `
@@ -281,6 +279,8 @@ function configurarBotonSaltar() {
         pasarSiguientePregunta();
     }
 }
+
+//Funcion para cerrar cualquier modal al apretar el boton "X"
 const cerrarModal = (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if (contenedor) {
@@ -288,22 +288,22 @@ const cerrarModal = (idContenedor) => {
     }
 };
 
-
-//Logica: Configuracion barra de progreso: 
+//Funcion para configuracion la barra de progreso
 function configurarBarraProgreso(indice, preguntasDelQuiz){
     const barraProgreso = document.getElementById("barraProgreso");
     let porcentaje = (indice + 1) / preguntasDelQuiz.length * 100;
     barraProgreso.style.width = `${porcentaje}%`;
     barraProgreso.style.backgroundColor = "#A15100";
 }
-//Logica: Configuracion del tiempo
+//Configuracion del tiempo
 let totalSegundos = 0;
 let tiempoQuiz;
 
+//Funcion para iniciar el tiempo
 function iniciarTiempo(){
     totalSegundos = 0;
     const spanTiempo = document.getElementById("spanTiempo");
-    clearInterval(tiempoQuiz); //sirve para limpiar el tiempo si es que quedo guardado
+    clearInterval(tiempoQuiz); 
     tiempoQuiz = setInterval(() => {
         totalSegundos++;
         let minutos = Math.floor(totalSegundos / 60);
@@ -311,19 +311,20 @@ function iniciarTiempo(){
         spanTiempo.innerHTML = `${minutos}:${segundos}`;
     }, 1000)
 }
+//Funcion para detener el tiempo y guardarlo
 function detenerTiempo(){
     clearInterval(tiempoQuiz);
-    let datosQuiz = localStorage.getItem("datosQuizes") || "[]"; //lista para añadir los datos
+    let datosQuiz = localStorage.getItem("datosQuizes") || "[]"; 
     let historialQuiz = JSON.parse(datosQuiz);
-    let historialQuizActual = { //ver si es necesario añadir el puntaje, objeto con los datos
+    let historialQuizActual = { 
         "categoria": cNombre,
         "tiempo": totalSegundos,
     };
-    historialQuiz.push(historialQuizActual); //añadimos el objeto a la lista
-    localStorage.setItem("datosQuizes", JSON.stringify(historialQuiz)); //lo transformamos a texto para darselo al localstorage
+    historialQuiz.push(historialQuizActual); 
+    localStorage.setItem("datosQuizes", JSON.stringify(historialQuiz)); 
+} 
 
-
-} //
+//Funcion que muestra el puntaje de cada quiz al finalizarlo
 function resultados_quiz() {
     seccion_quiz.innerHTML = `
         <div class="results">
@@ -336,10 +337,10 @@ function resultados_quiz() {
             <button class="btn btn-primary intentarOtraVez" onclick="location.reload()">Intentar otra vez</button>
         </div>
     `;
-
 }
 
-function guardar_datos_localstorage(){  //guardo las preguntas donde se responda incorrectamente
+//Funcion para guardar las preguntas correctas e incorrectas del quiz
+function guardar_datos_localstorage(){ 
 
     const preguntas_incorrectas_localstorage= localStorage.getItem("quiz_respondido_incorrectamente");
     if(preguntas_incorrectas_localstorage){
@@ -355,8 +356,7 @@ function guardar_datos_localstorage(){  //guardo las preguntas donde se responda
     
 }
 
-
-
+//Funcion para guardar el rendimiento por categoria del usuario
 function guardar_rediemiento(nombre_categoria){
     console.log("hola desde guardar rendimiento:", nombre_categoria);
     if(nombre_categoria==="Informática"){
@@ -378,11 +378,9 @@ function guardar_rediemiento(nombre_categoria){
     if(nombre_categoria==="Deportes"){
         deportes++;
     }
-    
-
 }
 
-
+//Funcion para incrementar el puntaje de rendimiento en cada categoria
 function extrae_guarda_redimiento_localstorage() {
     const rendimiento_localstorage = localStorage.getItem("dato_rendimiento");
 
@@ -424,19 +422,20 @@ function extrae_guarda_redimiento_localstorage() {
     
     console.log("Datos totales actualizados con estructura de objetos:", rendimiento);
 }
-//Lógica: Acumular contadores de cada categoria para las barras de progreso de estadisticas
+
+//Funcion para acumular contadores de cada categoria para las barras de progreso de estadisticas
 function acumularCategorias(){
-     //Segun el ID de la categoria, incrementamos su contador y lo guardamos en localstorage
+    
     if(!idAPI){
         console.log("No se ha encontrado una categoria con ese ID.");
     }
     if(idAPI === "18"){
-        let catInformaticaAcumulado = localStorage.getItem("contadorInformatica") || "0"; //revisa si ya hay categorias anteriores guardadas
-        let catInformatica = JSON.parse(catInformaticaAcumulado); //lo devuelve al formato de numero
-        catInformatica ++; // se acumula la categoria del quiz actual con las anteriores
+        let catInformaticaAcumulado = localStorage.getItem("contadorInformatica") || "0";
+        let catInformatica = JSON.parse(catInformaticaAcumulado);
+        catInformatica ++; 
         console.log(`Se ha añadido 1 categoría de informática: ${catInformatica}`);
-        let catInformaticaTexto = JSON.stringify(catInformatica); //se tranforman a texto
-        localStorage.setItem("contadorInformatica", catInformaticaTexto); //se guardan en localstorage
+        let catInformaticaTexto = JSON.stringify(catInformatica); 
+        localStorage.setItem("contadorInformatica", catInformaticaTexto); 
     }
 
     if(idAPI === "17"){

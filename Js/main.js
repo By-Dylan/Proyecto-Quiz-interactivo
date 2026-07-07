@@ -3,16 +3,16 @@ const seccion_login=document.getElementById("seccion-login");
 const login= document.querySelector("#login");
 const alerta= document.querySelector("#alerta");
 const icono_sesion_correcta=document.getElementById("icono-sesion-correcta")
-const contenedorModalEliminar = document.getElementById("contenedorModalEliminar");
+const contenedorModalEliminar = document.getElementById("contenedorModalEliminar"); //
 
 const btn_enviar=document.getElementById("btn-enviar");
-//btn_enviar.setAttribute('data-bs-dismiss', 'modal') //en argumento va el el atributo y su valor
 
+//Boton ¿Cómo funciona?
 btn_ComoFunciona.addEventListener("click", ()=>{
     window.scrollTo({ top: 870, behavior:"smooth"}); 
 })
 
-
+//Creación de cuenta
 login.addEventListener("submit",(evento)=>{
     evento.preventDefault()
 
@@ -54,12 +54,12 @@ function verificarUsuario(instanciaModal){
         seccion_login.classList.add("ocultar-register");
         icono_sesion_correcta.classList.remove("icono-sesionCorrecta");
 
-    } else if(seccion_login && icono_sesion_correcta){
-        seccion_login.classList.remove("ocultar-register"); //si el usuario no existe, volvemos a mostrar registrar y ocultamos la segunda imagen (sesion iniciada)
+    } else if(seccion_login && icono_sesion_correcta){ //
+        seccion_login.classList.remove("ocultar-register"); 
         icono_sesion_correcta.classList.add("icono-sesionCorrecta");
     }
 }
-//Lógica: Modal con boton para borrar la cuenta
+//Modal con boton para borrar la cuenta
 if(icono_sesion_correcta){
     icono_sesion_correcta.addEventListener("click", (evento) => {
         evento.preventDefault(); //para evitar que se envie el formulario
@@ -86,14 +86,23 @@ if(icono_sesion_correcta){
     })
 }
 verificarUsuario();
-//Lógica: Función para eliminar usuario
+//Función para eliminar la cuenta
 function eliminarUsuario(){
     let usuarioEliminado = localStorage.removeItem("usuario_registrado");
+    let categoriaIDEliminada = localStorage.removeItem("categoriaID");
+    let categoriaNombreEliminada = localStorage.removeItem("categoriaNombre");
+    let contadorInformaticaEliminada = localStorage.removeItem("contadorInformatica");
+    let datoRendimientoEliminada = localStorage.removeItem("dato_rendimiento");
+    let datosQuizesEliminada = localStorage.removeItem("datosQuizes");
+    let dificultadSeleccionadaEliminada = localStorage.removeItem("dificultadSeleccionada");
+    let listaDificultadesEliminada = localStorage.removeItem("listaDificultades");
+    let quizResspondidoIncorrectoEliminada = localStorage.removeItem("quiz_respondido_incorrectamente");
+
     verificarUsuario();
     cerrarModal("contenedorModalEliminar");
 }
 
-//Logica botón quiz rápido
+//Botón quiz rápido
 const botonQuizRapido = document.getElementById("botonQuizRapido");
 const contenedorModal = document.getElementById("contenedorModal");
 
@@ -229,10 +238,7 @@ botonQuizRapido.addEventListener("click", () => {
     `;
 });
 
-
-
-
-//logica redirrecionar al usuario al apretar cualquier categoria        (dilan hasta el final)
+//Redirrecionar al usuario al apretar cualquier categoria hacia quiz.html
 const informatica = document.getElementById("cInformatica");
 const ciencias = document.getElementById("cCiencia");
 const peliculas = document.getElementById("cPeliculas");
@@ -246,7 +252,7 @@ const guardarCategoria= (cNombre, c_idAPI) => {
     localStorage.setItem("categoriaID", c_idAPI);
 }
 
-//seleccionn y guardado del nivel de dificultad del quiz
+//Selección y guardado del nivel de dificultad del quiz
 const nivelDeDificultad = document.getElementById("contenedorModalDificultad");
 
 const seleccionnivelDeDificultad = () => {
@@ -301,7 +307,7 @@ const seleccionnivelDeDificultad = () => {
     `;
 }
 
-//funcion para cerrar el modal
+//Funcion para cerrar cualquier modal con el boton de "X"
 const cerrarModal= (idContenedor) => {
     const contenedor = document.getElementById(idContenedor);
     if(contenedor){
@@ -309,25 +315,22 @@ const cerrarModal= (idContenedor) => {
     }
 };
 
-
-
-//Logica: Funcion para guardar en memoria la dificultad
+//Funcion para guardar en memoria la dificultad
 const guardarDificultad = (dificultad) => {
     if(dificultad === ""){
         alert("Debes seleccionar un nivel de dificultad");
         return;
     }else{
         localStorage.setItem("dificultadSeleccionada", dificultad);
-        const historialDificultad = localStorage.getItem("listaDificultades") || "[]"; //verifica si hay algo guardado anteriormente o si es primera vez que guardara algo
-        const listaDificultadesArray = JSON.parse(historialDificultad); //pasa de string hacia array
-        listaDificultadesArray.push(dificultad); //añadimos la dificultad al array
-        localStorage.setItem("listaDificultades", JSON.stringify(listaDificultadesArray)); //lo pasamos a texto nuevamente
+        const historialDificultad = localStorage.getItem("listaDificultades") || "[]";
+        const listaDificultadesArray = JSON.parse(historialDificultad);
+        listaDificultadesArray.push(dificultad); 
+        localStorage.setItem("listaDificultades", JSON.stringify(listaDificultadesArray)); 
         window.location.href = "quiz.html";
     }
-}; //
+};
 
-
-//se añade el evento click a cada categoria y se llama a la fn, pasandole el nombre de la categoria y su id de la API
+//Llamar a las fns segun la categoria que elija el usuario
 if(informatica){
     informatica.addEventListener("click", () => {
         guardarCategoria("Informática", 18);
@@ -365,8 +368,7 @@ if(deportes){
     });
 }
 
-
-
+//Evita que el usuario ingrese a quiz.html sin antes haber elegido una categoria
 const linkQuizDesdeIndex = document.getElementById("link-quiz-desde-index");
 
 linkQuizDesdeIndex.addEventListener("click",(evento)=>{
@@ -375,14 +377,12 @@ linkQuizDesdeIndex.addEventListener("click",(evento)=>{
     
     const categoriaElegida = localStorage.getItem("categoriaID");
     if(!categoriaElegida){
-        alert("primero debes seleccionar una categoría.");
+        alert("Primero debes seleccionar una categoría.");
         return;
             
     }
     
 })
 
+//Elimina la categoria elegida
 localStorage.removeItem('categoriaID');
-
-
-

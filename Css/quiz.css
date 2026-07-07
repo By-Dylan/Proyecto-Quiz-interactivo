@@ -1,5 +1,5 @@
-/*diseño del quiz*/
-.progress{ /* */
+/* Diseño barra de progreso */
+.progress{ 
     width: 40%;
     background-color:#06B6D4;
     margin: 1% auto;
@@ -16,8 +16,17 @@
     font-size: 20px;
     font-weight: bold;
 }
+/* Diseño de la pregunta del quiz */
+.tarjeta-quiz{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 30px;
+    border: 2px solid #06B6D4;
+    background-color: #cdf7ff;
+}
 .img-quiz{
-    width: 50%;
+    width: 50%; 
     margin: 2% 25%;
     border: 3px solid #7C3AED;
 }
@@ -107,7 +116,6 @@
     font-family: Montserrat, sans-serif;
     border: none;
     width: 160px;
-    margin-left: 465px;
     margin-top: 3%;
     background-color: #7C3AED;
 }
@@ -129,17 +137,14 @@
     background-color: #06B6D4;
     color: #333;
 }
-/*diseño mensaje cargando preguntas 
-.seccion-categoria{
-    cursor: pointer; /*para cambiar el cursor del puntero a tipo link
-} */
+/*Clases para mostrar/ocultar el mensaje "Traduciendo preguntas" */
 #mostrar-mensaje{
     display: block;
 }
 .ocultar-circulo-cargando{
     display: none;
 }
-/*diseño para la parte de resumen de resultados del quiz*/
+/*Diseño de la parte de resultados del quiz*/
 .results {
     text-align: center;
 }
@@ -172,20 +177,22 @@
     margin-top: 3%;
     background-color: #7C3AED;
 }
-/*Diseño tarjeta quiz*/
-.tarjeta-quiz{
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    margin-top: 30px;
-    border: 2px solid #06B6D4;
-    /*background-color: #fbe0c4;*/
-    background-color: #cdf7ff;
-    /*background-color: #d3c2ef;*/
-}
+/*Diseño Footer*/
 .mensaje-final-footer{
     font-family: Montserrat, sans-serif;
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
+} 
+/*Responsividad*/
+@media (max-width: 578px){
+    .siguiente, .saltar{
+        margin-left: 140px;
+    }
+    .alternativa-a, .alternativa-b, .alternativa-c, .alternativa-d{
+        width: 100%;
+    }
+    .alternativa-b, .alternativa-d{
+        margin-left: 0px;
+    }
 }

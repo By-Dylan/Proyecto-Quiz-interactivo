@@ -9,14 +9,16 @@
         <link rel="stylesheet" href="/Css/estadisticas.css">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     </head>
-    <body >
+    <body>
+    <!--Barra de navegacion-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 bg-white border rounded-3 shadow-sm">
         <div class="container-fluid barra-navegacion">
         <a class="navbar-brand m-0" href="/index.html" style="z-index: 2;">
@@ -48,8 +50,7 @@
         </div>
     </nav>
 
-    <!--secciones modal:  -->
-    <!--modal login: -->
+    <!--Modal login: -->
     <div class="modal fade" id="modalComentarios" tabindex="-1" aria-labelledby="modalComentariosLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content text-dark">
@@ -82,25 +83,23 @@
 
     <br><br>
 
-    <!--seccion bienbenida usuario-->
+    <!--seccion bienvenida usuario-->
     <div class="container " id="seccion-bienvenido">
-        <div class="row">
-            
-        </div>
+        <div class="row"></div>
         <br><br>
     </div>
-    <div class="container"> <!---->
+    <div class="container">
         <div class="row">
-            <div class="col" id="seccion_puntos_total">
-                
-            </div>
+            <div class="col" id="seccion_puntos_total"></div>
+
+    <!--contenedor para la grafica-->      
             <div class="col container-grafica1">
                 <canvas id = "idEstadistica1"></canvas>
             </div>
         </div>
-    </div> <!---->
+    </div>
 
-    <!--contenedor de barra de progesor y logros-->
+    <!--Contenedor de barras de progresos y logros-->
     <div class="container seccion-logros">
         <h3 class="titulo-estadistica">Tus Estadisticas</h3>
 
@@ -121,7 +120,7 @@
                 <div id="contenedorTextoBarraCiencias"></div>
                 <br>
 
-                <p class="m-0 title-categorias">Peliculas</p>     <!--el width es el encargado de aumentar el proceso en el diseño fondo-->
+                <p class="m-0 title-categorias">Peliculas</p> 
                 <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar" id="progresoPeliculas"></div>
                 </div>
@@ -146,14 +145,14 @@
                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar" id="progresoDeportes"></div>
                 </div>
-                <div id="contenedorTextoBarraDeportes"></div>
+                <div id="contenedorTextoBarraDeportes"></div> 
                 <br>
             </div>
-            
+            <!--Tarjetas de logros-->
             <div class="col-12 col-lg-6">
                 <div class="contenido-vertical d-flex flex-column gap-3 mx-auto" style="max-width: 400px;" id="area-rendimiento">
                     <div class="p-3 bg-white border rounded-3 shadow-sm" >
-                        <h5 class="title-tarjetas">Rendimiento</h5>
+                        <h5 class="title-tarjetas">Rendimiento</h5> 
                         <div id="seccion_rendimiento">
                             <p class="text-muted m-0 text-tarjetas">Área más destacada: </p>
                             <p class="text-muted m-0">Área más débil: </p>
@@ -168,9 +167,7 @@
 
                     <div class="p-3 bg-white border rounded-3 shadow-sm">
                         <h5 class="title-tarjetas">Progreso de Nivel</h5>
-                        <div id="seccion-nivel">
-                            
-                        </div>
+                        <div id="seccion-nivel"></div>
                     </div>
                 </div>
             </div>
@@ -179,28 +176,17 @@
 
     <br><br><br>
 
-
-
-    
-    <!--seccion donde estara las preguntas mal respondidas -->
+    <!--Seccion retroalimentacion de preguntas-->
     <div class="container">
         <h3 class="titulo-retroalimentacion" style="color: #7C3AED;">Respuestas Incorrectas del Quiz</h3>
-        <div id="seccion-retroalimentacion">
-            
-            
-        </div>
-        
-
+        <div id="seccion-retroalimentacion"></div>
     </div>
 
-    
-
-    <!--pie de pagina-->
-    
+    <!--Footer-->
 <footer class="gradient-footer text-white py-5 ">
     <div class="container">
         <div class="row g-4 contenido-footer">
-        <!-- Company Info -->
+
         <div class="col col-lg-4">
             <h5 class="fw-bold mb-3 title-1">QuizMind</h5>
             <p class="text-1">QuizMind no es solo una prueba para medir lo que sabes, es el escenario perfecto donde 
@@ -209,20 +195,15 @@
             <img src="/Img/logo-ig-sin_fondo.png" alt="img" style="width: 40px;">
         </div>
 
-        <!-- Quick Links -->
-        
-
         <div class="col-lg-4 col-md-3 mb-3 texto-centreado">
             <h5 class="fw-bold mb-3 title-2">Enlaces Rápidos</h5>
             <ul class="list-unstyled links-footer">
                 <li class="mb-2"><a href="index.html" class="footer-link link">Inicio</a></li>
                 <li class="mb-2"><a href="nosotros.html" class="footer-link link">Nosotros</a></li>
-                <li class="mb-2"><a href="#" class="footer-link link">Privacidad</a></li>
-                <li class="mb-2"><a href="#" class="footer-link link">Términos y Condiciones</a></li>
+                <li class="mb-2"><a href="estadisticas.html" class="footer-link link">Estadísticas</a></li>
             </ul>
         </div>
 
-        <!-- Newsletter -->
         <div class="col-lg-4 col-md-4 texto-final">
             <h5 class="fw-bold mb-3 title-3">Comunidad QuizMind</h5>
             <h6 class="fw-bold mb-3 title-mision-vision">Misión</h6>
@@ -235,7 +216,6 @@
 
         <hr class="opacity-75">
 
-        <!-- Copyright -->
         <div class="row">
                 <div class="col-md-12 text-center">
                     <p class="mb-0 mensaje-final-footer">&copy;QuizMind: La mejor plataforma para realizar Quiz</p>
@@ -244,8 +224,7 @@
     </div>
 </footer>
 
-
-
+    <!--Llamado a bootstrap, js y chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--llamado a chartjs-->
     <script src="/Js/estadisticas.js"></script>
